@@ -14,7 +14,5 @@ def servo1_motor():
         motor1.max()
         sleep(1)
 
-        print("hello")
-
 if __name__ == '__main__':
     main()
