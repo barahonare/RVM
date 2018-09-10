@@ -11,9 +11,6 @@ def servo1_motor():
         sleep(1)
         motor1.mid()
         sleep(1)
-        motor1.max()
-        sleep(1)
-        motor1.mid()
 
 if __name__ == '__main__':
     main()
