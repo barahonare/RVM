@@ -95,3 +95,4 @@ if __name__ == "__main__":
 	app.title("Recycling Vending Machine")
 	app.geometry("425x150")
 	app.mainloop()
+    #test anthony
