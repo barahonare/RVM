@@ -102,16 +102,29 @@ class PurchasePage(tk.Frame):
         label = tk.Label(self, bg="lightgreen", text="What would you like to purchase?", font=controller.title_font)
         label.pack(side="top", fill="x", pady=10)
         PlasticBottleButton = tk.Button(self, text="Bottled Beverage",
-                            command=lambda: controller.show_frame(""))
+                            command=lambda: controller.show_frame(""))#need to add bottle servo dispensing code
         CannedDrinkButton = tk.Button(self, text="Canned Beverage",
-                            command=lambda: controller.show_frame(""))
-        StartPageButton = tk.Button(self, text="Return to Start Page",
-                           command=lambda: controller.show_frame("StartPage"))
+                            command=lambda: controller.show_frame(""))#need to add canned servo dispensing code
         PlasticBottleButton.pack()
         CannedDrinkButton.pack()
-        StartPageButton.pack()
+        counter = 0
+        def counter_label(label):
+            counter = 0
+            def count():
+                global counter
+                counter += 1
 
-		
+        command=lambda: controller.show_frame("CheckoutWindow")
+
+class CheckoutWindow(tk.Frame):#window after the PurchasePage Window
+
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.controller = controller
+        label = tk.label(self, bg="White", text="Thank you for shopping at the RVM.", font=controller.title_font)
+        label.pack(fill="x")
+        #create timer code so the frame will wait 3 seconds
+        command=lambda: controller.show_frame("StartPage")		
 
 if __name__ == "__main__":
 	app = RvmApp()
