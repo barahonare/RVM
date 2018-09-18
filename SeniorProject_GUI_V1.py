@@ -53,26 +53,26 @@ class StartPage(tk.Frame):
         button2.pack()
 
 
-#class RecyclePage(tk.Frame):
+class RecyclePage(tk.Frame):
 
-#    def __init__(self, parent, controller):
-#        tk.Frame.__init__(self, parent)
-#        self.controller = controller
-#        label = tk.Label(self, bg="lightgreen", text="What would you like to recycle?", font=controller.title_font)
-#        label.pack(side="top", fill="x", pady=10)
+   def __init__(self, parent, controller):
+       tk.Frame.__init__(self, parent)
+       self.controller = controller
+       label = tk.Label(self, bg="lightgreen", text="What would you like to recycle?", font=controller.title_font)
+       label.pack(side="top", fill="x", pady=10)
                            
-#        button1 = tk.Button(self, text="Plastic Bottle",
-#                            command=lambda: controller.show_frame(""))
-#        button2 = tk.Button(self, text="Aluminum Can",
-#                            command=lambda: controller.show_frame(""))
-#        button = tk.Button(self, text="Return to Start Page",
-#                           command=lambda: controller.show_frame("StartPage"))
-#        button1.pack()
-#        button2.pack()
-#        button.pack()
+       button1 = tk.Button(self, text="Plastic Bottle",
+                           command=lambda: controller.show_frame(""))
+       button2 = tk.Button(self, text="Aluminum Can",
+                           command=lambda: controller.show_frame(""))
+       button = tk.Button(self, text="Return to Start Page",
+                          command=lambda: controller.show_frame("StartPage"))
+       button1.pack()
+       button2.pack()
+       button.pack()
 
 
-class RecycleScan(tk.frame): #window after the recycle button is clicked
+class RecycleScan(tk.Frame): #window after the recycle button is clicked
 
     def __init__(self, parent, controller):
         tk.frame.__init__(self, parent)
@@ -121,7 +121,7 @@ class CheckoutWindow(tk.Frame):#window after the PurchasePage Window
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
-        label = tk.label(self, bg="White", text="Thank you for shopping at the RVM.", font=controller.title_font)
+        label = tk.Label(self, bg="White", text="Thank you for shopping at the RVM.", font=controller.title_font)
         label.pack(fill="x")
         #create timer code so the frame will wait 3 seconds
         command=lambda: controller.show_frame("StartPage")		
