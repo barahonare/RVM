@@ -20,9 +20,8 @@ class RvmApp(tk.Tk):
         container.grid_columnconfigure(0, weight=1)
 
         self.frames = {}
-        # for F in (StartPage, RecyclePage, PurchasePage):
-        pages = [StartPage, RecyclePage, RecycleScan]
-        for F in pages:
+        pages = [StartPage, RecyclePage, RecycleScan] #pages holds all the windows
+        for F in pages: # for loop instantiates windows and places them
             page_name = F.__name__
             frame = F(parent=container, controller=self)
             self.frames[page_name] = frame
@@ -50,10 +49,10 @@ class StartPage(tk.Frame):
 
         button1 = tk.Button(self, text="Recycle",
                             command=lambda: controller.show_frame("RecyclePage"))
-        # button2 = tk.Button(self, text="Purchase a Drink",
-        #                     command=lambda: controller.show_frame("PurchasePage"))
+        button2 = tk.Button(self, text="Purchase a Drink",
+                            command=lambda: controller.show_frame("PurchasePage"))
         button1.pack()
-        # button2.pack()
+        button2.pack()
 
 
 class RecyclePage(tk.Frame):
@@ -68,7 +67,7 @@ class RecyclePage(tk.Frame):
                            command=lambda: controller.show_frame(""))
        button2 = tk.Button(self, text="Aluminum Can",
                            command=lambda: [controller.show_frame("RecycleScan"),Recycling()])
-       button = tk.Button(self, text="Return to Start Page",
+       button = tk.Button(self, text="Return to Main menu",
                           command=lambda: controller.show_frame("StartPage"))
        button1.pack()
        button2.pack()
@@ -82,8 +81,8 @@ class RecycleScan(tk.Frame): #window after the recycle button is clicked
         self.controller = controller
         label = tk.Label(self, bg="White", text="Please scan your recycleables with the scanner.", font=controller.title_font)
         label.pack(fill="x")
-        openDoor()
-        check_sensor()
+        check_sensor()  #used to scan the recyclable
+        openDoor()      #used to open the coresponding door
         command=lambda: controller.show_frame("RecycleComplete")
 
 class RecycleComplete(tk.Frame):#window after the RecycleScan Window
@@ -97,27 +96,27 @@ class RecycleComplete(tk.Frame):#window after the RecycleScan Window
         command=lambda: controller.show_frame("StartPage")
 
 
-# class PurchasePage(tk.Frame):
+ class PurchasePage(tk.Frame):
 
-#     def __init__(self, parent, controller):
-#         tk.Frame.__init__(self, parent)
-#         self.controller = controller
-#         label = tk.Label(self, bg="lightgreen", text="What would you like to purchase?", font=controller.title_font)
-#         label.pack(side="top", fill="x", pady=10)
-#         PlasticBottleButton = tk.Button(self, text="Bottled Beverage",
-#                             command=lambda: controller.show_frame(""))#need to add bottle servo dispensing code
-#         CannedDrinkButton = tk.Button(self, text="Canned Beverage",
-#                             command=lambda: controller.show_frame(""))#need to add canned servo dispensing code
-#         PlasticBottleButton.pack()
-#         CannedDrinkButton.pack()
-#         counter = 0
-#         def counter_label(label):
-#             counter = 0
-#             def count():
-#                 global counter
-#                 counter += 1
+     def __init__(self, parent, controller):
+         tk.Frame.__init__(self, parent)
+         self.controller = controller
+         label = tk.Label(self, bg="lightgreen", text="What would you like to purchase?", font=controller.title_font)
+         label.pack(side="top", fill="x", pady=10)
+         PlasticBottleButton = tk.Button(self, text="Bottled Beverage",
+                             command=lambda: controller.show_frame(""))#need to add bottle servo dispensing code
+         CannedDrinkButton = tk.Button(self, text="Canned Beverage",
+                             command=lambda: controller.show_frame(""))#need to add canned servo dispensing code
+         PlasticBottleButton.pack()
+         CannedDrinkButton.pack()
+         counter = 0
+         def counter_label(label):
+             counter = 0
+             def count():
+                 global counter
+                 counter += 1
 
-#         command=lambda: controller.show_frame("CheckoutWindow")
+         command=lambda: controller.show_frame("CheckoutWindow")
 
 
 
@@ -133,9 +132,9 @@ class RecycleComplete(tk.Frame):#window after the RecycleScan Window
 
 # =============== Recycling methods ====================== #
 # ======================================================== #
-def Recycling():
+def Recycling(): #when recyling button is pushed on the main menu
+    check_sensor() #this will 
     openDoor()
-    check_sensor()
     closeDoor()
     
 
