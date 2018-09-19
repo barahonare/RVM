@@ -1,4 +1,4 @@
-#Version 1 ----- Last updated 9/12/18
+#Version 1 ----- Last updated 9/19/18
 import math
 import tkinter as tk                # python 3
 from tkinter import font  as tkfont # python 3
