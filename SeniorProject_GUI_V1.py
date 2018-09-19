@@ -96,7 +96,7 @@ class RecycleComplete(tk.Frame):#window after the RecycleScan Window
         command=lambda: controller.show_frame("StartPage")
 
 
- class PurchasePage(tk.Frame):
+class PurchasePage(tk.Frame):
 
      def __init__(self, parent, controller):
          tk.Frame.__init__(self, parent)
