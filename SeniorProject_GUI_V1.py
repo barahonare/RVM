@@ -84,7 +84,7 @@ class RecycleScan(tk.Frame): #window after the recycle button is clicked
         check_sensor()  #used to scan the recyclable
         openDoor()      #used to open the coresponding door
         command=lambda: controller.show_frame("RecycleComplete")
-
+        #hi
 class RecycleComplete(tk.Frame):#window after the RecycleScan Window
 
     def __init__(self, parent, controller):
