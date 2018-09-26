@@ -116,17 +116,21 @@ class PurchasePage(tk.Frame):
         tk.Frame.__init__(self, parent)
         self.controller = controller
         label = tk.Label(self, bg="lightgreen", text="What would you like to purchase?", font=controller.title_font)
-        label.pack(side="top", fill="x", pady=10)
+        label.grid(row = 0, column = 20, pady=10)
 
         PlasticBottleButton = tk.Button(self, text="Bottled Beverage",
                                         command=lambda: controller.show_frame(
                                             ""))  # need to add bottle servo dispensing code
-        PlasticBottleButton.pack()
+        PlasticBottleButton.grid(row=2, column=3)
 
         CannedDrinkButton = tk.Button(self, text="Canned Beverage", bg="white", width="250",
                                       command=lambda: controller.show_frame(
                                           ""))  # need to add canned servo dispensing code
-        CannedDrinkButton.pack()
+        CannedDrinkButton.grid(row=4, column=3)
+        CheckoutButton = tk.Button(self, text="Checkout Here",
+                                        command=lambda: controller.show_frame(
+                                            ""))  # need to add bottle servo dispensing code
+        CheckoutButton.grid(row=4, column=40)
 
         ##########BottledDrinkButtonPhoto
         btnBottledDrinkImage = PhotoImage(file="bottledDrinkButton.gif")
