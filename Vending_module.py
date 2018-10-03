@@ -6,7 +6,7 @@ from time import sleep
 def servo1_motor():
     pin_gpio = 17
     motor1 = gpiozero.Servo(pin_gpio)
-    motor1.max()
+    motor1.min()
 
 
 # if __name__ == '__main__':
