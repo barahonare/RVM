@@ -6,8 +6,11 @@ from time import sleep
 def servo1_motor():
     pin_gpio = 17
     motor1 = gpiozero.Servo(pin_gpio)
-    motor1.min()
-
+    for i in range(1,4):
+        motor1.min()
+        sleep(1)
+        motor1.mid()
+        sleep(1)
 
 # if __name__ == '__main__':
 #     main()
