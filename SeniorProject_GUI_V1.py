@@ -197,17 +197,20 @@ def Recycling():  # when recyling button is pushed on the main menu
 
 def openDoor():
     print("opening recycling door")
-    Vm.servo1_motor()
+    Vm.servo1_open()
+    sleep(3)
+    Vm.servo1_close()
 
 
 def check_sensor():
     print("Checking for objects")
     print("Nothing is detected")
-    closeDoor()
 
 
-def closeDoor():
-    print("Closing door")
+# def closeDoor():
+#     print("Closing door")
+#     Vm.servo1_open()
+
 
 
 def dispense_drink(drink):
