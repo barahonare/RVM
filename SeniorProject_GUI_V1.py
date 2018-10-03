@@ -1,4 +1,3 @@
-# Version 1 ----- Last updated 9/19/18
 #exact change only
 import math
 import tkinter as tk  # python 3
@@ -19,10 +18,10 @@ class RvmApp(tk.Tk):
         ##############This allows the program to launch in full screen
         self.attributes('-fullscreen', True)
 
-        #############This allows to press 'esc' key to exit full screen
-        #############If you want to close the program instead remove
-        #############self.attributes('-fullscreen', False) and add
-        #############self.destroy()
+        #This allows to press 'esc' key to exit full screen
+        #If you want to close the program instead remove
+        #self.attributes('-fullscreen', False) and add
+        #self.destroy()
         self.bind('<Escape>', lambda e: self.attributes('-fullscreen', False))
 
         # the container is where we'll stack a bunch of frames
@@ -87,7 +86,6 @@ class RecyclePage(tk.Frame):
 
 
 class RecycleScan(tk.Frame):  # window after the recycle button is clicked
-
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
@@ -97,11 +95,9 @@ class RecycleScan(tk.Frame):  # window after the recycle button is clicked
         check_sensor()  # used to scan the recyclable
         openDoor()  # used to open the coresponding door
         command = lambda: controller.show_frame("RecycleComplete")
-        # hi
 
 
 class RecycleComplete(tk.Frame):  # window after the RecycleScan Window
-
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
@@ -128,9 +124,21 @@ class PurchasePage(tk.Frame):
                                           ""))  # need to add canned servo dispensing code
         CannedDrinkButton.grid(row=4, column=3)
         CheckoutButton = tk.Button(self, text="Checkout Here",
-                                        command=lambda: controller.show_frame(
-                                            ""))  # need to add bottle servo dispensing code
+                                        command=lambda: controller.show_frame("CheckoutPage"))
         CheckoutButton.grid(row=4, column=40)
+
+class CheckoutPage(tk.Frame):  #after purchase window
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.controller = controller
+        label = tk.Label(self, bg="White", text="Please you may insert exact change now.", font=controller.title_font)
+        label.pack(fill="x")
+        # display the total
+        # as they insert subtract in money method
+        # create timer code so the frame will wait 3 seconds
+        command = lambda: controller.show_frame("StartPage")
+
+#========================== photo instantiation ==============================#
 
         ##########BottledDrinkButtonPhoto
         btnBottledDrinkImage = PhotoImage(file="bottledDrinkButton.gif")
@@ -156,16 +164,27 @@ class PurchasePage(tk.Frame):
 
         command = lambda: controller.show_frame("CheckoutWindow")
 
+#-------------- Money calculation method-----------------#
+def Money():
+    plues = 0
+    #If a quarter is read
+    #if (pulse == 1)
+        #do something
+    #if a dime is read
+    #if (pulse == 2)
+        #do something
+    #if a nickel is read
+    #if (pulse == 3)
+        #do something
+    #if a dime is read
+    #if (pulse == 4)
+        #do something
+    #if a penny is read
+    #if (pulse == 5)
+        #do something
+    total = 0
+    discount = 0
 
-# class CheckoutWindow(tk.Frame):#window after the PurchasePage Window
-
-#     def __init__(self, parent, controller):
-#         tk.Frame.__init__(self, parent)
-#         self.controller = controller
-#         label = tk.Label(self, bg="White", text="Thank you for shopping at the RVM.", font=controller.title_font)
-#         label.pack(fill="x")
-#         #create timer code so the frame will wait 3 seconds
-#         command=lambda: controller.show_frame("StartPage")
 
 # =============== Recycling methods ====================== #
 # ======================================================== #
