@@ -6,6 +6,7 @@ from tkinter import PhotoImage
 from tkinter import ttk
 from tkinter import *
 from time import sleep
+import Vending_module as Vm
 
 class RvmApp(tk.Tk):
     global btnCanDrinkImage  # needed to save the image if not garbage collector will remove it
@@ -196,6 +197,7 @@ def Recycling():  # when recyling button is pushed on the main menu
 
 def openDoor():
     print("opening recycling door")
+    Vm.servo1_motor()
 
 
 def check_sensor():

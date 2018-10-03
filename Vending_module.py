@@ -1,8 +1,8 @@
 import gpiozero
 from time import sleep
 
-def main():
-    servo1_motor()
+# def main():
+#     servo1_motor()
 def servo1_motor():
     pin_gpio = 3
     motor1 = gpiozero.Servo(pin_gpio)
@@ -12,5 +12,5 @@ def servo1_motor():
         motor1.mid()
         sleep(1)
 
-if __name__ == '__main__':
-    main()
+# if __name__ == '__main__':
+#     main()
