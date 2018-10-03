@@ -76,7 +76,7 @@ class RecyclePage(tk.Frame):
         label.pack(side="top", fill="x", pady=10)
 
         button1 = tk.Button(self, text="Plastic Bottle",
-                            command=lambda: [controller.show_frame("RecycleComplete"), openDoor()])
+                            command=lambda: [openDoor(),controller.show_frame("RecycleComplete") ])
         button2 = tk.Button(self, text="Aluminum Can",
                             command=lambda: [controller.show_frame("RecycleScan"), Recycling()])
         button = tk.Button(self, text="Return to Main menu",
