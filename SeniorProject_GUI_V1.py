@@ -6,11 +6,9 @@ from tkinter import PhotoImage
 from tkinter import ttk
 from tkinter import *
 from time import sleep
-
+import Vending_module as Vm
 
 def main():
-    import Vending_module as Vm
-
     class RvmApp(tk.Tk):
         global btnCanDrinkImage  # needed to save the image if not garbage collector will remove it
         global btnBottledDrinkImage  # needed to save the image if not garbage collector will remove it
