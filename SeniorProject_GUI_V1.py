@@ -173,6 +173,50 @@ def main():
     app.geometry("425x150")
     app.mainloop()
 
+    def Recycling():  # when recyling button is pushed on the main menu
+        check_sensor()  # this will
+        openDoor()
+        # closeDoor()
+
+
+    def openDoor():
+        print("opening recycling door")
+        Vm.servo1_open()
+        set_backlight()
+        sleep(5)
+        Vm.servo1_close()
+        set_backlight()
+
+
+    def check_sensor():
+        print("Checking for objects")
+        print("Nothing is detected")
+
+    def set_backlight():
+        file = open('/sys/devices/platform/rpi_backlight/backlight/rpi_backlight/bl_power','r+')
+        current_status = int(file.read(1))
+        
+        if current_status == 0:
+            bl_set = 1
+        else:
+            bl_set = 0
+
+        bl_update = str(bl_set)
+        file.seek(0)
+        file.write(bl_update)
+        file.close
+
+
+    # def closeDoor():
+    #     print("Closing door")
+    #     Vm.servo1_open()
+
+
+
+    def dispense_drink(drink):
+        print("dispensing " + str(drink))
+
+
 #-------------- Money calculation method-----------------#
 def Money():
     plues = 0
@@ -197,48 +241,7 @@ def Money():
 
 # =============== Recycling methods ====================== #
 # ======================================================== #
-def Recycling():  # when recyling button is pushed on the main menu
-    check_sensor()  # this will
-    openDoor()
-    # closeDoor()
 
-
-def openDoor():
-    print("opening recycling door")
-    Vm.servo1_open()
-    set_backlight()
-    sleep(5)
-    Vm.servo1_close()
-    set_backlight()
-
-
-def check_sensor():
-    print("Checking for objects")
-    print("Nothing is detected")
-
-def set_backlight():
-    file = open('/sys/devices/platform/rpi_backlight/backlight/rpi_backlight/bl_power','r+')
-    current_status = int(file.read(1))
-    
-    if current_status == 0:
-        bl_set = 1
-    else:
-        bl_set = 0
-
-    bl_update = str(bl_set)
-    file.seek(0)
-    file.write(bl_update)
-    file.close
-
-
-# def closeDoor():
-#     print("Closing door")
-#     Vm.servo1_open()
-
-
-
-def dispense_drink(drink):
-    print("dispensing " + str(drink))
 
 
 if __name__ == "__main__":
