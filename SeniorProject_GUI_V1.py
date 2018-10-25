@@ -1,7 +1,7 @@
 #---GUI todo list ---- #
-#add stepper
 #add servo
 #add metal detector code
+#metal detector - figure out how to send a boolean
 #add sleep mode
 
 #----------anthony / jose
@@ -10,15 +10,25 @@
 #add images to recycle window
 #photo shop images to prevent copywrite stuff
 
+#--------------notes--------------
+#counter to detect how many sodas or waters are on the cart
+#coin acceptor calling stepper for dispening if total is 0
+#not enough pins... have 17 gpio pins
+#servo = 3 pins each / touchscreen = 2 pins
+#stepper = 4 pins each / coin acceptor = 3 pins
+
+
 import math
+import RPI.GPIO as GPIO #uncomment when running on pi
+import time
 import tkinter as tk
 #import Vending_module as Vm #import the door source file
-import stepper_forward as SF #import the stepper moto source file for vending
 from tkinter import font as tkfont
 from tkinter import PhotoImage
 from tkinter import ttk
 from tkinter import *
 from time import sleep
+
 
 class RvmMainApp(tk.Tk):
     #initalizes the class
@@ -226,14 +236,104 @@ class CheckoutMenu(tk.Frame):
         self.selectionlabel.pack(side="top", fill="x", pady=10)
         #This creates the buttons for the frame
         self.StepperTestButton = tk.Button(self, text = "test if the stepper turns on", command = lambda: [self.StepperForward(), print("turing on the stepper now")])
+        self.StepperTestButton = tk.Button(self, text = "test if the stepper turns on", command = lambda: [self.StepperForward(), print("turing on the stepper now")])
         self.ReturnToPurchaseSelectionButton = tk.Button(self, text = "Return to the Purchase menu", command = lambda: [controller.show_frame("PurchaseMenu"), print("moving to Purchase menu")])
         self.ReturnSelectionButton = tk.Button(self, text = "Return to the Main menu", command = lambda: [controller.show_frame("MainMenu"), print("moving to main menu")])
         #This puts the buttons onto the frame
         self.StepperTestButton.pack()
         self.ReturnToPurchaseSelectionButton.pack()
         self.ReturnSelectionButton.pack()
+    #Stepper code for dispensing module
     def StepperForward(self):
-        SF.stepperForward()
+        GPIO.setmode(GPIO.BOARD)
+        RPiPins=[11,12,13,15]
+        for pin in RPiPins:
+            GPIO.setup(pin,GPIO.OUT)
+            GPIO.output(pin,False)
+        Step_Seq_Num=0
+        Rot_Spd=.01
+        Rotate=4096
+        Rotate_Dir=-1
+        Revolutions=1
+
+        Step_Seq=[[0,1,0,1],
+                  [0,1,0,0],
+                  [0,1,1,0],
+                  [0,0,1,0],
+                  [1,0,1,0],
+                  [1,0,0,0],
+                  [1,0,0,1],
+                  [0,0,0,1]]
+
+        Rotate=int(Revolutions*4096/10)
+        if Rotate<1:Rotate=4096/10
+        Rotate_Dir = int(Rotate_Dir)
+        if Rotate_Dir!=1 and Rotate_Dir!=-1: Rotate_Dir=1
+        Rot_Spd=float(Rot_Spd)
+        if Rot_Spd>1 or Rot_Spd<.001:Rot_Spd=.001
+        print(Rotate,Rotate_Dir,Rot_Spd)
+
+        for x in range(0,(Rotate+1)):
+            for pin in range(0,4):
+                Pattern_Pin=RPiPins[pin]
+                if Step_Seq[Step_Seq_Num][pin]==1:
+                    GPIO.output(Pattern_Pin,True)
+                else:
+                    GPIO.output(Pattern_Pin,False)
+            Step_Seq_Num+=Rotate_Dir
+            if(Step_Seq_Num>=8):
+                Step_Seq_Num=0
+            elif(Step_Seq_Num<0):
+                Step_Seq_Num=7
+            time.sleep(Rot_Spd)
+        GPIO.cleanup()
+        print('Done')
+
+    def StepperBackwards(self):
+        GPIO.setmode(GPIO.BOARD)
+        RPiPins=[11,12,13,15]
+        for pin in RPiPins:
+            GPIO.setup(pin,GPIO.OUT)
+            GPIO.output(pin,False)
+        Step_Seq_Num=0
+        Rot_Spd=.01
+        Rotate=4096
+        Rotate_Dir=-1
+        Revolutions=1
+
+        Step_Seq=[[0,1,0,1],
+                  [0,1,0,0],
+                  [0,1,1,0],
+                  [0,0,1,0],
+                  [1,0,1,0],
+                  [1,0,0,0],
+                  [1,0,0,1],
+                  [0,0,0,1]]
+
+        Rotate=int(Revolutions*4096/10)
+        if Rotate<1:Rotate=4096/10
+        Rotate_Dir = int(Rotate_Dir)
+        if Rotate_Dir!=1 and Rotate_Dir!=-1: Rotate_Dir=1
+        Rot_Spd=float(Rot_Spd)
+        if Rot_Spd>1 or Rot_Spd<.001:Rot_Spd=.001
+        print(Rotate,Rotate_Dir,Rot_Spd)
+
+        for x in range(0,(Rotate+1)):
+            for pin in range(0,4):
+                Pattern_Pin=RPiPins[pin]
+                if Step_Seq[Step_Seq_Num][pin]==1:
+                    GPIO.output(Pattern_Pin,True)
+                else:
+                    GPIO.output(Pattern_Pin,False)
+            Step_Seq_Num+=Rotate_Dir*-1
+            if(Step_Seq_Num>=8):
+                Step_Seq_Num=0
+            elif(Step_Seq_Num<0):
+                Step_Seq_Num=7
+            time.sleep(Rot_Spd)
+        GPIO.cleanup()
+        print('Done')
+        
     #call method to detect coin acceptor then return to main menu when your are done
 
 if __name__ == "__main__":
@@ -241,46 +341,3 @@ if __name__ == "__main__":
     app.title("recycling vending machine")
     app.geometry("425x150")
     app.mainloop()
-
-#def Recycling():  # when recyling button is pushed on the main menu
-#    check_sensor()  # this will
-#    openDoor()
-#    # closeDoor()
-
-
-#def openDoor():
-#    print("opening recycling door")
-#    Vm.servo1_open()
-#    set_backlight()
-#    sleep(5)
-#    Vm.servo1_close()
-#    set_backlight()
-
-
-#def check_sensor():
-#    print("Checking for objects")
-#    print("Nothing is detected")
-
-#def set_backlight():
-#    file = open('/sys/devices/platform/rpi_backlight/backlight/rpi_backlight/bl_power','r+')
-#    current_status = int(file.read(1))
-    
-#    if current_status == 0:
-#        bl_set = 1
-#    else:
-#        bl_set = 0
-
-#    bl_update = str(bl_set)
-#    file.seek(0)
-#    file.write(bl_update)
-#    file.close
-
-
-## def closeDoor():
-##     print("Closing door")
-##     Vm.servo1_open()
-
-
-
-#def dispense_drink(drink):
-#    print("dispensing " + str(drink))
