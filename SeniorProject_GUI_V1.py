@@ -1,4 +1,4 @@
-#imports from the tkinter and python libraries
+
 import math
 import tkinter as tk
 #import Vending_module as Vm
