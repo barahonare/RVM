@@ -1,240 +1,261 @@
-#exact change only
+
+#what is happening
 import math
-import tkinter as tk  # python 3
-from tkinter import font  as tkfont  # python 3
+import tkinter as tk
+#import Vending_module as Vm
+#import stepper_test as SC
+from tkinter import font as tkfont
 from tkinter import PhotoImage
 from tkinter import ttk
 from tkinter import *
 from time import sleep
-import Vending_module as Vm
 
-class RvmApp(tk.Tk):
-    global btnCanDrinkImage  # needed to save the image if not garbage collector will remove it
-    global btnBottledDrinkImage  # needed to save the image if not garbage collector will remove it
-
+class RvmMainApp(tk.Tk):
+    #initalizes the class
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
-        self.title_font = tkfont.Font(family='Arial', size=18, weight="bold")
-
-        ##############This allows the program to launch in full screen
+        #sets the font title
+        self.title_font = tkfont.Font(family='Arial', size = 18, weight="bold")
+        #allows the program to launch in full screen
         self.attributes('-fullscreen', True)
-
-        #This allows to press 'esc' key to exit full screen
-        #If you want to close the program instead remove
-        #self.attributes('-fullscreen', False) and add
-        #self.destroy()
+        #press escape to minimize program / if close instead change self.attributes('-fullscreen',False) to self.destroy()
         self.bind('<Escape>', lambda e: self.attributes('-fullscreen', False))
-
-        # the container is where we'll stack a bunch of frames
-        # on top of each other, then the one we want visible
-        # will be raised above the others
-        container = tk.Frame(self)
-        container.pack(side="top", fill="both", expand=True)
-        container.grid_rowconfigure(0, weight=1)
-        container.grid_columnconfigure(0, weight=1)
-
+        #This creates a container to hold all of the frames
+        self.container = tk.Frame(self)
+        self.container.pack(side="top", fill="both", expand=True)
+        self.container.grid_rowconfigure(0, weight=1)
+        self.container.grid_columnconfigure(0, weight=1)
+        #This creates frames to store into the container
         self.frames = {}
-        pages = [StartPage, RecyclePage, RecycleScan, PurchasePage]  # pages holds all the windows
-        for F in pages:  # for loop instantiates windows and places them
+        self.pages = [MainMenu, RecycleMenu, PurchaseMenu, CheckoutMenu, ScanningStage, OpeningPlasticDoor, OpeningAluminumDoor]
+        #we are using a for loop to instantiate new windows as we develop more windows
+        #but the window names must be put into the self.pages = [] in order for it to
+        #find the windows you are traversing to
+        for F in self.pages:
             page_name = F.__name__
-            frame = F(parent=container, controller=self)
-            self.frames[page_name] = frame
-
-            # put all of the pages in the same location;
-            # the one on the top of the stacking order
-            # will be the one that is visible.
-            frame.grid(row=0, column=0, sticky="nsew")
-
-        self.show_frame("StartPage")
-
+            self.frame = F(parent=self.container, controller = self)
+            self.frames[page_name] = self.frame
+            #This allows us to put the frames on a stack and pull the frame we are viewing on top
+            self.frame.grid(row =0, column = 0, sticky = 'nsew')
+        self.show_frame("MainMenu")
+    #This method will show the frame for the current page name
     def show_frame(self, page_name):
-        '''Show a frame for the given page name'''
-        frame = self.frames[page_name]
-        frame.tkraise()
+        self.frame = self.frames[page_name]
+        self.frame.tkraise()
 
-
-class StartPage(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
+class MainMenu(tk.Frame):
+    #initalizes the class
+    def __init__(self,parent,controller):
+        tk.Frame.__init__(self,parent)
         self.controller = controller
-        label = tk.Label(self, bg="lightgreen", text="Please make a selection.", font=controller.title_font)
-        label.pack(side="top", fill="x", pady=10)
+        #This Creates the labels for the frame
+        self.selectionlabel = tk.Label(self, bg = 'black',fg = 'white', text = "Would you like to Recycle or Purchase an item?", font = controller.title_font)
+        #This puts the label on the frame
+        self.selectionlabel.pack(side="top", fill="x", pady=10)
+        #This creates the buttons for the frame
+        self.RecycleSelectionButton = tk.Button(self, text="Recycle Here",command = lambda: [controller.show_frame("RecycleMenu"), print("moving to recycle menu")])
+        self.PurchaseSelectionButton = tk.Button(self, text = "Purchase Here", command = lambda: [controller.show_frame("PurchaseMenu"), print("moving to purchase menu")])
+        #This puts the buttons onto the frame
+        self.RecycleSelectionButton.pack(side = "left")
+        self.PurchaseSelectionButton.pack(side = "right")
+        #Adjusts the size of the buttons
+        #self.RecycleSelectionButton.config(height=400, width=250)
+        #self.PurchaseSelectionButton.config(height=300, width=250)
+        #This allows us to put images into the buttons
+        self.RecycleImageForButton = PhotoImage(file="Recycle__Image.gif")
+        self.RecycleSelectionButton.config(image=self.RecycleImageForButton, compound = "bottom")
+        self.RecycleSelectionButton.image = self.RecycleImageForButton
+        self.PurchaseImageForButton = PhotoImage(file="Purchase_Image.gif")
+        self.PurchaseSelectionButton.config(image=self.PurchaseImageForButton, compound = "bottom")
+        self.PurchaseSelectionButton.image = self.PurchaseImageForButton
 
-        button1 = tk.Button(self, text="Recycle",
-                            command=lambda: controller.show_frame("RecyclePage"))
-        button2 = tk.Button(self, text="Purchase a Drink",
-                            command=lambda: controller.show_frame("PurchasePage"))
-        button1.pack()
-        button2.pack()
-
-
-class RecyclePage(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
+class RecycleMenu(tk.Frame):
+    #initalizes the class
+    def __init__(self,parent,controller):
+        tk.Frame.__init__(self,parent)
         self.controller = controller
-        label = tk.Label(self, bg="lightgreen", text="What would you like to recycle?", font=controller.title_font)
-        label.pack(side="top", fill="x", pady=10)
+        #This Creates the labels for the frame
+        self.selectionlabel = tk.Label(self, bg = 'black',fg = 'white', text = "Would you like to Recycle a Aluminum can or Plastic bottle?", font = controller.title_font)
+        #This puts the label on the frame
+        self.selectionlabel.pack(side="top", fill="x", pady=10)
+        #This creates the buttons for the frame
+        self.CanSelectionButton = tk.Button(self, text="Aluminum Can",command = lambda: [controller.show_frame("ScanningStage"), print("moving to Scanning menu")])
+        self.BottleSelectionButton = tk.Button(self, text = "Plastic bottle", command = lambda: [controller.show_frame("OpeningPlasticDoor"), print("opening plastic door")])
+        self.ReturnSelectionButton = tk.Button(self, text = "Return to the Main menu", command = lambda: [controller.show_frame("MainMenu"), print("moving to main menu")])
+        #This puts the buttons onto the frame
+        self.CanSelectionButton.pack()
+        self.BottleSelectionButton.pack()
+        self.ReturnSelectionButton.pack()
 
-        button1 = tk.Button(self, text="Plastic Bottle",
-                            command=lambda: [openDoor(),controller.show_frame("RecycleComplete") ])
-        button2 = tk.Button(self, text="Aluminum Can",
-                            command=lambda: [controller.show_frame("RecycleScan"), Recycling()])
-        button = tk.Button(self, text="Return to Main menu",
-                           command=lambda: controller.show_frame("StartPage"))
-        button1.pack()
-        button2.pack()
-        button.pack()
-
-
-class RecycleScan(tk.Frame):  # window after the recycle button is clicked
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
+class ScanningStage(tk.Frame):
+    #initalizes the class
+    def __init__(self,parent,controller):
+        tk.Frame.__init__(self,parent)
         self.controller = controller
-        label = tk.Label(self, bg="White", text="Please scan your recycleables with the scanner.",
-                         font=controller.title_font)
-        label.pack(fill="x")
-        check_sensor()  # used to scan the recyclable
-        openDoor()  # used to open the coresponding door
-        command = lambda: controller.show_frame("RecycleComplete")
+        #This Creates the labels for the frame
+        self.selectionlabel = tk.Label(self, bg = 'black',fg = 'white', text = "Please hold your can up to the sensor for a safety scan", font = controller.title_font)
+        #This puts the label on the frame
+        self.selectionlabel.pack(side="top", fill="x", pady=10)
+        #This creates the buttons for the frame
+        self.CanOpenDoorButton = tk.Button(self, text = "Move to can door open", command = lambda: [controller.show_frame("OpeningAluminumDoor"), print("moving to aluminum door menu")])
+        self.ReturnSelectionButton = tk.Button(self, text = "Return to the Main menu", command = lambda: [controller.show_frame("MainMenu"), print("moving to main menu")])
+        #This puts the buttons onto the frame
+        self.CanOpenDoorButton.pack()
+        self.ReturnSelectionButton.pack()
+    #call scanner method code here
 
-
-class RecycleComplete(tk.Frame):  # window after the RecycleScan Window
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
+class OpeningPlasticDoor(tk.Frame):
+    #initalizes the class
+    def __init__(self,parent,controller):
+        tk.Frame.__init__(self,parent)
         self.controller = controller
-        label = tk.Label(self, bg="White", text="Thank you for recycling.", font=controller.title_font)
-        label.pack(fill="x")
-        # create timer code so the frame will wait 3 seconds
-        command = lambda: controller.show_frame("StartPage")
+        #This Creates the labels for the frame
+        self.selectionlabel = tk.Label(self, bg = 'black',fg = 'white', text = "Please wait as the safety plastic door is opening", font = controller.title_font)
+        #This puts the label on the frame
+        self.selectionlabel.pack(side="top", fill="x", pady=10)
+        #This creates the buttons for the frame
+        self.ReturnSelectionButton = tk.Button(self, text = "Return to the Main menu", command = lambda: [controller.show_frame("MainMenu"), print("moving to main menu")])
+        #This puts the buttons onto the frame
+        self.ReturnSelectionButton.pack()
+    #call plastic door opeing here
 
-
-class PurchasePage(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
+class OpeningAluminumDoor(tk.Frame):
+    #initalizes the class
+    def __init__(self,parent,controller):
+        tk.Frame.__init__(self,parent)
         self.controller = controller
-        label = tk.Label(self, bg="lightgreen", text="What would you like to purchase?", font=controller.title_font)
-        label.grid(row = 0, column = 20, pady=10)
+        #This Creates the labels for the frame
+        self.selectionlabel = tk.Label(self, bg = 'black',fg = 'white', text = "Please wait as the safety aluminum door is opening", font = controller.title_font)
+        #This puts the label on the frame
+        self.selectionlabel.pack(side="top", fill="x", pady=10)
+        #This creates the buttons for the frame
+        self.ReturnSelectionButton = tk.Button(self, text = "Return to the Main menu", command = lambda: [controller.show_frame("MainMenu"), print("moving to main menu")])
+        #This puts the buttons onto the frame
+        self.ReturnSelectionButton.pack()
+    #call aluminum door opeing here
 
-        PlasticBottleButton = tk.Button(self, text="Bottled Beverage",
-                                        command=lambda: controller.show_frame(
-                                            ""))  # need to add bottle servo dispensing code
-        PlasticBottleButton.grid(row=2, column=3)
-
-        CannedDrinkButton = tk.Button(self, text="Canned Beverage", bg="white", width="250",
-                                      command=lambda: controller.show_frame(
-                                          ""))  # need to add canned servo dispensing code
-        CannedDrinkButton.grid(row=4, column=3)
-        CheckoutButton = tk.Button(self, text="Checkout Here",
-                                        command=lambda: controller.show_frame("CheckoutPage"))
-        CheckoutButton.grid(row=4, column=40)
-
-class CheckoutPage(tk.Frame):  #after purchase window
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
+class PurchaseMenu(tk.Frame):
+    #initalizes the class
+    def __init__(self,parent,controller):
+        tk.Frame.__init__(self,parent)
         self.controller = controller
-        label = tk.Label(self, bg="White", text="Please you may insert exact change now.", font=controller.title_font)
-        label.pack(fill="x")
-        # display the total
-        # as they insert subtract in money method
-        # create timer code so the frame will wait 3 seconds
-        command = lambda: controller.show_frame("StartPage")
+        #This Creates the labels for the frame
+        self.selectionlabel = tk.Label(self, bg = 'black',fg = 'white', text = "Would you like to buy a can of soda or bottle of water?", font = controller.title_font)
+        self.TotalLabel = tk.Label(self, bg = 'black',fg = 'white', text = "Your total will display here", font = controller.title_font)
+        #This puts the label on the frame
+        self.selectionlabel.pack(side="top", fill="x", pady=10)
+        self.TotalLabel.pack(side="top", fill="x", pady=10)
+        #This creates the buttons for the frame
+        self.SodaSelectionButton = tk.Button(self, text="Soda",command = lambda: self.AddPriceOfSoda())
+        self.WaterSelectionButton = tk.Button(self, text = "Water", command = lambda: self.AddPriceOfWater())
+        self.ReturnSelectionButton = tk.Button(self, text = "Return to the Main menu", command = lambda: [controller.show_frame("MainMenu"), print("moving to main menu")])
+        self.CheckoutSelectionButton = tk.Button(self, text = "Checkout Here", command = lambda: [controller.show_frame("CheckoutMenu"), print("moving to checkout menu")])
+        self.MinusSodaFromTotalButton = tk.Button(self, text = "- Soda", command = lambda: [self.SubtractPriceOfSoda(), print("Removing price of soda from total")])
+        self.MinusWaterFromTotalButton = tk.Button(self, text = "- Water", command = lambda: [self.SubtractPriceOfWater(), print("Removing price of Water from total")])
+        #This puts the buttons onto the frame
+        self.SodaSelectionButton.pack(side="left")
+        self.MinusWaterFromTotalButton.pack(side ="right")
+        self.WaterSelectionButton.pack(side ="right")
+        self.MinusSodaFromTotalButton.pack(side="left")
+        self.ReturnSelectionButton.pack()
+        self.CheckoutSelectionButton.pack()
+        #This puts images inside the buttons
+        self.CanImageForButton = PhotoImage(file="candrinkbutton.gif")
+        self.BottleImageForButton = PhotoImage(file="bottleddrinkbutton.gif")
+        self.SodaSelectionButton.config(image=self.CanImageForButton, compound = "bottom")
+        self.SodaSelectionButton.image = self.CanImageForButton
+        self.WaterSelectionButton.config(image=self.BottleImageForButton, compound = "bottom")
+        self.WaterSelectionButton.image = self.BottleImageForButton
+        
+        #-Buissness methods and variables-#
+        self.Price = 0
+    #method to add the price of a soda to the total
+    def AddPriceOfSoda(self):
+        self.Price += .25
+        #updates the label containing the total
+        self.TotalLabel.config(text = self.Price)
+        print("adding soda")
+    #method to add the price of a water to the total
+    def AddPriceOfWater(self):
+        self.Price += 1.00
+        #updates the label containing the total
+        self.TotalLabel.config(text = self.Price)
+        print("adding water")
+    #method to add the price of a soda to the total
+    def SubtractPriceOfSoda(self):
+        self.Price -= .25
+        #updates the label containing the total
+        self.TotalLabel.config(text = self.Price)
+        print("Subtracting soda")
+    #method to add the price of a water to the total
+    def SubtractPriceOfWater(self):
+        self.Price -= 1.00
+        #updates the label containing the total
+        self.TotalLabel.config(text = self.Price)
+        print("Subtracting water")
 
-#========================== photo instantiation ==============================#
-
-        ##########BottledDrinkButtonPhoto
-        btnBottledDrinkImage = PhotoImage(file="bottledDrinkButton.gif")
-        ##########This is a form of 'concatenate' and allows to place the image in the button
-        PlasticBottleButton.config(image=btnBottledDrinkImage, compound=BOTTOM)
-        PlasticBottleButton.image = btnBottledDrinkImage
-
-
-        # CannedDrinkButtonPhoto
-        btnCanDrinkImage = PhotoImage(file="canDrinkButton.gif")
-        ##########This is a form of 'concatenate' and allows to place the image in the button
-        CannedDrinkButton.config(image=btnCanDrinkImage, compound=BOTTOM)
-        CannedDrinkButton.image = btnCanDrinkImage
-
-        counter = 0
-
-        def counter_label(label):
-            counter = 0
-
-            def count():
-                global counter
-                counter += 1
-
-        command = lambda: controller.show_frame("CheckoutWindow")
-
-#-------------- Money calculation method-----------------#
-def Money():
-    plues = 0
-    #If a quarter is read
-    #if (pulse == 1)
-        #do something
-    #if a dime is read
-    #if (pulse == 2)
-        #do something
-    #if a nickel is read
-    #if (pulse == 3)
-        #do something
-    #if a dime is read
-    #if (pulse == 4)
-        #do something
-    #if a penny is read
-    #if (pulse == 5)
-        #do something
-    total = 0
-    discount = 0
-
-
-# =============== Recycling methods ====================== #
-# ======================================================== #
-def Recycling():  # when recyling button is pushed on the main menu
-    check_sensor()  # this will
-    openDoor()
-    # closeDoor()
-
-
-def openDoor():
-    print("opening recycling door")
-    Vm.servo1_open()
-    set_backlight()
-    sleep(5)
-    Vm.servo1_close()
-    set_backlight()
-
-
-def check_sensor():
-    print("Checking for objects")
-    print("Nothing is detected")
-
-def set_backlight():
-    file = open('/sys/devices/platform/rpi_backlight/backlight/rpi_backlight/bl_power','r+')
-    current_status = int(file.read(1))
-    
-    if current_status == 0:
-        bl_set = 1
-    else:
-        bl_set = 0
-
-    bl_update = str(bl_set)
-    file.seek(0)
-    file.write(bl_update)
-    file.close
-
-
-# def closeDoor():
-#     print("Closing door")
-#     Vm.servo1_open()
-
-
-
-def dispense_drink(drink):
-    print("dispensing " + str(drink))
-
+class CheckoutMenu(tk.Frame):
+    #initalizes the class
+    def __init__(self,parent,controller):
+        tk.Frame.__init__(self,parent)
+        self.controller = controller
+        #This Creates the labels for the frame
+        self.selectionlabel = tk.Label(self, bg = 'black',fg = 'white', text = "Please insert exact change into the coin acceptor please", font = controller.title_font)
+        #This puts the label on the frame
+        self.selectionlabel.pack(side="top", fill="x", pady=10)
+        #This creates the buttons for the frame
+        self.ReturnToPurchaseSelectionButton = tk.Button(self, text = "Return to the Purchase menu", command = lambda: [controller.show_frame("PurchaseMenu"), print("moving to Purchase menu")])
+        self.ReturnSelectionButton = tk.Button(self, text = "Return to the Main menu", command = lambda: [controller.show_frame("MainMenu"), print("moving to main menu")])
+        #This puts the buttons onto the frame
+        self.ReturnToPurchaseSelectionButton.pack()
+        self.ReturnSelectionButton.pack()
+    #call method to detect coin acceptor then return to main menu when your are done
 
 if __name__ == "__main__":
-    app = RvmApp()
-    app.title("Recycling Vending Machine")
+    app = RvmMainApp()
+    app.title("recycling vending machine")
     app.geometry("425x150")
     app.mainloop()
+
+#def Recycling():  # when recyling button is pushed on the main menu
+#    check_sensor()  # this will
+#    openDoor()
+#    # closeDoor()
+
+
+#def openDoor():
+#    print("opening recycling door")
+#    Vm.servo1_open()
+#    set_backlight()
+#    sleep(5)
+#    Vm.servo1_close()
+#    set_backlight()
+
+
+#def check_sensor():
+#    print("Checking for objects")
+#    print("Nothing is detected")
+
+#def set_backlight():
+#    file = open('/sys/devices/platform/rpi_backlight/backlight/rpi_backlight/bl_power','r+')
+#    current_status = int(file.read(1))
+    
+#    if current_status == 0:
+#        bl_set = 1
+#    else:
+#        bl_set = 0
+
+#    bl_update = str(bl_set)
+#    file.seek(0)
+#    file.write(bl_update)
+#    file.close
+
+
+## def closeDoor():
+##     print("Closing door")
+##     Vm.servo1_open()
+
+
+
+#def dispense_drink(drink):
+#    print("dispensing " + str(drink))
