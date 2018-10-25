@@ -235,16 +235,22 @@ class CheckoutMenu(tk.Frame):
         #This puts the label on the frame
         self.selectionlabel.pack(side="top", fill="x", pady=10)
         #This creates the buttons for the frame
-        self.StepperTestButton = tk.Button(self, text = "test if the stepper turns on", command = lambda: [self.StepperForward(), print("turing on the stepper now")])
-        self.StepperTestButton = tk.Button(self, text = "test if the stepper turns on", command = lambda: [self.StepperForward(), print("turing on the stepper now")])
+        self.Stepper1ForwardButton = tk.Button(self, text = "test if the stepper1 moves forward", command = lambda: [self.Stepper1Forward(), print("turing on the stepper1 forwards now")])
+        self.Stepper1BackwardsButton = tk.Button(self, text = "test if the stepper1 moves backward", command = lambda: [self.Stepper1Backwards(), print("turing on the stepper1 backwards now")])
+        #self.Stepper2ForwardButton = tk.Button(self, text = "test if the stepper2 moves forward", command = lambda: [self.Stepper2Forward(), print("turing on the stepper2 forwards now")])
+        #self.Stepper2BackwardsButton = tk.Button(self, text = "test if the stepper2 moves backward", command = lambda: [self.Stepper2Backwards(), print("turing on the stepper2 backwards now")])
         self.ReturnToPurchaseSelectionButton = tk.Button(self, text = "Return to the Purchase menu", command = lambda: [controller.show_frame("PurchaseMenu"), print("moving to Purchase menu")])
         self.ReturnSelectionButton = tk.Button(self, text = "Return to the Main menu", command = lambda: [controller.show_frame("MainMenu"), print("moving to main menu")])
         #This puts the buttons onto the frame
-        self.StepperTestButton.pack()
+        self.Stepper1ForwardButton.pack()
+        self.Stepper1BackwardButton.pack()
+        #self.Stepper2ForwardButton.pack()
+        #self.Stepper2BackwardButton.pack()
         self.ReturnToPurchaseSelectionButton.pack()
         self.ReturnSelectionButton.pack()
     #Stepper code for dispensing module
-    def StepperForward(self):
+    #code for dispensing soda or stepper #1
+    def Stepper1Forward(self):
         GPIO.setmode(GPIO.BOARD)
         RPiPins=[11,12,13,15]
         for pin in RPiPins:
@@ -289,7 +295,7 @@ class CheckoutMenu(tk.Frame):
         GPIO.cleanup()
         print('Done')
 
-    def StepperBackwards(self):
+    def Stepper1Backwards(self):
         GPIO.setmode(GPIO.BOARD)
         RPiPins=[11,12,13,15]
         for pin in RPiPins:
@@ -333,8 +339,98 @@ class CheckoutMenu(tk.Frame):
             time.sleep(Rot_Spd)
         GPIO.cleanup()
         print('Done')
+#code for water dispening stepper or stepper #2
+#def StepperForward(self):
+#        GPIO.setmode(GPIO.BOARD)
+#        RPiPins=[11,12,13,15]
+#        for pin in RPiPins:
+#            GPIO.setup(pin,GPIO.OUT)
+#            GPIO.output(pin,False)
+#        Step_Seq_Num=0
+#        Rot_Spd=.01
+#        Rotate=4096
+#        Rotate_Dir=-1
+#        Revolutions=1
+
+#        Step_Seq=[[0,1,0,1],
+#                  [0,1,0,0],
+#                  [0,1,1,0],
+#                  [0,0,1,0],
+#                  [1,0,1,0],
+#                  [1,0,0,0],
+#                  [1,0,0,1],
+#                  [0,0,0,1]]
+
+#        Rotate=int(Revolutions*4096/10)
+#        if Rotate<1:Rotate=4096/10
+#        Rotate_Dir = int(Rotate_Dir)
+#        if Rotate_Dir!=1 and Rotate_Dir!=-1: Rotate_Dir=1
+#        Rot_Spd=float(Rot_Spd)
+#        if Rot_Spd>1 or Rot_Spd<.001:Rot_Spd=.001
+#        print(Rotate,Rotate_Dir,Rot_Spd)
+
+#        for x in range(0,(Rotate+1)):
+#            for pin in range(0,4):
+#                Pattern_Pin=RPiPins[pin]
+#                if Step_Seq[Step_Seq_Num][pin]==1:
+#                    GPIO.output(Pattern_Pin,True)
+#                else:
+#                    GPIO.output(Pattern_Pin,False)
+#            Step_Seq_Num+=Rotate_Dir
+#            if(Step_Seq_Num>=8):
+#                Step_Seq_Num=0
+#            elif(Step_Seq_Num<0):
+#                Step_Seq_Num=7
+#            time.sleep(Rot_Spd)
+#        GPIO.cleanup()
+#        print('Done')
+
+#    def StepperBackwards(self):
+#        GPIO.setmode(GPIO.BOARD)
+#        RPiPins=[11,12,13,15]
+#        for pin in RPiPins:
+#            GPIO.setup(pin,GPIO.OUT)
+#            GPIO.output(pin,False)
+#        Step_Seq_Num=0
+#        Rot_Spd=.01
+#        Rotate=4096
+#        Rotate_Dir=-1
+#        Revolutions=1
+
+#        Step_Seq=[[0,1,0,1],
+#                  [0,1,0,0],
+#                  [0,1,1,0],
+#                  [0,0,1,0],
+#                  [1,0,1,0],
+#                  [1,0,0,0],
+#                  [1,0,0,1],
+#                  [0,0,0,1]]
+
+#        Rotate=int(Revolutions*4096/10)
+#        if Rotate<1:Rotate=4096/10
+#        Rotate_Dir = int(Rotate_Dir)
+#        if Rotate_Dir!=1 and Rotate_Dir!=-1: Rotate_Dir=1
+#        Rot_Spd=float(Rot_Spd)
+#        if Rot_Spd>1 or Rot_Spd<.001:Rot_Spd=.001
+#        print(Rotate,Rotate_Dir,Rot_Spd)
+
+#        for x in range(0,(Rotate+1)):
+#            for pin in range(0,4):
+#                Pattern_Pin=RPiPins[pin]
+#                if Step_Seq[Step_Seq_Num][pin]==1:
+#                    GPIO.output(Pattern_Pin,True)
+#                else:
+#                    GPIO.output(Pattern_Pin,False)
+#            Step_Seq_Num+=Rotate_Dir*-1
+#            if(Step_Seq_Num>=8):
+#                Step_Seq_Num=0
+#            elif(Step_Seq_Num<0):
+#                Step_Seq_Num=7
+#            time.sleep(Rot_Spd)
+#        GPIO.cleanup()
+#        print('Done')
         
-    #call method to detect coin acceptor then return to main menu when your are done
+#call method to detect coin acceptor then return to main menu when your are done
 
 if __name__ == "__main__":
     app = RvmMainApp()
