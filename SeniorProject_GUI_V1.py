@@ -1,9 +1,19 @@
+#---GUI todo list ---- #
+#add stepper
+#add servo
+#add metal detector code
+#add sleep mode
 
-#what is happening
+#----------anthony / jose
+#add coin acceptor
+#add discounts
+#add images to recycle window
+#photo shop images to prevent copywrite stuff
+
 import math
 import tkinter as tk
-#import Vending_module as Vm
-#import stepper_test as SC
+#import Vending_module as Vm #import the door source file
+import stepper_forward as SF #import the stepper moto source file for vending
 from tkinter import font as tkfont
 from tkinter import PhotoImage
 from tkinter import ttk
@@ -110,13 +120,18 @@ class OpeningPlasticDoor(tk.Frame):
         tk.Frame.__init__(self,parent)
         self.controller = controller
         #This Creates the labels for the frame
-        self.selectionlabel = tk.Label(self, bg = 'black',fg = 'white', text = "Please wait as the safety plastic door is opening", font = controller.title_font)
+        self.OpeningDoorPromptlabel = tk.Label(self, bg = 'black',fg = 'white', text = "Please wait as the safety plastic door is opening", font = controller.title_font)
         #This puts the label on the frame
-        self.selectionlabel.pack(side="top", fill="x", pady=10)
+        self.OpeningDoorPromptlabel.pack(side="top", fill="x", pady=10)
         #This creates the buttons for the frame
+        #note: when servo code is developed we can undo
+        #the button and just insert the code so the main
+        #menu frame will appear when it is done closing
         self.ReturnSelectionButton = tk.Button(self, text = "Return to the Main menu", command = lambda: [controller.show_frame("MainMenu"), print("moving to main menu")])
         #This puts the buttons onto the frame
         self.ReturnSelectionButton.pack()
+
+
     #call plastic door opeing here
 
 class OpeningAluminumDoor(tk.Frame):
@@ -142,8 +157,12 @@ class PurchaseMenu(tk.Frame):
         #This Creates the labels for the frame
         self.selectionlabel = tk.Label(self, bg = 'black',fg = 'white', text = "Would you like to buy a can of soda or bottle of water?", font = controller.title_font)
         self.TotalLabel = tk.Label(self, bg = 'black',fg = 'white', text = "Your total will display here", font = controller.title_font)
+        self.Discountlabel = tk.Label(self, bg = 'black',fg = 'white', text = "Your discount will be displayed here", font = controller.title_font)
+        self.Cartlabel = tk.Label(self, bg = 'black',fg = 'white', text = "Your cart amount will be displayed here", font = controller.title_font)
         #This puts the label on the frame
-        self.selectionlabel.pack(side="top", fill="x", pady=10)
+        self.selectionlabel.pack(side="top", fill="x", pady=10)        
+        self.Discountlabel.pack(side="top", fill="x", pady=10)
+        self.Cartlabel.pack(side="top", fill="x", pady=10)
         self.TotalLabel.pack(side="top", fill="x", pady=10)
         #This creates the buttons for the frame
         self.SodaSelectionButton = tk.Button(self, text="Soda",command = lambda: self.AddPriceOfSoda())
@@ -152,6 +171,7 @@ class PurchaseMenu(tk.Frame):
         self.CheckoutSelectionButton = tk.Button(self, text = "Checkout Here", command = lambda: [controller.show_frame("CheckoutMenu"), print("moving to checkout menu")])
         self.MinusSodaFromTotalButton = tk.Button(self, text = "- Soda", command = lambda: [self.SubtractPriceOfSoda(), print("Removing price of soda from total")])
         self.MinusWaterFromTotalButton = tk.Button(self, text = "- Water", command = lambda: [self.SubtractPriceOfWater(), print("Removing price of Water from total")])
+        self.RecycleOnPurchaseWindowButton = tk.Button(self, text = "Click me to recycle for discount", command = lambda: [controller.show_frame("RecycleMenu"), print("Moving to recycle page")])
         #This puts the buttons onto the frame
         self.SodaSelectionButton.pack(side="left")
         self.MinusWaterFromTotalButton.pack(side ="right")
@@ -159,6 +179,7 @@ class PurchaseMenu(tk.Frame):
         self.MinusSodaFromTotalButton.pack(side="left")
         self.ReturnSelectionButton.pack()
         self.CheckoutSelectionButton.pack()
+        self.RecycleOnPurchaseWindowButton.pack(side = "bottom")
         #This puts images inside the buttons
         self.CanImageForButton = PhotoImage(file="candrinkbutton.gif")
         self.BottleImageForButton = PhotoImage(file="bottleddrinkbutton.gif")
@@ -173,25 +194,25 @@ class PurchaseMenu(tk.Frame):
     def AddPriceOfSoda(self):
         self.Price += .25
         #updates the label containing the total
-        self.TotalLabel.config(text = self.Price)
+        self.Cartlabel.config(text = self.Price)
         print("adding soda")
     #method to add the price of a water to the total
     def AddPriceOfWater(self):
         self.Price += 1.00
         #updates the label containing the total
-        self.TotalLabel.config(text = self.Price)
+        self.Cartlabel.config(text = self.Price)
         print("adding water")
     #method to add the price of a soda to the total
     def SubtractPriceOfSoda(self):
         self.Price -= .25
         #updates the label containing the total
-        self.TotalLabel.config(text = self.Price)
+        self.Cartlabel.config(text = self.Price)
         print("Subtracting soda")
     #method to add the price of a water to the total
     def SubtractPriceOfWater(self):
         self.Price -= 1.00
         #updates the label containing the total
-        self.TotalLabel.config(text = self.Price)
+        self.Cartlabel.config(text = self.Price)
         print("Subtracting water")
 
 class CheckoutMenu(tk.Frame):
@@ -204,11 +225,15 @@ class CheckoutMenu(tk.Frame):
         #This puts the label on the frame
         self.selectionlabel.pack(side="top", fill="x", pady=10)
         #This creates the buttons for the frame
+        self.StepperTestButton = tk.Button(self, text = "test if the stepper turns on", command = lambda: [self.StepperForward(), print("turing on the stepper now")])
         self.ReturnToPurchaseSelectionButton = tk.Button(self, text = "Return to the Purchase menu", command = lambda: [controller.show_frame("PurchaseMenu"), print("moving to Purchase menu")])
         self.ReturnSelectionButton = tk.Button(self, text = "Return to the Main menu", command = lambda: [controller.show_frame("MainMenu"), print("moving to main menu")])
         #This puts the buttons onto the frame
+        self.StepperTestButton.pack()
         self.ReturnToPurchaseSelectionButton.pack()
         self.ReturnSelectionButton.pack()
+    def StepperForward(self):
+        SF.stepperForward()
     #call method to detect coin acceptor then return to main menu when your are done
 
 if __name__ == "__main__":
