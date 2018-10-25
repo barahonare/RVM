@@ -2,15 +2,25 @@ import gpiozero
 from time import sleep
 
 def main():
-    servo1_motor()
-def servo1_motor():
-    pin_gpio = 3
-    motor1 = gpiozero.Servo(pin_gpio)
-    while True:
-        motor1.min()
-        sleep(1)
-        motor1.mid()
-        sleep(1)
+    pin_gpio = 17
+    main.servo1 = gpiozero.Servo(pin_gpio)
+
+# def main():
+#     servo1_motor()
+# def servo1_motor():
+    
+
+    # for i in range(1,4):
+    #     motor1.min()
+    #     sleep(1)
+    #     motor1.mid()
+    #     sleep(1)
+def servo1_open():
+    main.servo1.max()
+    
+def servo1_close():
+    main.servo1.min()
+
 
 if __name__ == '__main__':
     main()
