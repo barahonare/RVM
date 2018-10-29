@@ -19,10 +19,12 @@
 
 
 import math
-import RPI.GPIO as GPIO #uncomment when running on pi
+import RPi.GPIO as GPIO #uncomment when running on pi
 import time
 import tkinter as tk
-#import Vending_module as Vm #import the door source file
+# import Vending_module as Vm #import the door source file
+from Selling_Module import POS
+from Selling_Module import Stepper_Motor as STM
 from tkinter import font as tkfont
 from tkinter import PhotoImage
 from tkinter import ttk
@@ -175,12 +177,16 @@ class PurchaseMenu(tk.Frame):
         self.Cartlabel.pack(side="top", fill="x", pady=10)
         self.TotalLabel.pack(side="top", fill="x", pady=10)
         #This creates the buttons for the frame
-        self.SodaSelectionButton = tk.Button(self, text="Soda",command = lambda: self.AddPriceOfSoda())
-        self.WaterSelectionButton = tk.Button(self, text = "Water", command = lambda: self.AddPriceOfWater())
-        self.ReturnSelectionButton = tk.Button(self, text = "Return to the Main menu", command = lambda: [controller.show_frame("MainMenu"), print("moving to main menu")])
-        self.CheckoutSelectionButton = tk.Button(self, text = "Checkout Here", command = lambda: [controller.show_frame("CheckoutMenu"), print("moving to checkout menu")])
-        self.MinusSodaFromTotalButton = tk.Button(self, text = "- Soda", command = lambda: [self.SubtractPriceOfSoda(), print("Removing price of soda from total")])
-        self.MinusWaterFromTotalButton = tk.Button(self, text = "- Water", command = lambda: [self.SubtractPriceOfWater(), print("Removing price of Water from total")])
+        self.SodaSelectionButton = tk.Button(self, text="Soda",command = lambda: POS.AddPriceOfSoda(self))
+        self.WaterSelectionButton = tk.Button(self, text = "Water", command = lambda: POS.AddPriceOfWater(self))
+        self.ReturnSelectionButton = tk.Button(self, text = "Return to the Main menu",
+                    command = lambda: [controller.show_frame("MainMenu"),
+                        POS.ResetPrice(self), print("moving to main menu")])
+        self.CheckoutSelectionButton = tk.Button(self, text = "Checkout Here", 
+                    command = lambda: [controller.show_frame("CheckoutMenu"),
+                        POS.ResetPrice(self), print("moving to checkout menu")])
+        self.MinusSodaFromTotalButton = tk.Button(self, text = "- Soda", command = lambda: [POS.SubtractPriceOfSoda(self), print("Removing price of soda from total")])
+        self.MinusWaterFromTotalButton = tk.Button(self, text = "- Water", command = lambda: [POS.SubtractPriceOfWater(self), print("Removing price of Water from total")])
         self.RecycleOnPurchaseWindowButton = tk.Button(self, text = "Click me to recycle for discount", command = lambda: [controller.show_frame("RecycleMenu"), print("Moving to recycle page")])
         #This puts the buttons onto the frame
         self.SodaSelectionButton.pack(side="left")
@@ -197,33 +203,36 @@ class PurchaseMenu(tk.Frame):
         self.SodaSelectionButton.image = self.CanImageForButton
         self.WaterSelectionButton.config(image=self.BottleImageForButton, compound = "bottom")
         self.WaterSelectionButton.image = self.BottleImageForButton
+
+
+
         
-        #-Buissness methods and variables-#
-        self.Price = 0
-    #method to add the price of a soda to the total
-    def AddPriceOfSoda(self):
-        self.Price += .25
-        #updates the label containing the total
-        self.Cartlabel.config(text = self.Price)
-        print("adding soda")
-    #method to add the price of a water to the total
-    def AddPriceOfWater(self):
-        self.Price += 1.00
-        #updates the label containing the total
-        self.Cartlabel.config(text = self.Price)
-        print("adding water")
-    #method to add the price of a soda to the total
-    def SubtractPriceOfSoda(self):
-        self.Price -= .25
-        #updates the label containing the total
-        self.Cartlabel.config(text = self.Price)
-        print("Subtracting soda")
-    #method to add the price of a water to the total
-    def SubtractPriceOfWater(self):
-        self.Price -= 1.00
-        #updates the label containing the total
-        self.Cartlabel.config(text = self.Price)
-        print("Subtracting water")
+    #     #-Buissness methods and variables-#
+    #     self.Price = 0
+    # #method to add the price of a soda to the total
+    # def AddPriceOfSoda(self):
+    #     self.Price += .25
+    #     #updates the label containing the total
+    #     self.Cartlabel.config(text = self.Price)
+    #     print("adding soda")
+    # #method to add the price of a water to the total
+    # def AddPriceOfWater(self):
+    #     self.Price += 1.00
+    #     #updates the label containing the total
+    #     self.Cartlabel.config(text = self.Price)
+    #     print("adding water")
+    # #method to add the price of a soda to the total
+    # def SubtractPriceOfSoda(self):
+    #     self.Price -= .25
+    #     #updates the label containing the total
+    #     self.Cartlabel.config(text = self.Price)
+    #     print("Subtracting soda")
+    # #method to add the price of a water to the total
+    # def SubtractPriceOfWater(self):
+    #     self.Price -= 1.00
+    #     #updates the label containing the total
+    #     self.Cartlabel.config(text = self.Price)
+    #     print("Subtracting water")
 
 class CheckoutMenu(tk.Frame):
     #initalizes the class
@@ -235,110 +244,110 @@ class CheckoutMenu(tk.Frame):
         #This puts the label on the frame
         self.selectionlabel.pack(side="top", fill="x", pady=10)
         #This creates the buttons for the frame
-        self.Stepper1ForwardButton = tk.Button(self, text = "test if the stepper1 moves forward", command = lambda: [self.Stepper1Forward(), print("turing on the stepper1 forwards now")])
-        self.Stepper1BackwardsButton = tk.Button(self, text = "test if the stepper1 moves backward", command = lambda: [self.Stepper1Backwards(), print("turing on the stepper1 backwards now")])
+        self.Stepper1ForwardButton = tk.Button(self, text = "test if the stepper1 moves forward", command = lambda: [STM.Stepper1Forward(), print("turing on the stepper1 forwards now")])
+        self.Stepper1BackwardsButton = tk.Button(self, text = "test if the stepper1 moves backward", command = lambda: [STM.Stepper1Backwards(), print("turing on the stepper1 backwards now")])
         #self.Stepper2ForwardButton = tk.Button(self, text = "test if the stepper2 moves forward", command = lambda: [self.Stepper2Forward(), print("turing on the stepper2 forwards now")])
         #self.Stepper2BackwardsButton = tk.Button(self, text = "test if the stepper2 moves backward", command = lambda: [self.Stepper2Backwards(), print("turing on the stepper2 backwards now")])
         self.ReturnToPurchaseSelectionButton = tk.Button(self, text = "Return to the Purchase menu", command = lambda: [controller.show_frame("PurchaseMenu"), print("moving to Purchase menu")])
         self.ReturnSelectionButton = tk.Button(self, text = "Return to the Main menu", command = lambda: [controller.show_frame("MainMenu"), print("moving to main menu")])
         #This puts the buttons onto the frame
         self.Stepper1ForwardButton.pack()
-        self.Stepper1BackwardButton.pack()
+        self.Stepper1BackwardsButton.pack()
         #self.Stepper2ForwardButton.pack()
         #self.Stepper2BackwardButton.pack()
         self.ReturnToPurchaseSelectionButton.pack()
         self.ReturnSelectionButton.pack()
     #Stepper code for dispensing module
     #code for dispensing soda or stepper #1
-    def Stepper1Forward(self):
-        GPIO.setmode(GPIO.BOARD)
-        RPiPins=[11,12,13,15]
-        for pin in RPiPins:
-            GPIO.setup(pin,GPIO.OUT)
-            GPIO.output(pin,False)
-        Step_Seq_Num=0
-        Rot_Spd=.01
-        Rotate=4096
-        Rotate_Dir=-1
-        Revolutions=1
+    # def Stepper1Forward(self):
+    #     GPIO.setmode(GPIO.BOARD)
+    #     RPiPins=[11,12,13,15]
+    #     for pin in RPiPins:
+    #         GPIO.setup(pin,GPIO.OUT)
+    #         GPIO.output(pin,False)
+    #     Step_Seq_Num=0
+    #     Rot_Spd=.01
+    #     Rotate=4096
+    #     Rotate_Dir=-1
+    #     Revolutions=1
 
-        Step_Seq=[[0,1,0,1],
-                  [0,1,0,0],
-                  [0,1,1,0],
-                  [0,0,1,0],
-                  [1,0,1,0],
-                  [1,0,0,0],
-                  [1,0,0,1],
-                  [0,0,0,1]]
+    #     Step_Seq=[[0,1,0,1],
+    #               [0,1,0,0],
+    #               [0,1,1,0],
+    #               [0,0,1,0],
+    #               [1,0,1,0],
+    #               [1,0,0,0],
+    #               [1,0,0,1],
+    #               [0,0,0,1]]
 
-        Rotate=int(Revolutions*4096/10)
-        if Rotate<1:Rotate=4096/10
-        Rotate_Dir = int(Rotate_Dir)
-        if Rotate_Dir!=1 and Rotate_Dir!=-1: Rotate_Dir=1
-        Rot_Spd=float(Rot_Spd)
-        if Rot_Spd>1 or Rot_Spd<.001:Rot_Spd=.001
-        print(Rotate,Rotate_Dir,Rot_Spd)
+    #     Rotate=int(Revolutions*4096/10)
+    #     if Rotate<1:Rotate=4096/10
+    #     Rotate_Dir = int(Rotate_Dir)
+    #     if Rotate_Dir!=1 and Rotate_Dir!=-1: Rotate_Dir=1
+    #     Rot_Spd=float(Rot_Spd)
+    #     if Rot_Spd>1 or Rot_Spd<.001:Rot_Spd=.001
+    #     print(Rotate,Rotate_Dir,Rot_Spd)
 
-        for x in range(0,(Rotate+1)):
-            for pin in range(0,4):
-                Pattern_Pin=RPiPins[pin]
-                if Step_Seq[Step_Seq_Num][pin]==1:
-                    GPIO.output(Pattern_Pin,True)
-                else:
-                    GPIO.output(Pattern_Pin,False)
-            Step_Seq_Num+=Rotate_Dir
-            if(Step_Seq_Num>=8):
-                Step_Seq_Num=0
-            elif(Step_Seq_Num<0):
-                Step_Seq_Num=7
-            time.sleep(Rot_Spd)
-        GPIO.cleanup()
-        print('Done')
+    #     for x in range(0,(Rotate+1)):
+    #         for pin in range(0,4):
+    #             Pattern_Pin=RPiPins[pin]
+    #             if Step_Seq[Step_Seq_Num][pin]==1:
+    #                 GPIO.output(Pattern_Pin,True)
+    #             else:
+    #                 GPIO.output(Pattern_Pin,False)
+    #         Step_Seq_Num+=Rotate_Dir
+    #         if(Step_Seq_Num>=8):
+    #             Step_Seq_Num=0
+    #         elif(Step_Seq_Num<0):
+    #             Step_Seq_Num=7
+    #         time.sleep(Rot_Spd)
+    #     GPIO.cleanup()
+    #     print('Done')
 
-    def Stepper1Backwards(self):
-        GPIO.setmode(GPIO.BOARD)
-        RPiPins=[11,12,13,15]
-        for pin in RPiPins:
-            GPIO.setup(pin,GPIO.OUT)
-            GPIO.output(pin,False)
-        Step_Seq_Num=0
-        Rot_Spd=.01
-        Rotate=4096
-        Rotate_Dir=-1
-        Revolutions=1
+    # def Stepper1Backwards(self):
+    #     GPIO.setmode(GPIO.BOARD)
+    #     RPiPins=[11,12,13,15]
+    #     for pin in RPiPins:
+    #         GPIO.setup(pin,GPIO.OUT)
+    #         GPIO.output(pin,False)
+    #     Step_Seq_Num=0
+    #     Rot_Spd=.01
+    #     Rotate=4096
+    #     Rotate_Dir=-1
+    #     Revolutions=1
 
-        Step_Seq=[[0,1,0,1],
-                  [0,1,0,0],
-                  [0,1,1,0],
-                  [0,0,1,0],
-                  [1,0,1,0],
-                  [1,0,0,0],
-                  [1,0,0,1],
-                  [0,0,0,1]]
+    #     Step_Seq=[[0,1,0,1],
+    #               [0,1,0,0],
+    #               [0,1,1,0],
+    #               [0,0,1,0],
+    #               [1,0,1,0],
+    #               [1,0,0,0],
+    #               [1,0,0,1],
+    #               [0,0,0,1]]
 
-        Rotate=int(Revolutions*4096/10)
-        if Rotate<1:Rotate=4096/10
-        Rotate_Dir = int(Rotate_Dir)
-        if Rotate_Dir!=1 and Rotate_Dir!=-1: Rotate_Dir=1
-        Rot_Spd=float(Rot_Spd)
-        if Rot_Spd>1 or Rot_Spd<.001:Rot_Spd=.001
-        print(Rotate,Rotate_Dir,Rot_Spd)
+    #     Rotate=int(Revolutions*4096/10)
+    #     if Rotate<1:Rotate=4096/10
+    #     Rotate_Dir = int(Rotate_Dir)
+    #     if Rotate_Dir!=1 and Rotate_Dir!=-1: Rotate_Dir=1
+    #     Rot_Spd=float(Rot_Spd)
+    #     if Rot_Spd>1 or Rot_Spd<.001:Rot_Spd=.001
+    #     print(Rotate,Rotate_Dir,Rot_Spd)
 
-        for x in range(0,(Rotate+1)):
-            for pin in range(0,4):
-                Pattern_Pin=RPiPins[pin]
-                if Step_Seq[Step_Seq_Num][pin]==1:
-                    GPIO.output(Pattern_Pin,True)
-                else:
-                    GPIO.output(Pattern_Pin,False)
-            Step_Seq_Num+=Rotate_Dir*-1
-            if(Step_Seq_Num>=8):
-                Step_Seq_Num=0
-            elif(Step_Seq_Num<0):
-                Step_Seq_Num=7
-            time.sleep(Rot_Spd)
-        GPIO.cleanup()
-        print('Done')
+    #     for x in range(0,(Rotate+1)):
+    #         for pin in range(0,4):
+    #             Pattern_Pin=RPiPins[pin]
+    #             if Step_Seq[Step_Seq_Num][pin]==1:
+    #                 GPIO.output(Pattern_Pin,True)
+    #             else:
+    #                 GPIO.output(Pattern_Pin,False)
+    #         Step_Seq_Num+=Rotate_Dir*-1
+    #         if(Step_Seq_Num>=8):
+    #             Step_Seq_Num=0
+    #         elif(Step_Seq_Num<0):
+    #             Step_Seq_Num=7
+    #         time.sleep(Rot_Spd)
+    #     GPIO.cleanup()
+    #     print('Done')
 #code for water dispening stepper or stepper #2
 #def StepperForward(self):
 #        GPIO.setmode(GPIO.BOARD)
