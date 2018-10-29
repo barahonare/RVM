@@ -200,8 +200,8 @@ class PurchaseMenu(tk.Frame):
         self.CheckoutSelectionButton.pack()
         self.RecycleOnPurchaseWindowButton.pack(side = "bottom")
         #This puts images inside the buttons
-        self.CanImageForButton = PhotoImage(file="candrinkbutton.gif")
-        self.BottleImageForButton = PhotoImage(file="bottleddrinkbutton.gif")
+        self.CanImageForButton = PhotoImage(file="candrinkbutton.GIF")
+        self.BottleImageForButton = PhotoImage(file="bottleddrinkbutton.GIF")
         self.SodaSelectionButton.config(image=self.CanImageForButton, compound = "bottom")
         self.SodaSelectionButton.image = self.CanImageForButton
         self.WaterSelectionButton.config(image=self.BottleImageForButton, compound = "bottom")
