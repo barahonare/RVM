@@ -82,10 +82,10 @@ class MainMenu(tk.Frame):
         #self.RecycleSelectionButton.config(height=400, width=250)
         #self.PurchaseSelectionButton.config(height=300, width=250)
         #This allows us to put images into the buttons
-        self.RecycleImageForButton = PhotoImage(file="Recycle__Image.gif")
+        self.RecycleImageForButton = PhotoImage(file="Recycle__Image.GIF")
         self.RecycleSelectionButton.config(image=self.RecycleImageForButton, compound = "bottom")
         self.RecycleSelectionButton.image = self.RecycleImageForButton
-        self.PurchaseImageForButton = PhotoImage(file="Purchase_Image.gif")
+        self.PurchaseImageForButton = PhotoImage(file="Purchase_Image.GIF")
         self.PurchaseSelectionButton.config(image=self.PurchaseImageForButton, compound = "bottom")
         self.PurchaseSelectionButton.image = self.PurchaseImageForButton
 
