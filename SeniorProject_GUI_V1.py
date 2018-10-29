@@ -82,12 +82,12 @@ class MainMenu(tk.Frame):
         #self.RecycleSelectionButton.config(height=400, width=250)
         #self.PurchaseSelectionButton.config(height=300, width=250)
         #This allows us to put images into the buttons
-        self.RecycleImageForButton = PhotoImage(file="Recycle__Image.GIF")
-        self.RecycleSelectionButton.config(image=self.RecycleImageForButton, compound = "bottom")
-        self.RecycleSelectionButton.image = self.RecycleImageForButton
-        self.PurchaseImageForButton = PhotoImage(file="Purchase_Image.GIF")
-        self.PurchaseSelectionButton.config(image=self.PurchaseImageForButton, compound = "bottom")
-        self.PurchaseSelectionButton.image = self.PurchaseImageForButton
+        #self.RecycleImageForButton = PhotoImage(file="Recycle__Image.GIF")
+        #self.RecycleSelectionButton.config(image=self.RecycleImageForButton, compound = "bottom")
+        #self.RecycleSelectionButton.image = self.RecycleImageForButton
+        #self.PurchaseImageForButton = PhotoImage(file="Purchase_Image.GIF")
+        #self.PurchaseSelectionButton.config(image=self.PurchaseImageForButton, compound = "bottom")
+        #self.PurchaseSelectionButton.image = self.PurchaseImageForButton
 
 class RecycleMenu(tk.Frame):
     #initalizes the class
@@ -200,12 +200,12 @@ class PurchaseMenu(tk.Frame):
         self.CheckoutSelectionButton.pack()
         self.RecycleOnPurchaseWindowButton.pack(side = "bottom")
         #This puts images inside the buttons
-        self.CanImageForButton = PhotoImage(file="canDrinkButton.GIF")
-        self.BottleImageForButton = PhotoImage(file="bottledDrinkButton.GIF")
-        self.SodaSelectionButton.config(image=self.CanImageForButton, compound = "bottom")
-        self.SodaSelectionButton.image = self.CanImageForButton
-        self.WaterSelectionButton.config(image=self.BottleImageForButton, compound = "bottom")
-        self.WaterSelectionButton.image = self.BottleImageForButton
+        #self.CanImageForButton = PhotoImage(file="canDrinkButton.GIF")
+        #self.BottleImageForButton = PhotoImage(file="bottledDrinkButton.GIF")
+        #self.SodaSelectionButton.config(image=self.CanImageForButton, compound = "bottom")
+        #self.SodaSelectionButton.image = self.CanImageForButton
+        #self.WaterSelectionButton.config(image=self.BottleImageForButton, compound = "bottom")
+        #self.WaterSelectionButton.image = self.BottleImageForButton
         
         #-Buissness methods and variables-#
         self.Price = 0
