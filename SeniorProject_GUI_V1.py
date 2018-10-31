@@ -12,11 +12,23 @@
 
 #--------------notes--------------
 #counter to detect how many sodas or waters are on the cart
-#coin acceptor calling stepper for dispening if total is 0
-#not enough pins... have 17 gpio pins
-#servo = 3 pins each / touchscreen = 2 pins
-#stepper = 4 pins each / coin acceptor = 3 pins
 
+#communication between pi's for coin acceptor or add another arduino for coin and scanner
+
+#coin acceptor calling stepper for dispening if total is 0
+
+#not enough pins... have 17 gpio pins
+#servo = 1 pins each / touchscreen = 1 pins
+#stepper = 4 pins each
+
+#look up resoulation for screen
+
+# put all final checkout stuff on same window and reset total at main menu as well just incase
+
+#code for timer built into python
+#timeout = time.time() + 10 # 10 is in seconds
+#while time.time()<Timeout:
+    #if metal detect break
 
 import math
 #import RPI.GPIO as GPIO #uncomment when running on pi
@@ -124,13 +136,8 @@ class ScanningStage(tk.Frame):
         #This puts the buttons onto the frame
         self.CanOpenDoorButton.pack()
         self.ReturnSelectionButton.pack()
-        self.test()
-    def test(self):
-        self.x=0
-        for f in range(0,3):
-            self.x = self.x + 1
-            print(self.x)
-        if self.x == 3: self.testlabel.config(text = "i am now done with the loop")
+        
+    
     #call scanner method code here
 
 class OpeningPlasticDoor(tk.Frame):
