@@ -11,7 +11,7 @@ import RPi.GPIO as gpio
 from subprocess import call
 import time
 
-gpio.setmode(gpio.BCM)
+gpio.setmode(gpio.BOARD)
 
 def set_backlight(channel):
     file = open('/sys/devices/platform/rpi_backlight/backlight/rpi_backlight/bl_power','r+')
@@ -27,7 +27,7 @@ def set_backlight(channel):
     file.write(bl_update)
     file.close
     
-gpio.add_event_detect(5, gpio.FALLING, callback=set_backlight, bouncetime=300)
+gpio.add_event_detect(29, gpio.FALLING, callback=set_backlight, bouncetime=300)
 
 while 1:
     time.sleep(360)
