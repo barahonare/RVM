@@ -17,9 +17,9 @@ PIN         Description         Connected to
 15             GPIO22           Stepper Motor 1
 16             GPIO23
 17             3V3
-18             GPIO24
-19             GPIO10
-20             GND
+18             GPIO24           range finder Trig
+19             GPIO10           range finder Echo
+20             GND              
 21             GPIO9
 22             GPIO25
 23             GPIO11
