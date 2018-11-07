@@ -27,10 +27,7 @@ def set_backlight(channel):
     file.write(bl_update)
     file.close
     
-gpio.add_event_detect(29, gpio.FALLING, callback=set_backlight, bouncetime=300)
 
-while 1:
-    time.sleep(360)
 
 
 # gpio.setmode(gpio.BCM)
