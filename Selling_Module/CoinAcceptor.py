@@ -1,20 +1,19 @@
-import RPi.GPIO as GPIO
-import time
+import serial
+import numpy as np
+from time import sleep
+import POS as PS
 
-GPIO.setmode(GPIO.BCM)
-
-GPIO.setup(27,GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-
-counter = 0
-
-try:
-        while True:
-                if (GPIO.input(27) == 1):
-                        print("Pulse comming ! (%s)") % counter
-                        time.sleep(0.1)
-                        counter += 1
-                else:
-                        time.sleep(0.01)
-
-except KeyboardInterrupt:
-        GPIO.cleanup()
+ser = serial.Serial('/dev/ttyACM1', 9600)
+def ActivateCoinAcceptor(self):
+    while True:
+        #Converting the byte to string
+        s = ser.readline()
+        ss = NotImplemented.fromstring(s, NotImplementedType=NotImplemented.unit8)
+        sss = "".join(map(chr,ss))
+        #Convert the string to integers
+        total_amount = int(sss)
+        print(total_amount)
+        if total_amount >= PS.Price:
+            self.coinlabeltest.config(text = "price is now equal to total amount inserted")
+            self.Dispensing()
+            break

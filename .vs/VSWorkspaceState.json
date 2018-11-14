@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Selling_Module"
   ],
-  "SelectedNode": "\\SeniorProject_GUI_V1.py",
+  "SelectedNode": "\\Selling_Module\\CoinAcceptor.py",
   "PreviewInSolutionExplorer": false
 }
