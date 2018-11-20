@@ -1,6 +1,7 @@
 import serial
 from gpiozero import Servo
 from time import sleep
+from Selling_Module import POS
 
 #Serial port and baudrate from Arduino
 ser = serial.Serial('/dev/ttyACM0', 9600)
@@ -20,4 +21,5 @@ def ScanToOpen(self):
             servo.max()
             print("max(lock)")
             sleep(1)
+            POS.DiscountReturnMethod(self)
             self.DoneLabel.config(text = "Thank you for recycling!")

@@ -8,16 +8,37 @@ WaterLimit = 0 #Global variable
 SodaSelected = 0 #Global variable
 WaterSelected = 0 #Global variable
 CoinAcceptorTotal = 0 #Globabl variable
+DiscountEnabler = 0 #Global variable
+DiscountDisabler = 0 #Global variable
 Discount = 0 #Global variable
+FinalPrice = 0 #Global Variable
 
 def main():
      pass
-
-#this method is to calculate the discount
-def DiscountMethod(self):
+#this method is to activate the discount
+def DiscountEnablerMethod(self):
+    global DiscountEnabler
+    DiscountEnabler = 1
+    print("Discount is now enabled")
+#this method is to deactivate the discount
+def DiscountReturnMethod(self):
     global Discount
-    Discount += .75
-    print("Discount is now set to 75 cents")
+    global DiscountEnabler
+    if DiscountEnabler == 1:
+        command = controller.show_frame("PurchaseMenu")
+#this method is to calculate the discount
+def CanDiscountMethod(self):
+    global Discount
+    global DiscountEnabler
+    if DiscountEnabler == 1:
+        Discount += .25
+        print("Discount is now set to $0.75")
+#this method is to calculate the discount
+def WaterDiscountMethod(self):
+    global Discount
+    if DiscountEnabler == 1:
+        Discount += .50
+        print("Discount is now set to $1.25")
 
 #this method is used to set the goal of the amount due for the coin acceptor
 def SetFinalTotalPrice2(self):
@@ -42,6 +63,8 @@ def AddPriceOfSoda(self):
     global SodaLimit
     global WaterLimit
     global Price
+    global FinalPrice
+    global Discount
     if SodaLimit < 1 and WaterLimit < 1:
         Price += .75
         SodaLimit += 1
@@ -54,6 +77,8 @@ def AddPriceOfWater(self):
     global SodaLimit
     global WaterLimit
     global Price
+    global FinalPrice
+    global Discount
     if WaterLimit < 1 and SodaLimit < 1:
         Price += 1.25
         WaterLimit += 1
@@ -66,6 +91,8 @@ def SubtractPriceOfSoda(self):
     global SodaLimit
     global WaterLimit
     global Price
+    global FinalPrice
+    global Discount
     if SodaLimit > 0 and WaterLimit < 1:
         Price -= .75
         SodaLimit -= 1
@@ -78,11 +105,15 @@ def SubtractPriceOfWater(self):
     global SodaLimit
     global WaterLimit
     global Price
+    global FinalPrice
+    global Discount
     if WaterLimit > 0 and SodaLimit < 1:
         Price -= 1.25
         WaterLimit -= 1
+        FinalPrice = Price - Discount
         #updates the label containing the total if the limit has not been met
         self.Cartlabel.config(text = ('$%s' %Price))
+        self.TotalLabel.config(text = ('$%s' %FinalPrice))
         print("Subtracting water")
         print("Decreasing waterLimit")
 # Method reset price to 0.00
@@ -90,10 +121,15 @@ def ResetPrice(self):
     global Price
     global SodaLimit
     global WaterLimit
+    global FinalPrice
+    global Discount
+    FinalPrice = 0.00
+    Discount = 0.00
     SodaLimit = 0
     WaterLimit = 0
     Price = 0.00
     self.Cartlabel.config(text = ('$%s' %Price))
+    self.TotalLabel.config(text = ('$%s' %FinalPrice))
     print("Resetting price")
 
 
