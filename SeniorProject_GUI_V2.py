@@ -49,7 +49,7 @@ class RvmMainApp(tk.Tk):
         self.container.grid_columnconfigure(0, weight=1)
         #This creates frames to store into the container
         self.frames = {}
-        self.pages = [MainMenu, RecycleMenu, PurchaseMenu, CheckoutMenu, ScanningStage, OpeningPlasticDoor, OpeningAluminumDoor]
+        self.pages = [MainMenu, RecycleMenu, PurchaseMenu, CheckoutMenu, ScanningStage_OpenAlumDoor, OpeningPlasticDoor]
         #we are using a for loop to instantiate new windows as we develop more windows
         #but the window names must be put into the self.pages = [] in order for it to
         #find the windows you are traversing to
@@ -101,7 +101,7 @@ class RecycleMenu(tk.Frame):
         #This puts the label on the frame
         self.selectionlabel.pack(side="top", fill="x", pady=10)
         #This creates the buttons for the frame
-        self.CanSelectionButton = tk.Button(self, text="",command = lambda: [controller.show_frame("ScanningStage"),POS.CanDiscountMethod(self), print("moving to Scanning menu")])
+        self.CanSelectionButton = tk.Button(self, text="",command = lambda: [controller.show_frame("ScanningStage_OpenAlumDoor"),POS.CanDiscountMethod(self), print("moving to ScanningStage_OpenAlumDoor")])
         self.BottleSelectionButton = tk.Button(self, text = "", command = lambda: [controller.show_frame("OpeningPlasticDoor"),POS.WaterDiscountMethod(self), print("opening plastic door")])
         self.ReturnSelectionButton = tk.Button(self, text = "", command = lambda: [controller.show_frame("MainMenu"),POS.ResetPrice(self), print("moving to main menu")])
         #This puts the buttons onto the frame
@@ -119,21 +119,28 @@ class RecycleMenu(tk.Frame):
         self.ReturnSelectionButton.config(image=self.MainMenuImageForButton, compound = "bottom")
         self.ReturnSelectionButton.image = self.MainMenuImageForButton
 
-class ScanningStage(tk.Frame):
+class ScanningStage_OpenAlumDoor(tk.Frame):
     #initalizes the class
     def __init__(self,parent,controller):
         tk.Frame.__init__(self,parent)
         self.controller = controller
         #This Creates the labels for the frame
-        self.selectionlabel = tk.Label(self, bg = 'black',fg = 'white', text = "Please hold your can up to the sensor for a safety scan", font = controller.title_font)
+        self.Scanninglabel = tk.Label(self, bg = 'black',fg = 'white', text = "Press the scanning button and then hold your can up to the sensor for a safety scan", font = controller.title_font)
         #This puts the label on the frame
-        self.selectionlabel.pack(side="top", fill="x", pady=10)
-        #command = MD.ScanToOpen(self)
+        self.Scanninglabel.pack(side="top", fill="x", pady=10)
         #This creates the buttons for the frame
-        self.ReturnSelectionButton = tk.Button(self, text = "Return to the Main menu", command = lambda: [controller.show_frame("MainMenu"), print("moving to main menu")])
+        self.ScanningButton = tk.Button(self, text = "", command = lambda: [MD.ScanToOpen(self)])
+        self.ReturnSelectionButton = tk.Button(self, text = "", command = lambda: [controller.show_frame("MainMenu"), print("moving to main menu")])
         #This puts the buttons onto the frame
+        self.ScanningButton.pack()
         self.ReturnSelectionButton.pack()
-    #call scanner method code here
+        #add images into the buttons
+        self.MainMenuImageForButton = PhotoImage(file="MainMenu_image.gif")
+        self.ReturnSelectionButton.config(image=self.MainMenuImageForButton, compound = "bottom")
+        self.ReturnSelectionButton.image = self.MainMenuImageForButton
+        self.ScanningImageForButton = PhotoImage(file="StartScanningButton_image.gif")
+        self.ScanningButton.config(image=self.ScanningImageForButton, compound = "bottom")
+        self.ScanningButton.image = self.ScanningImageForButton
 
 class OpeningPlasticDoor(tk.Frame):
     #initalizes the class
@@ -154,21 +161,6 @@ class OpeningPlasticDoor(tk.Frame):
 
 
     #call plastic door opeing here
-
-class OpeningAluminumDoor(tk.Frame):
-    #initalizes the class
-    def __init__(self,parent,controller):
-        tk.Frame.__init__(self,parent)
-        self.controller = controller
-        #This Creates the labels for the frame
-        self.selectionlabel = tk.Label(self, bg = 'black',fg = 'white', text = "Please wait as the safety aluminum door is opening", font = controller.title_font)
-        #This puts the label on the frame
-        self.selectionlabel.pack(side="top", fill="x", pady=10)
-        #This creates the buttons for the frame
-        self.ReturnSelectionButton = tk.Button(self, text = "Return to the Main menu", command = lambda: [controller.show_frame("MainMenu"), print("moving to main menu")])
-        #This puts the buttons onto the frame
-        self.ReturnSelectionButton.pack()
-    #call aluminum door opeing here
 
 class PurchaseMenu(tk.Frame):
     #initalizes the class

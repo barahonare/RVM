@@ -21,5 +21,6 @@ def ScanToOpen(self):
             servo.max()
             print("max(lock)")
             sleep(1)
-            POS.DiscountReturnMethod(self)
-            self.DoneLabel.config(text = "Thank you for recycling!")
+            if POS.DiscountEnabler == 1:
+                POS.DiscountReturnMethod(self)
+            self.Scanninglabel.config(text = "Thank you for recycling!")
