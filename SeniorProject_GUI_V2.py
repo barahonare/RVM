@@ -17,12 +17,12 @@
 
 
 import math
-import RPi.GPIO as GPIO #uncomment when running on pi
+#import RPi.GPIO as GPIO #uncomment when running on pi
 import time
 import tkinter as tk
 # import Vending_module as Vm #import the door source file
 from Selling_Module import POS
-from Selling_Module import Stepper_Motor as STM
+#from Selling_Module import Stepper_Motor as STM
 from tkinter import font as tkfont
 from tkinter import PhotoImage
 from tkinter import ttk
@@ -82,10 +82,10 @@ class MainMenu(tk.Frame):
         #self.RecycleSelectionButton.config(height=400, width=250)
         #self.PurchaseSelectionButton.config(height=300, width=250)
         #This allows us to put images into the buttons
-        self.RecycleImageForButton = PhotoImage(file="Recycle__Image.gif")
+        self.RecycleImageForButton = PhotoImage(file="RecycleButton__image.gif")
         self.RecycleSelectionButton.config(image=self.RecycleImageForButton, compound = "bottom")
         self.RecycleSelectionButton.image = self.RecycleImageForButton
-        self.PurchaseImageForButton = PhotoImage(file="Purchase_Image.gif")
+        self.PurchaseImageForButton = PhotoImage(file="PurchaseButton_image.gif")
         self.PurchaseSelectionButton.config(image=self.PurchaseImageForButton, compound = "bottom")
         self.PurchaseSelectionButton.image = self.PurchaseImageForButton
 
@@ -175,8 +175,8 @@ class PurchaseMenu(tk.Frame):
         self.Cartlabel.pack(side="top", fill="x", pady=10)
         self.TotalLabel.pack(side="top", fill="x", pady=10)
         #This creates the buttons for the frame
-        self.SodaSelectionButton = tk.Button(self, text="Soda",command = lambda: POS.AddPriceOfSoda(self))
-        self.WaterSelectionButton = tk.Button(self, text = "Water", command = lambda: POS.AddPriceOfWater(self))
+        self.AddSodaButton = tk.Button(self, text="Soda",command = lambda: POS.AddPriceOfSoda(self))
+        self.AddWaterButton = tk.Button(self, text = "Water", command = lambda: POS.AddPriceOfWater(self))
         self.ReturnSelectionButton = tk.Button(self, text = "Return to the Main menu",
                     command = lambda: [controller.show_frame("MainMenu"),
                         POS.ResetPrice(self), print("moving to main menu")])
@@ -187,20 +187,26 @@ class PurchaseMenu(tk.Frame):
         self.MinusWaterFromTotalButton = tk.Button(self, text = "- Water", command = lambda: [POS.SubtractPriceOfWater(self), print("Removing price of Water from total")])
         self.RecycleOnPurchaseWindowButton = tk.Button(self, text = "Click me to recycle for discount", command = lambda: [controller.show_frame("RecycleMenu"), print("Moving to recycle page")])
         #This puts the buttons onto the frame
-        self.SodaSelectionButton.pack(side="left")
+        self.AddSodaButton.pack(side="left")
         self.MinusWaterFromTotalButton.pack(side ="right")
-        self.WaterSelectionButton.pack(side ="right")
+        self.AddWaterButton.pack(side ="right")
         self.MinusSodaFromTotalButton.pack(side="left")
         self.ReturnSelectionButton.pack()
         self.CheckoutSelectionButton.pack()
         self.RecycleOnPurchaseWindowButton.pack(side = "bottom")
         #This puts images inside the buttons
-        # self.CanImageForButton = PhotoImage(file="candrinkbutton.gif")
-        # self.BottleImageForButton = PhotoImage(file="bottleddrinkbutton.gif")
-        # self.SodaSelectionButton.config(image=self.CanImageForButton, compound = "bottom")
-        # self.SodaSelectionButton.image = self.CanImageForButton
-        # self.WaterSelectionButton.config(image=self.BottleImageForButton, compound = "bottom")
-        # self.WaterSelectionButton.image = self.BottleImageForButton
+        self.AddCanImageForButton = PhotoImage(file="AddSodaButton_image.gif")
+        self.AddBottleImageForButton = PhotoImage(file="AddWaterButton_image.gif")
+        self.RemoveCanImageForButton = PhotoImage(file="RemoveSodaButton_image.gif")
+        self.RemoveBottleImageForButton = PhotoImage(file="RemoveSodaButton_image.gif")
+        self.AddSodaButton.config(image=self.AddCanImageForButton, compound = "bottom")
+        self.AddSodaButton.image = self.AddCanImageForButton
+        self.AddWaterButton.config(image=self.AddBottleImageForButton, compound = "bottom")
+        self.AddWaterButton.image = self.AddBottleImageForButton
+        self.MinusSodaFromTotalButton.config(image=self.RemoveCanImageForButton, compound = "bottom")
+        self.MinusSodaFromTotalButton.image = self.RemoveCanImageForButton
+        self.MinusSodaFromTotalButton.config(image=self.RemoveBottleImageForButton, compound = "bottom")
+        self.MinusSodaFromTotalButton.image = self.RemoveBottleImageForButton
 
 
 class CheckoutMenu(tk.Frame):

@@ -13,7 +13,17 @@ def ActivateCoinAcceptor(self):
         #Convert the string to integers
         total_amount = int(sss)
         print(total_amount)
+        if total_amount >= 25:
+            self.coinlabeltest.config(text = "You have deposited 25 cents")
+        if total_amount >= 50:
+            self.coinlabeltest.config(text = "You have deposited 50 cents")
+        if total_amount >= 75:
+            self.coinlabeltest.config(text = "You have deposited 75 cents")
+        if total_amount >= 100:
+            self.coinlabeltest.config(text = "You have deposited 1 dollar")
+        if total_amount >= 100:
+            self.coinlabeltest.config(text = "You have deposited 1 dollar")
         if total_amount >= PS.Price:
-            self.coinlabeltest.config(text = "price is now equal to total amount inserted")
+            self.coinlabeltest.config(text = "Thank you for choosing RVM")
             self.Dispensing()
             break

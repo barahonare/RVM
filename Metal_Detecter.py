@@ -9,13 +9,15 @@ ser = serial.Serial('/dev/ttyACM0', 9600)
 myGPIO=16
 servo = Servo(myGPIO)
 
-while True:
-    servo.max()
-    if b'METAL DETECTED\r\n' in ser:
-        print('Metal Detected with Pi')
-        servo.min()
-        print("min(unlock)")
-        sleep(3)
+def ScanToOpen(self):
+    while True:
         servo.max()
-        print("max(lock)")
-        sleep(1)
+        if b'METAL DETECTED\r\n' in ser:
+            print('Metal Detected with Pi')
+            servo.min()
+            print("min(unlock)")
+            sleep(3)
+            servo.max()
+            print("max(lock)")
+            sleep(1)
+            self.DoneLabel.config(text = "Thank you for recycling!")

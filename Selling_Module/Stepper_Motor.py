@@ -2,8 +2,8 @@ import time
 import RPi.GPIO as GPIO
 
 
-RPiPins1=[17,18,27,22]
-RPiPins2=[26,19,21,20]
+RPiPins1=[11,12,13,15]
+RPiPins2=[35,37,38,40]
 
 def main():
     pass
