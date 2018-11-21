@@ -126,14 +126,14 @@ class ScanningStage_OpenAlumDoor(tk.Frame):
         self.Scanninglabel.pack(side="top", fill="x", pady=10)
         #This creates the buttons for the frame
         self.ScanningButton = tk.Button(self, text = "", command = lambda: [MD.ScanToOpen(self)])
-        self.ReturnSelectionButton = tk.Button(self, text = "", command = lambda: [controller.show_frame("MainMenu"), print("moving to main menu")])
+        self.ReturnSelectionButton = tk.Button(self, text = "", command = lambda: [controller.show_frame("RecycleMenu"), print("moving to main menu")])
         #This puts the buttons onto the frame
         self.ScanningButton.pack()
         self.ReturnSelectionButton.pack()
         #add images into the buttons
-        self.MainMenuImageForButton = PhotoImage(file="MainMenu_image.gif")
-        self.ReturnSelectionButton.config(image=self.MainMenuImageForButton, compound = "bottom")
-        self.ReturnSelectionButton.image = self.MainMenuImageForButton
+        self.BackupImageForButton = PhotoImage(file="BackupButton_image.gif")
+        self.ReturnSelectionButton.config(image=self.BackupImageForButton, compound = "bottom")
+        self.ReturnSelectionButton.image = self.BackupImageForButton
         self.ScanningImageForButton = PhotoImage(file="StartScanningButton_image.gif")
         self.ScanningButton.config(image=self.ScanningImageForButton, compound = "bottom")
         self.ScanningButton.image = self.ScanningImageForButton
@@ -151,9 +151,13 @@ class OpeningPlasticDoor(tk.Frame):
         #note: when servo code is developed we can undo
         #the button and just insert the code so the main
         #menu frame will appear when it is done closing
-        self.ReturnSelectionButton = tk.Button(self, text = "Return to the Main menu", command = lambda: [controller.show_frame("MainMenu"), print("moving to main menu")])
+        self.ReturnSelectionButton = tk.Button(self, text = "", command = lambda: [controller.show_frame("RecycleMenu"), print("moving to main menu")])
         #This puts the buttons onto the frame
         self.ReturnSelectionButton.pack()
+        #adds images into the buttons
+        self.BackupImageForButton = PhotoImage(file="BackupButton_image.gif")
+        self.ReturnSelectionButton.config(image=self.BackupImageForButton, compound = "bottom")
+        self.ReturnSelectionButton.image = self.BackupImageForButton
 
 
     #call plastic door opeing here
@@ -228,17 +232,17 @@ class CheckoutMenu(tk.Frame):
         self.FinalTotalLabel.pack(side="top", fill="x", pady=10)
         #This creates the buttons for the frame
         self.CoinActivatorSelectionButton = tk.Button(self, text = "", command = lambda: [Coin.ActivateCoinAcceptor(self)])
-        self.ReturnToPurchaseSelectionButton = tk.Button(self, text = "", command = lambda: [controller.show_frame("PurchaseMenu"), print("moving to Purchase menu")])
+        self.ReturnSelectionButton = tk.Button(self, text = "", command = lambda: [controller.show_frame("PurchaseMenu"), print("moving to main menu")])
         self.testButton = tk.Button(self, text = "", command = lambda: [print("inside the checkout menu") , print(POS.Price)])
-        self.ReturnSelectionButton = tk.Button(self, text = "", command = lambda: [controller.show_frame("MainMenu"), print("moving to main menu")])
+        self.ReturnToPurchaseSelectionButton = tk.Button(self, text = "", command = lambda: [controller.show_frame("PurchaseMenu"), print("moving to main menu")])
         #This puts the buttons onto the frame
         self.testButton.pack()
         self.CoinActivatorSelectionButton.pack()
         self.ReturnToPurchaseSelectionButton.pack()
         self.ReturnSelectionButton.pack()
-        self.MainMenuImageForButton = PhotoImage(file="MainMenu_image.gif")
-        self.ReturnSelectionButton.config(image=self.MainMenuImageForButton, compound = "bottom")
-        self.ReturnSelectionButton.image = self.MainMenuImageForButton
+        self.BackupImageForButton = PhotoImage(file="BackupButton_image.gif")
+        self.ReturnSelectionButton.config(image=self.BackupImageForButton, compound = "bottom")
+        self.ReturnSelectionButton.image = self.BackupImageForButton
         self.PayingImageForButton = PhotoImage(file="StartPayingButton_image.gif")
         self.CoinActivatorSelectionButton.config(image=self.PayingImageForButton, compound = "top")
         self.CoinActivatorSelectionButton.image = self.PayingImageForButton
