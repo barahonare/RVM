@@ -20,7 +20,6 @@ import math
 import RPi.GPIO as GPIO #uncomment when running on pi
 import time
 import tkinter as tk
-import Vending_module as Vm #import the door source file
 from Selling_Module import POS
 from Selling_Module import Stepper_Motor as STM
 from Selling_Module import CoinAcceptor as Coin
