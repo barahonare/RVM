@@ -20,7 +20,7 @@ import tkinter as tk
 from Selling_Module import POS
 from Selling_Module import Stepper_Motor as STM
 from Selling_Module import CoinAcceptor as Coin
-import Metal_Detecter as MD
+from Selling_Module import Metal_Detecter as MD
 from tkinter import font as tkfont
 from tkinter import PhotoImage
 from tkinter import ttk
