@@ -170,12 +170,10 @@ class PurchaseMenu(tk.Frame):
         #This Creates the labels for the frame
         self.selectionlabel = tk.Label(self, bg = 'black',fg = 'white', text = "Would you like to buy a can of soda or bottle of water?", font = controller.title_font)
         self.TotalLabel = tk.Label(self, bg = 'black',fg = 'white', text = "Your total will display here as you add items", font = controller.title_font)
-        self.Discountlabel = tk.Label(self, bg = 'black',fg = 'white', text = "Your discount will be displayed here if you recycle down below", font = controller.title_font)
-        self.Cartlabel = tk.Label(self, bg = 'black',fg = 'white', text = "Your cart amount will be displayed here", font = controller.title_font)
+        self.Cartlabel = tk.Label(self, bg = 'black',fg = 'white', text = "Your Final value is " '$%s ' "Your discount was "'$%s'%(POS.FinalPrice,POS.Discount), font = controller.title_font)
         #This puts the label on the frame
         self.selectionlabel.pack(side="top", fill="x", pady=10)  
         self.Cartlabel.pack(side="top", fill="x", pady=10)
-        self.Discountlabel.pack(side="top", fill="x", pady=10)
         self.TotalLabel.pack(side="top", fill="x", pady=10)
         #This creates the buttons for the frame
         self.AddSodaButton = tk.Button(self, text="",command = lambda: POS.AddPriceOfSoda(self))
