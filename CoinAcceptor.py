@@ -1,7 +1,7 @@
 import serial
 import numpy as np
 from time import sleep
-from Selling_Module import POS
+import POS
 import Stepper_Motor as SM
 
 ser = serial.Serial('/dev/ttyACM1', 9600)
