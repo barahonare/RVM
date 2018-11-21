@@ -5,6 +5,9 @@ import POS
 import Stepper_Motor as SM
 
 ser = serial.Serial('/dev/ttyACM1', 9600)
+def main():
+    pass
+
 def ActivateCoinAcceptor(self):
     while True:
         #Converting the byte to string
@@ -42,3 +45,5 @@ def ActivateCoinAcceptor(self):
             if POS.WaterSelected == 1:
                 SM.Stepper2Forward()
             break
+if __name__=="__CoinAcceptor__":
+    main()

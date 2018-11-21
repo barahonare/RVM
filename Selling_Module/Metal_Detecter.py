@@ -9,6 +9,8 @@ ser = serial.Serial('/dev/ttyACM0', 9600)
 #Servo GPIO
 myGPIO=36
 servo = Servo(myGPIO)
+def main():
+    pass
 
 def ScanToOpen(self):
     while True:
@@ -25,3 +27,5 @@ def ScanToOpen(self):
                 POS.CanDiscountMethod(self)
                 POS.DiscountReturnMethod(self)
             self.Scanninglabel.config(text = "Thank you for recycling!")
+if __name__=="__Metal_Detecter__":
+    main()
