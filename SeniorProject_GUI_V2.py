@@ -87,7 +87,7 @@ class MainMenu(tk.Frame):
         self.RecycleImageForButton = PhotoImage(file="RecycleButton_image.gif")
         self.RecycleSelectionButton.config(image=self.RecycleImageForButton, compound = "bottom")
         self.RecycleSelectionButton.image = self.RecycleImageForButton
-        self.PurchaseImageForButton = PhotoImage(file="PurchaseButton_image.GIF")
+        self.PurchaseImageForButton = PhotoImage(file="PurchaseButton_image.gif")
         self.PurchaseSelectionButton.config(image=self.PurchaseImageForButton, compound = "bottom")
         self.PurchaseSelectionButton.image = self.PurchaseImageForButton
 

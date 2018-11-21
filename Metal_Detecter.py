@@ -7,7 +7,7 @@ from Selling_Module import POS
 ser = serial.Serial('/dev/ttyACM0', 9600)
 
 #Servo GPIO
-myGPIO=16
+myGPIO=36
 servo = Servo(myGPIO)
 
 def ScanToOpen(self):
