@@ -39,6 +39,6 @@ def ActivateCoinAcceptor(self):
             self.coinlabeltest.config(text = "Thank you for choosing RVM")
             if POS.SodaSelected == 1:
                 SM.Stepper1Forward()
-            if PS.WaterSelected == 1:
+            if POS.WaterSelected == 1:
                 SM.Stepper2Forward()
             break
