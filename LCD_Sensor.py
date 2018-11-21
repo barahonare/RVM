@@ -7,6 +7,7 @@ file = open('/sys/devices/platform/rpi_backlight/backlight/rpi_backlight/bl_powe
 current_status = int(file.read(1))
 
 def main():
+    global current_status
 
     GPIO.setmode(GPIO.BOARD)
     Trig = 18
@@ -33,11 +34,14 @@ def main():
         pulse_duration = pulse_end - pulse_start
         distance = pulse_duration * 17150
         distance = round(distance,2)
-        print("Distance: ", distance, "cm")
+##        print("Distance: ", distance, "cm")
         
-        if distance <= 70 and current_status == 1:
+        print(current_status)
+        if current_status == 1 and distance <= 70 :
             timeout = time.time()+ 1
-            while (time.time()<timeout) and current_status == 1:
+            print("checking for user")
+            while (time.time()<timeout) and distance <= 70:
+                print("user there?")
                 GPIO.output(Trig,True)
                 time.sleep(0.0001)
                 GPIO.output(Trig,False)
@@ -50,15 +54,62 @@ def main():
                 pulse_duration = pulse_end - pulse_start
                 distance = pulse_duration * 17150
                 distance = round(distance,2)
-                print("user detected")
-            print("User found")
-            switch = LCD_Backlight(0)
+            
+            if distance <= 70:
+                print("User found")
+                current_status = LCD_Backlight(0)
+            
+        
+##        GPIO.output(Trig,True)
+##        time.sleep(0.0001)
+##        GPIO.output(Trig,False)
+##
+##        while GPIO.input(Echo) == 0:
+##            pulse_start = time.time()
+##        while GPIO.input(Echo) == 1:
+##            pulse_end = time.time()
+##
+##        pulse_duration = pulse_end - pulse_start
+##        distance = pulse_duration * 17150
+##        distance = round(distance,2)
+    
+        
+        if current_status == 0 and distance > 70:
+            timeout = time.time() + 10
+            print("confirming user is gone")
+            while (time.time()<timeout) and distance > 70:
+                print("confirming user")
+                
+                GPIO.output(Trig,True)
+                time.sleep(0.0001)
+                GPIO.output(Trig,False)
+
+                while GPIO.input(Echo) == 0:
+                    pulse_start = time.time()
+                while GPIO.input(Echo) == 1:
+                    pulse_end = time.time()
+
+                pulse_duration = pulse_end - pulse_start
+                distance = pulse_duration * 17150
+                distance = round(distance,2)
+                
+                
+            if distance > 70:
+                print("User gone")
+                current_status = LCD_Backlight(1)
+            
         
 
 def LCD_Backlight(switch):
+    
+    file = open('/sys/devices/platform/rpi_backlight/backlight/rpi_backlight/bl_power','r+')
+    current_status = int(file.read(1))
+    
+##    global file
+##    global current_status
         
     if current_status != switch:
-        bl_set = int(switch)
+        bl_set = switch
     else:
         bl_set = current_status
     
@@ -70,7 +121,7 @@ def LCD_Backlight(switch):
     file.write(bl_update)
     file.close
     
-    return bl_update
+    return int(bl_update)
         
 
 
