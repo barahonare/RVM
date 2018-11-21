@@ -5,10 +5,7 @@
 #add sleep mode / still integrating with rangefinder
 
 #----------anthony / jose
-#add coin acceptor done
-#add discounts
-#add images to recycle window
-#photo shop images to prevent copywrite stuff
+
 
 #--------------notes--------------
 #counter to detect how many sodas or waters are on the cart
