@@ -14,13 +14,13 @@
 
 
 import math
-import RPi.GPIO as GPIO #uncomment when running on pi
+# import RPi.GPIO as GPIO #uncomment when running on pi
 import time
 import tkinter as tk
 from Selling_Module import POS
 from Selling_Module import Stepper_Motor as STM
-from Selling_Module import CoinAcceptor as Coin
-from Selling_Module import Metal_Detecter as MD
+# from Selling_Module import CoinAcceptor as Coin
+# from Selling_Module import Metal_Detecter as MD
 from tkinter import font as tkfont
 from tkinter import PhotoImage
 from tkinter import ttk
@@ -52,6 +52,7 @@ class RvmMainApp(tk.Tk):
         for F in self.pages:
             page_name = F.__name__
             self.frame = F(parent=self.container, controller = self)
+            self.frame.config(background = 'black') # Configuration of the frame before placin in frame dictionary
             self.frames[page_name] = self.frame
             #This allows us to put the frames on a stack and pull the frame we are viewing on top
             self.frame.grid(row =0, column = 0, sticky = 'nsew')
