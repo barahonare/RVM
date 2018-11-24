@@ -7,7 +7,7 @@ from Selling_Module import POS
 ser = serial.Serial('/dev/ttyACM0', 9600)
 
 #Servo GPIO
-myGPIO=36
+myGPIO=16
 servo = Servo(myGPIO)
 def main():
     pass
