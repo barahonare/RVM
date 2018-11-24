@@ -14,14 +14,6 @@ from tkinter import ttk
 from tkinter import *
 from time import sleep
 
-Final = 0.0
-
-def setFinal(amount):
-    global Final
-    Final = amount
-
-def updateLabel(Label,value):
-    Label.config(text = value)
 
 
 class RvmMainApp(tk.Tk):
@@ -226,8 +218,6 @@ class PurchaseMenu(tk.Frame):
         self.RecycleOnPurchaseWindowButton.image = self.RecycleOnPurchaseImageForButton
 
 class CheckoutMenu(tk.Frame):
-    global Final
-
     #initalizes the class
     def __init__(self,parent,controller):
         tk.Frame.__init__(self,parent)
