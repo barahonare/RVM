@@ -32,7 +32,7 @@ PIN         Description         Connected to
 30             GND
 31             GPIO06
 32             GPIO12
-33             GPIO13
+33             GPIO13		   Servo Motor 2
 34             GND        
 35             GPIO19          Stepper Motor 2
 36             GPIO16          Servo Motor 1

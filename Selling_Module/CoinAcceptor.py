@@ -12,7 +12,7 @@ def ActivateCoinAcceptor(self):
     while True:
         #Converting the byte to string
         s = ser.readline()
-        ss = NotImplemented.fromstring(s, NotImplementedType=NotImplemented.unit8)
+        ss = np.fromstring(s, dtype=np.unit8)
         sss = "".join(map(chr,ss))
         #Convert the string to integers
         total_amount = int(sss)
