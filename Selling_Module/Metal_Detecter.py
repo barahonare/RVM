@@ -18,9 +18,9 @@ def main():
     pass
 
 def servo_max():
-    servo1.ChaneDutyCycle(12.5) # turn towards 180 degree
+    servo1.ChangeDutyCycle(12.5) # turn towards 180 degree
 def servo_min():
-    servo1.ChaneDutyCycle(2.5)
+    servo1.ChangeDutyCycle(2.5)
 
 def ScanToOpen(self,controller):
     #to change the label
