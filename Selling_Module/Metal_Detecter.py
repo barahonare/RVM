@@ -27,5 +27,6 @@ def ScanToOpen(self):
                 POS.CanDiscountMethod(self)
                 POS.DiscountReturnMethod(self)
             self.Scanninglabel.config(text = "Thank you for recycling!")
+            break
 if __name__=="__Metal_Detecter__":
     main()
