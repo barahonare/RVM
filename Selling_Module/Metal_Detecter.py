@@ -24,7 +24,7 @@ def ScanToOpen(self):
             print("max(lock)")
             sleep(1)
             if POS.DiscountEnabler == 1:
-                POS.CanDiscountMethod(self)
+                #POS.CanDiscountMethod(self)
                 POS.DiscountReturnMethod(self)
             self.Scanninglabel.config(text = "Thank you for recycling!")
             break

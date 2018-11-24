@@ -27,6 +27,7 @@ def DiscountReturnMethod(self):
     if DiscountEnabler == 1:
         print("im in the discount return method")
         self.controller.show_frame("PurchaseMenu")
+        CanDiscountMethod(self)
 #this method is to calculate the discount
 def CanDiscountMethod(self):
     global Discount
