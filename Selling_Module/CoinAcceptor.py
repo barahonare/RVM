@@ -45,6 +45,7 @@ def ActivateCoinAcceptor(self):
                 SM.Stepper1Forward(self)
             if POS.WaterSelected == 1:
                 SM.Stepper2Forward(self)
+            print(total_amount, POS.Price)
         #     break
 if __name__=="__CoinAcceptor__":
     main()
