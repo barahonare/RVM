@@ -35,10 +35,10 @@ def CanDiscountMethod(self):
     global FinalPrice
     if DiscountEnabler == 1:
         Discount += 25
-        print(discount)
+        print(Discount)
         print(FinalPrice)
         FinalPrice -= Discount
-        print(discount)
+        print(Discount)
         print(FinalPrice)
         self.TotalLabel.config(text = ("Your Final value is " '$%s      ' "Your discount was "'$%s'%(FinalPrice,Discount)))
         print("Discount is now set to $0.25")
