@@ -92,8 +92,8 @@ class RecycleMenu(tk.Frame):
         #This puts the label on the frame
         self.selectionlabel.pack(side="top", fill="x", pady=10)
         #This creates the buttons for the frame
-        self.CanSelectionButton = tk.Button(self, text="",command = lambda: [controller.show_frame("ScanningStage_OpenAlumDoor"),POS.CanDiscountMethod(self), print("moving to ScanningStage_OpenAlumDoor")])
-        self.BottleSelectionButton = tk.Button(self, text = "", command = lambda: [controller.show_frame("OpeningPlasticDoor"),POS.WaterDiscountMethod(self), print("opening plastic door")])
+        self.CanSelectionButton = tk.Button(self, text="",command = lambda: [controller.show_frame("ScanningStage_OpenAlumDoor"), print("moving to ScanningStage_OpenAlumDoor")])
+        self.BottleSelectionButton = tk.Button(self, text = "", command = lambda: [controller.show_frame("OpeningPlasticDoor"), print("opening plastic door")])
         self.ReturnSelectionButton = tk.Button(self, text = "", command = lambda: [controller.show_frame("MainMenu"),POS.ResetPrice(self), print("moving to main menu")])
         #This puts the buttons onto the frame
         self.CanSelectionButton.pack()
