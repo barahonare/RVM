@@ -233,10 +233,8 @@ class CheckoutMenu(tk.Frame):
         #This creates the buttons for the frame
         self.CoinActivatorSelectionButton = tk.Button(self, text = "", command = lambda: [Coin.ActivateCoinAcceptor(self)])
         self.ReturnSelectionButton = tk.Button(self, text = "", command = lambda: [controller.show_frame("PurchaseMenu"), print("moving to main menu")])
-        self.ReturnToPurchaseSelectionButton = tk.Button(self, text = "", command = lambda: [controller.show_frame("PurchaseMenu"), print("moving to main menu")])
         #This puts the buttons onto the frame
         self.CoinActivatorSelectionButton.pack()
-        self.ReturnToPurchaseSelectionButton.pack()
         self.ReturnSelectionButton.pack()
         #puts the images inside the buttons
         self.BackupImageForButton = PhotoImage(file="BackupButton_image.gif")
@@ -245,9 +243,6 @@ class CheckoutMenu(tk.Frame):
         self.PayingImageForButton = PhotoImage(file="StartPayingButton_image.gif")
         self.CoinActivatorSelectionButton.config(image=self.PayingImageForButton, compound = "top")
         self.CoinActivatorSelectionButton.image = self.PayingImageForButton
-        self.PurchaseMenuImageForButton = PhotoImage(file="PurchaseMenuButton_image.gif")
-        self.ReturnToPurchaseSelectionButton.config(image=self.PurchaseMenuImageForButton, compound = "bottom")
-        self.ReturnToPurchaseSelectionButton.image = self.PurchaseMenuImageForButton
     
         
     # def updatePriceLabel(self,amount):
