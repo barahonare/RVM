@@ -18,6 +18,7 @@ def ActivateCoinAcceptor(self):
         total_amount = int(sss)
         self.Final_amount = POS.Price
         print(total_amount)
+        print(POS.Price)
         if total_amount >= 25:
             self.coinlabeltest.config(text = "You have deposited 25 cents")
             self.Final_amount -= 25
