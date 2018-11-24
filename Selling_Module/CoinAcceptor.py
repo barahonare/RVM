@@ -39,12 +39,12 @@ def ActivateCoinAcceptor(self):
         #     self.coinlabeltest.config(text = "You have deposited 1.25 dollar")
         #     self.Final_amount -= 25
         #     self.FinalTotalLabel.config(text = '$%s' %self.Final_amount)
-        # if total_amount >= POS.Price:
-        #     self.coinlabeltest.config(text = "Thank you for choosing RVM")
-        #     if POS.SodaSelected == 1:
-        #         SM.Stepper1Forward()
-        #     if POS.WaterSelected == 1:
-        #         SM.Stepper2Forward()
+        if total_amount >= POS.Price:
+            self.coinlabeltest.config(text = "Thank you for choosing RVM")
+            if POS.SodaSelected == 1:
+                SM.Stepper1Forward(self)
+            if POS.WaterSelected == 1:
+                SM.Stepper2Forward(self)
         #     break
 if __name__=="__CoinAcceptor__":
     main()
