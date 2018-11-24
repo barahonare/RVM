@@ -1,17 +1,3 @@
-#---GUI todo list ---- #
-#add servo done
-#add metal detector code done
-#metal detector - figure out how to send a boolean done
-#add sleep mode / still integrating with rangefinder
-
-#----------anthony / jose
-
-
-#--------------notes--------------
-#counter to detect how many sodas or waters are on the cart
-#coin acceptor calling stepper for dispening if total is 0
-
-
 
 import math
 # import RPi.GPIO as GPIO #uncomment when running on pi
@@ -127,9 +113,9 @@ class RecycleMenu(tk.Frame):
         self.PlasticImageForButton = PhotoImage(file="RecyclePlastic_image.gif")
         self.BottleSelectionButton.config(image=self.PlasticImageForButton, compound = "bottom")
         self.BottleSelectionButton.image = self.PlasticImageForButton
-        self.MainMenuImageForButton = PhotoImage(file="MainMenu_image.gif")
-        self.ReturnSelectionButton.config(image=self.MainMenuImageForButton, compound = "bottom")
-        self.ReturnSelectionButton.image = self.MainMenuImageForButton
+        self.BackupImageForButton = PhotoImage(file="BackupButton_image.gif")
+        self.ReturnSelectionButton.config(image=self.BackupImageForButton, compound = "bottom")
+        self.ReturnSelectionButton.image = self.BackupImageForButton
 
 class ScanningStage_OpenAlumDoor(tk.Frame):
     #initalizes the class
@@ -210,8 +196,8 @@ class PurchaseMenu(tk.Frame):
         self.MinusWaterFromTotalButton.pack(side ="right")
         self.AddWaterButton.pack(side ="right")
         self.MinusSodaFromTotalButton.pack(side="left")
-        self.ReturnSelectionButton.pack()
         self.CheckoutSelectionButton.pack()
+        self.ReturnSelectionButton.pack()
         self.RecycleOnPurchaseWindowButton.pack(side = "bottom")
         #This puts images inside the buttons
         self.AddCanImageForButton = PhotoImage(file="AddSodaButton_image.gif")
@@ -226,9 +212,9 @@ class PurchaseMenu(tk.Frame):
         self.MinusSodaFromTotalButton.image = self.RemoveCanImageForButton
         self.MinusWaterFromTotalButton.config(image=self.RemoveBottleImageForButton, compound = "bottom")
         self.MinusWaterFromTotalButton.image = self.RemoveBottleImageForButton
-        self.MainMenuImageForButton = PhotoImage(file="MainMenu_image.gif")
-        self.ReturnSelectionButton.config(image=self.MainMenuImageForButton, compound = "bottom")
-        self.ReturnSelectionButton.image = self.MainMenuImageForButton
+        self.BackupImageForButton = PhotoImage(file="BackupButton_image.gif")
+        self.ReturnSelectionButton.config(image=self.BackupImageForButton, compound = "bottom")
+        self.ReturnSelectionButton.image = self.BackupImageForButton
         self.CheckoutImageForButton = PhotoImage(file="Checkout_image.gif")
         self.CheckoutSelectionButton.config(image=self.CheckoutImageForButton, compound = "bottom")
         self.CheckoutSelectionButton.image = self.CheckoutImageForButton
@@ -254,15 +240,12 @@ class CheckoutMenu(tk.Frame):
         #This creates the buttons for the frame
         self.CoinActivatorSelectionButton = tk.Button(self, text = "", command = lambda: [Coin.ActivateCoinAcceptor(self)])
         self.ReturnSelectionButton = tk.Button(self, text = "", command = lambda: [controller.show_frame("PurchaseMenu"), print("moving to main menu")])
-        self.testButton = tk.Button(self, text = "",
-                    command = lambda: [POS.updateLabel(self,POS.FinalPrice)
-                        , print("inside the checkout menu") , print(POS.Price)])
         self.ReturnToPurchaseSelectionButton = tk.Button(self, text = "", command = lambda: [controller.show_frame("PurchaseMenu"), print("moving to main menu")])
         #This puts the buttons onto the frame
-        self.testButton.pack()
         self.CoinActivatorSelectionButton.pack()
         self.ReturnToPurchaseSelectionButton.pack()
         self.ReturnSelectionButton.pack()
+        #puts the images inside the buttons
         self.BackupImageForButton = PhotoImage(file="BackupButton_image.gif")
         self.ReturnSelectionButton.config(image=self.BackupImageForButton, compound = "bottom")
         self.ReturnSelectionButton.image = self.BackupImageForButton
