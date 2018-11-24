@@ -27,6 +27,15 @@ from tkinter import ttk
 from tkinter import *
 from time import sleep
 
+Final = 0.0
+
+def setFinal(amount):
+    global Final
+    Final = amount
+
+def updateLabel(Label,value):
+    Label.config(text = value)
+
 
 class RvmMainApp(tk.Tk):
     #initalizes the class
@@ -45,7 +54,7 @@ class RvmMainApp(tk.Tk):
         self.container.grid_columnconfigure(0, weight=1)
         #This creates frames to store into the container
         self.frames = {}
-        self.pages = [MainMenu, RecycleMenu, PurchaseMenu, CheckoutMenu, ScanningStage_OpenAlumDoor, OpeningPlasticDoor]
+        self.pages = [MainMenu, RecycleMenu, CheckoutMenu, PurchaseMenu, ScanningStage_OpenAlumDoor, OpeningPlasticDoor]
         #we are using a for loop to instantiate new windows as we develop more windows
         #but the window names must be put into the self.pages = [] in order for it to
         #find the windows you are traversing to
@@ -61,6 +70,12 @@ class RvmMainApp(tk.Tk):
     def show_frame(self, page_name):
         self.frame = self.frames[page_name]
         self.frame.tkraise()
+    def get_page(self,classname):
+        for page in self.frames.values():
+            if str(page.__class__.__name__) == classname:
+                return page
+        return None
+
 
 class MainMenu(tk.Frame):
     #initalizes the class
@@ -168,6 +183,7 @@ class PurchaseMenu(tk.Frame):
     def __init__(self,parent,controller):
         tk.Frame.__init__(self,parent)
         self.controller = controller
+        checkOutFrame = controller.get_page('CheckoutMenu')
         #This Creates the labels for the frame
         self.selectionlabel = tk.Label(self, bg = 'black',fg = 'white', text = "Would you like to buy a can of soda or bottle of water?", font = controller.title_font)
         self.TotalLabel = tk.Label(self, bg = 'black',fg = 'white', text = "Your total will display here as you add items", font = controller.title_font)
@@ -184,6 +200,7 @@ class PurchaseMenu(tk.Frame):
                         POS.ResetPrice(self), print("moving to main menu")])
         self.CheckoutSelectionButton = tk.Button(self, text = "", 
                     command = lambda: [controller.show_frame("CheckoutMenu")
+                        , checkOutFrame.FinalTotalLabel.config(text = ('$%s' %POS.FinalPrice))
                         , print("moving to checkout menu")])
         self.MinusSodaFromTotalButton = tk.Button(self, text = "", command = lambda: [POS.SubtractPriceOfSoda(self), print("Removing price of soda from total")])
         self.MinusWaterFromTotalButton = tk.Button(self, text = "", command = lambda: [POS.SubtractPriceOfWater(self), print("Removing price of Water from total")])
@@ -218,7 +235,10 @@ class PurchaseMenu(tk.Frame):
         self.RecycleOnPurchaseImageForButton = PhotoImage(file="DiscountButton_image.gif")
         self.RecycleOnPurchaseWindowButton.config(image=self.RecycleOnPurchaseImageForButton, compound = "bottom")
         self.RecycleOnPurchaseWindowButton.image = self.RecycleOnPurchaseImageForButton
+
 class CheckoutMenu(tk.Frame):
+    global Final
+
     #initalizes the class
     def __init__(self,parent,controller):
         tk.Frame.__init__(self,parent)
@@ -226,7 +246,7 @@ class CheckoutMenu(tk.Frame):
         #This Creates the labels for the frame
         self.selectionlabel = tk.Label(self, bg = 'black',fg = 'white', text = "Please insert exact change into the coin acceptor please", font = controller.title_font)
         self.coinlabeltest = tk.Label(self, bg = 'black',fg = 'white', text = "This will get updated", font = controller.title_font)
-        self.FinalTotalLabel = tk.Label(self, bg = 'black',fg = 'white', text = ("You owe " '$%s' %POS.Price), font = controller.title_font)
+        self.FinalTotalLabel = tk.Label(self, bg = 'black', fg = 'white', text = "You owe $%s" %POS.FinalPrice, font = controller.title_font)
         #This puts the label on the frame
         self.selectionlabel.pack(side="top", fill="x", pady=10)
         self.coinlabeltest.pack(side="top", fill="x", pady=10)
@@ -234,7 +254,9 @@ class CheckoutMenu(tk.Frame):
         #This creates the buttons for the frame
         self.CoinActivatorSelectionButton = tk.Button(self, text = "", command = lambda: [Coin.ActivateCoinAcceptor(self)])
         self.ReturnSelectionButton = tk.Button(self, text = "", command = lambda: [controller.show_frame("PurchaseMenu"), print("moving to main menu")])
-        self.testButton = tk.Button(self, text = "", command = lambda: [print("inside the checkout menu") , print(POS.Price)])
+        self.testButton = tk.Button(self, text = "",
+                    command = lambda: [POS.updateLabel(self,POS.FinalPrice)
+                        , print("inside the checkout menu") , print(POS.Price)])
         self.ReturnToPurchaseSelectionButton = tk.Button(self, text = "", command = lambda: [controller.show_frame("PurchaseMenu"), print("moving to main menu")])
         #This puts the buttons onto the frame
         self.testButton.pack()
@@ -250,6 +272,11 @@ class CheckoutMenu(tk.Frame):
         self.PurchaseMenuImageForButton = PhotoImage(file="PurchaseMenuButton_image.gif")
         self.ReturnToPurchaseSelectionButton.config(image=self.PurchaseMenuImageForButton, compound = "bottom")
         self.ReturnToPurchaseSelectionButton.image = self.PurchaseMenuImageForButton
+    
+        
+    # def updatePriceLabel(self,amount):
+    #     self.FinalTotalLabel.config(text = 'New label')
+
         
 #call method to detect coin acceptor then return to main menu when your are done
 #>>>>>>> RVM-2.0:SeniorProject_GUI_V2.py
