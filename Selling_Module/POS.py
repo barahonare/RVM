@@ -34,7 +34,7 @@ def CanDiscountMethod(self):
     global DiscountEnabler
     global FinalPrice
     if DiscountEnabler == 1:
-        Discount += 25
+        Discount == 25
         print("discount is this before math" ,Discount)
         print("Final price is this before math" ,FinalPrice)
         FinalPrice -= Discount
@@ -48,7 +48,7 @@ def WaterDiscountMethod(self):
     global DiscountEnabler
     global FinalPrice
     if DiscountEnabler == 1:
-        Discount += 50
+        Discount == 50
         FinalPrice -= Discount
         self.TotalLabel.config(text = ("Your Final value is " '$%s      ' "Your discount was "'$%s'%(FinalPrice,Discount)))
         print("Discount is now set to $0.50")
