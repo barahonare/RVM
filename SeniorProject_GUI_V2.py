@@ -120,7 +120,7 @@ class ScanningStage_OpenAlumDoor(tk.Frame):
         #This puts the label on the frame
         self.Scanninglabel.pack(side="top", fill="x", pady=10)
         #This creates the buttons for the frame
-        self.ScanningButton = tk.Button(self, text = "", command = lambda: [MD.ScanToOpen(self)])
+        self.ScanningButton = tk.Button(self, text = "", command = lambda: [MD.ScanToOpen(self,controller)])
         self.ReturnSelectionButton = tk.Button(self, text = "", command = lambda: [controller.show_frame("RecycleMenu"), print("moving to main menu")])
         #This puts the buttons onto the frame
         self.ScanningButton.pack()

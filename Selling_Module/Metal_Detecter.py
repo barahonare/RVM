@@ -6,8 +6,7 @@ from Selling_Module import POS
 #Serial port and baudrate from Arduino
 ser = serial.Serial('/dev/ttyACM0', 9600)
 
-#to change the label
-PurchasePage = controller.get_page('PurchaseMenu')
+
 
 #Servo GPIO
 myGPIO=16
@@ -15,7 +14,9 @@ servo = Servo(myGPIO)
 def main():
     pass
 
-def ScanToOpen(self):
+def ScanToOpen(self,controller):
+    #to change the label
+    PurchasePage = controller.get_page('PurchaseMenu')
     while True:
         servo.max()
         if b'METAL DETECTED\r\n' in ser:
