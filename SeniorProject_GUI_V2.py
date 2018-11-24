@@ -182,8 +182,8 @@ class PurchaseMenu(tk.Frame):
         self.Cartlabel.pack(side="top", fill="x", pady=10)
         self.TotalLabel.pack(side="top", fill="x", pady=10)
         #This creates the buttons for the frame
-        self.AddSodaButton = tk.Button(self, text="",command = lambda: POS.AddPriceOfSoda(self))
-        self.AddWaterButton = tk.Button(self, text = "", command = lambda: POS.AddPriceOfWater(self))
+        self.AddSodaButton = tk.Button(self, text="",command = lambda:[ POS.AddPriceOfSoda(self),POS.SodaSelectedMethod(self)])
+        self.AddWaterButton = tk.Button(self, text = "", command = lambda: [POS.AddPriceOfWater(self),POS.WaterSelectedMethod(self)])
         self.ReturnSelectionButton = tk.Button(self, text = "",
                     command = lambda: [controller.show_frame("MainMenu"),
                         POS.ResetPrice(self), print("moving to main menu")])
@@ -191,8 +191,8 @@ class PurchaseMenu(tk.Frame):
                     command = lambda: [controller.show_frame("CheckoutMenu")
                         , checkOutFrame.FinalTotalLabel.config(text = ('$%s' %POS.FinalPrice))
                         , print("moving to checkout menu")])
-        self.MinusSodaFromTotalButton = tk.Button(self, text = "", command = lambda: [POS.SubtractPriceOfSoda(self), print("Removing price of soda from total")])
-        self.MinusWaterFromTotalButton = tk.Button(self, text = "", command = lambda: [POS.SubtractPriceOfWater(self), print("Removing price of Water from total")])
+        self.MinusSodaFromTotalButton = tk.Button(self, text = "", command = lambda: [POS.SubtractPriceOfSoda(self), print("Removing price of soda from total"),POS.SodaSelectedMethod(self)])
+        self.MinusWaterFromTotalButton = tk.Button(self, text = "", command = lambda: [POS.SubtractPriceOfWater(self), print("Removing price of Water from total"),POS.WaterSelectedMethod(self)])
         self.RecycleOnPurchaseWindowButton = tk.Button(self, text = "", command = lambda: [POS.DiscountEnablerMethod(self),controller.show_frame("RecycleMenu"), print("Moving to recycle page")])
         #This puts the buttons onto the frame
         self.AddSodaButton.pack(side="left")
