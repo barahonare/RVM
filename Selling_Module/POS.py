@@ -37,7 +37,7 @@ def CanDiscountMethod(self):
         Discount += 25
         FinalPrice -= Discount
         self.TotalLabel.config(text = ("Your Final value is " '$%s      ' "Your discount was "'$%s'%(FinalPrice,Discount)))
-        print("Discount is now set to $0.75")
+        print("Discount is now set to $0.25")
 #this method is to calculate the discount
 def WaterDiscountMethod(self):
     global Discount
@@ -47,7 +47,7 @@ def WaterDiscountMethod(self):
         Discount += 50
         FinalPrice -= Discount
         self.TotalLabel.config(text = ("Your Final value is " '$%s      ' "Your discount was "'$%s'%(FinalPrice,Discount)))
-        print("Discount is now set to $1.25")
+        print("Discount is now set to $0.50")
 
 #this method is used to set the goal of the amount due for the coin acceptor
 def SetFinalTotalPrice2(self):
