@@ -7,7 +7,7 @@ from Selling_Module import POS
 from Selling_Module import Stepper_Motor as STM
 from Selling_Module import CoinAcceptor as Coin
 #from Selling_Module import Metal_Detecter as MD
-
+import PlasticDoorServo as PDS
 from tkinter import font as tkfont
 from tkinter import PhotoImage
 from tkinter import ttk
@@ -155,7 +155,7 @@ class OpeningPlasticDoor(tk.Frame):
         #the button and just insert the code so the main
         #menu frame will appear when it is done closing
         self.ReturnSelectionButton = tk.Button(self, text = "return to main", command = lambda: [controller.show_frame("RecycleMenu"), print("moving to main menu")])
-        self.PlasticDoorButton = tk.Button(self, text = "push to open the plastic door", command = lambda: [controller.show_frame("RecycleMenu"), print("moving to main menu")])
+        self.PlasticDoorButton = tk.Button(self, text = "push to open the plastic door", command = lambda: PDS.PlasticDoorOpen(self))
         #This puts the buttons onto the frame
         self.ReturnSelectionButton.pack()
         self.PlasticDoorButton.pack()

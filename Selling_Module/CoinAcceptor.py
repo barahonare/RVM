@@ -18,27 +18,26 @@ def ActivateCoinAcceptor(self):
         total_amount = int(sss)
         self.Final_amount = POS.Price
         print(total_amount)
-        # print(POS.Price)
-        # if total_amount >= 25:
-        #     self.coinlabeltest.config(text = "You have deposited 25 cents")
-        #     self.Final_amount -= 25
-        #     self.FinalTotalLabel.config(text = '$%s' %Final_amount)
-        # if total_amount >= 50:
-        #     self.coinlabeltest.config(text = "You have deposited 50 cents")
-        #     self.Final_amount -= 25
-        #     self.FinalTotalLabel.config(text = '$%s' %self.Final_amount)
-        # if total_amount >= 75:
-        #     self.coinlabeltest.config(text = "You have deposited 75 cents")
-        #     self.Final_amount -= 25
-        #     self.FinalTotalLabel.config(text = '$%s' %self.Final_amount)
-        # if total_amount >= 100:
-        #     self.coinlabeltest.config(text = "You have deposited 1 dollar")
-        #     self.Final_amount -= 25
-        #     self.FinalTotalLabel.config(text = '$%s' %self.Final_amount)
-        # if total_amount >= 125:
-        #     self.coinlabeltest.config(text = "You have deposited 1.25 dollar")
-        #     self.Final_amount -= 25
-        #     self.FinalTotalLabel.config(text = '$%s' %self.Final_amount)
+        if total_amount >= 25:
+            self.coinlabeltest.config(text = "You have deposited 25 cents")
+            self.Final_amount -= 25
+            self.FinalTotalLabel.config(text = '$%s' %Final_amount)
+        if total_amount >= 50:
+            self.coinlabeltest.config(text = "You have deposited 50 cents")
+            self.Final_amount -= 25
+            self.FinalTotalLabel.config(text = '$%s' %self.Final_amount)
+        if total_amount >= 75:
+            self.coinlabeltest.config(text = "You have deposited 75 cents")
+            self.Final_amount -= 25
+            self.FinalTotalLabel.config(text = '$%s' %self.Final_amount)
+        if total_amount >= 100:
+            self.coinlabeltest.config(text = "You have deposited 1 dollar")
+            self.Final_amount -= 25
+            self.FinalTotalLabel.config(text = '$%s' %self.Final_amount)
+        if total_amount >= 125:
+            self.coinlabeltest.config(text = "You have deposited 1.25 dollar")
+            self.Final_amount -= 25
+            self.FinalTotalLabel.config(text = '$%s' %self.Final_amount)
         if total_amount >= POS.Price:
             self.coinlabeltest.config(text = "Thank you for choosing RVM")
             if POS.SodaSelected == 1:
