@@ -2,6 +2,7 @@ from gpiozero import Servo
 from time import sleep
 from Selling_Module import POS
 
+
 #Servo GPIO
 myGPIO=16
 servo = Servo(myGPIO)

@@ -6,6 +6,9 @@ from Selling_Module import POS
 #Serial port and baudrate from Arduino
 ser = serial.Serial('/dev/ttyACM0', 9600)
 
+#to change the label
+PurchasePage = controller.get_page('PurchaseMenu')
+
 #Servo GPIO
 myGPIO=16
 servo = Servo(myGPIO)
@@ -24,7 +27,7 @@ def ScanToOpen(self):
             print("max(lock)")
             sleep(1)
             if POS.DiscountEnabler == 1:
-                #POS.CanDiscountMethod(self)
+                POS.CanDiscountMethod(PurchasePage)
                 POS.DiscountReturnMethod(self)
             self.Scanninglabel.config(text = "Thank you for recycling!")
             break
