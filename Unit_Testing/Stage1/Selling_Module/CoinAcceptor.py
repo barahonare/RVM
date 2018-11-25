@@ -1,0 +1,49 @@
+import serial
+import numpy as np
+from time import sleep
+from Selling_Module import POS
+
+ser = serial.Serial('/dev/ttyACM1', 9600)
+def main():
+    pass
+
+def ActivateCoinAcceptor(self):
+    while True:
+        #Converting the byte to string
+        s = ser.readline()
+        ss = np.fromstring(s, dtype=np.uint8)
+        sss = "".join(map(chr,ss))
+        #Convert the string to integers
+        total_amount = int(sss)
+        self.Final_amount = POS.Price
+        print(total_amount)
+        if total_amount >= 25:
+            self.coinlabeltest.config(text = "You have deposited $0.25")
+            self.Final_amount -= 25
+            self.FinalTotalLabel.config(text = '$%s' %self.Final_amount)
+        if total_amount >= 50:
+            self.coinlabeltest.config(text = "You have deposited $0.50")
+            self.Final_amount -= 25
+            self.FinalTotalLabel.config(text = '$%s' %self.Final_amount)
+        if total_amount >= 75:
+            self.coinlabeltest.config(text = "You have deposited $0.75")
+            self.Final_amount -= 25
+            self.FinalTotalLabel.config(text = '$%s' %self.Final_amount)
+        if total_amount >= 100:
+            self.coinlabeltest.config(text = "You have deposited $1.00")
+            self.Final_amount -= 25
+            self.FinalTotalLabel.config(text = '$%s' %self.Final_amount)
+        if total_amount >= 125:
+            self.coinlabeltest.config(text = "You have deposited $1.25")
+            self.Final_amount -= 25
+            self.FinalTotalLabel.config(text = '$%s' %self.Final_amount)
+        if total_amount >= POS.FinalPrice:
+            self.coinlabeltest.config(text = "Thank you for choosing RVM")
+            if POS.SodaSelected == 1:
+                print("Stepper1 moves forward")
+            if POS.WaterSelected == 1:
+                print("Stepper2 moves forward")
+            print(total_amount, POS.Price)
+            break
+if __name__=="__CoinAcceptor__":
+    main()
