@@ -1,5 +1,4 @@
 import serial
-# from gpiozero import Servo
 import RPi.GPIO as GPIO
 from time import sleep
 from Selling_Module import POS

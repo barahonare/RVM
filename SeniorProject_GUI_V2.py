@@ -1,6 +1,6 @@
 
 import math
-import RPi.GPIO as GPIO #uncomment when running on pi
+# import RPi.GPIO as GPIO #uncomment when running on pi
 import time
 import tkinter as tk
 from Selling_Module import POS
@@ -168,7 +168,7 @@ class PurchaseMenu(tk.Frame):
         #This Creates the labels for the frame
         self.selectionlabel = tk.Label(self, bg = 'black',fg = 'white', text = "Would you like to buy a can of soda or bottle of water?", font = controller.title_font)
         self.TotalLabel = tk.Label(self, bg = 'black',fg = 'white', text = "Your total will display here as you add items", font = controller.title_font)
-        self.Cartlabel = tk.Label(self, bg = 'black',fg = 'white', text = "Your Final value is " '$%s ' "Your discount was "'$%s'%(POS.FinalPrice,POS.Discount), font = controller.title_font)
+        self.Cartlabel = tk.Label(self, bg = 'black',fg = 'white', text = "Your Final value is " '$%s ' "Your discount was "'$%s'%((POS.FinalPrice/100),(POS.Discount/100)), font = controller.title_font)
         #This puts the label on the frame
         self.selectionlabel.pack(side="top", fill="x", pady=10)  
         self.Cartlabel.pack(side="top", fill="x", pady=10)
@@ -177,15 +177,24 @@ class PurchaseMenu(tk.Frame):
         self.AddSodaButton = tk.Button(self, text="",command = lambda:[ POS.AddPriceOfSoda(self),POS.SodaSelectedMethod(self)])
         self.AddWaterButton = tk.Button(self, text = "", command = lambda: [POS.AddPriceOfWater(self),POS.WaterSelectedMethod(self)])
         self.ReturnSelectionButton = tk.Button(self, text = "",
-                    command = lambda: [controller.show_frame("MainMenu"),
-                        POS.ResetPrice(self), print("moving to main menu")])
+                    command = lambda: [controller.show_frame("MainMenu")
+                        ,POS.ResetPrice(self), print("moving to main menu")])
         self.CheckoutSelectionButton = tk.Button(self, text = "", 
                     command = lambda: [controller.show_frame("CheckoutMenu")
                         , checkOutFrame.FinalTotalLabel.config(text = ('$%s' %POS.FinalPrice))
                         , print("moving to checkout menu")])
-        self.MinusSodaFromTotalButton = tk.Button(self, text = "", command = lambda: [POS.SubtractPriceOfSoda(self), print("Removing price of soda from total"),POS.SodaSelectedMethod(self)])
-        self.MinusWaterFromTotalButton = tk.Button(self, text = "", command = lambda: [POS.SubtractPriceOfWater(self), print("Removing price of Water from total"),POS.WaterSelectedMethod(self)])
-        self.RecycleOnPurchaseWindowButton = tk.Button(self, text = "", command = lambda: [POS.DiscountEnablerMethod(self),controller.show_frame("RecycleMenu"), print("Moving to recycle page")])
+        self.MinusSodaFromTotalButton = tk.Button(self, text = "",
+                    command = lambda: [POS.SubtractPriceOfSoda(self)
+                        , print("Removing price of soda from total")
+                        , POS.SodaSelectedMethod(self)])
+        self.MinusWaterFromTotalButton = tk.Button(self, text = "",
+                    command = lambda: [POS.SubtractPriceOfWater(self)
+                        , print("Removing price of Water from total")
+                        , POS.WaterSelectedMethod(self)])
+        self.RecycleOnPurchaseWindowButton = tk.Button(self, text = "",
+                    command = lambda: [POS.DiscountEnablerMethod(self)
+                        , controller.show_frame("RecycleMenu")
+                        , print("Moving to recycle page")])
         #This puts the buttons onto the frame
         self.AddSodaButton.pack(side="left")
         self.MinusWaterFromTotalButton.pack(side ="right")
