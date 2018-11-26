@@ -10,6 +10,8 @@ def main():
 
 def ActivateCoinAcceptor(self):
     while True:
+        if POS.EndProcess == 1:
+            break
         #Converting the byte to string
         s = ser.readline()
         ss = np.fromstring(s, dtype=np.uint8)
@@ -44,6 +46,7 @@ def ActivateCoinAcceptor(self):
             self.FinalTotalLabel.config(text = '$%s' %self.Final_amount)
             self.update()
         if total_amount >= POS.FinalPrice:
+            POS.EndProcess = 1
             self.coinlabeltest.config(text = "Thank you for choosing RVM")
             if POS.SodaSelected == 1:
                 SM.Stepper1Forward(self)
