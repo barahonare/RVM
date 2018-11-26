@@ -3,7 +3,7 @@ from time import sleep
 from Selling_Module import POS
 
 ### Servo GPIO
-ServoPin = 36
+ServoPin = 33
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(ServoPin, GPIO.OUT)
 servo1 = GPIO.PWM(ServoPin, 50) # PWM with 50 Hz
