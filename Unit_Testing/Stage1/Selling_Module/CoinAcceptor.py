@@ -7,7 +7,7 @@ ser = serial.Serial('/dev/ttyACM1', 9600)
 def main():
     pass
 
-def ActivateCoinAcceptor(self):
+def ActivateCoinAcceptor(self,controller):
     while True:
         #Converting the byte to string
         s = ser.readline()
@@ -44,12 +44,13 @@ def ActivateCoinAcceptor(self):
             self.update()
         if total_amount >= POS.FinalPrice:
             self.coinlabeltest.config(text = "Thank you for choosing RVM")
+            self.update()
             if POS.SodaSelected == 1:
                 print("Stepper1 moves forward")
             if POS.WaterSelected == 1:
                 print("Stepper2 moves forward")
             print(total_amount, POS.Price)
-
+            controller.show_frame("MainMenu")
             break
 if __name__=="__CoinAcceptor__":
     main()
