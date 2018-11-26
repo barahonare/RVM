@@ -1,10 +1,10 @@
 
 import math
-import RPi.GPIO as GPIO #uncomment when running on pi
+# import RPi.GPIO as GPIO #uncomment when running on pi
 import time
 import tkinter as tk
 from Selling_Module import POS
-from Selling_Module import CoinAcceptor as Coin
+# from Selling_Module import CoinAcceptor as Coin
 from tkinter import font as tkfont
 from tkinter import PhotoImage
 from tkinter import ttk
@@ -74,7 +74,7 @@ class MainMenu(tk.Frame):
         # self.RecycleImageForButton = PhotoImage(file="Buttons_Pack\\RecycleButton_image.gif")
         # self.RecycleSelectionButton.config(image=self.RecycleImageForButton, compound = "bottom")
         # self.RecycleSelectionButton.image = self.RecycleImageForButton
-        self.PurchaseImageForButton = PhotoImage(file="Buttons_Pack\\PurchaseButton_image.gif")
+        self.PurchaseImageForButton = PhotoImage(file="Buttons_Pack//PurchaseButton_image.gif")
         self.PurchaseSelectionButton.config(image=self.PurchaseImageForButton, compound = "bottom")
         self.PurchaseSelectionButton.image = self.PurchaseImageForButton
 
