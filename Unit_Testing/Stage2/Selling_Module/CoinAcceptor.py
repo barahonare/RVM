@@ -53,6 +53,7 @@ def ActivateCoinAcceptor(self,controller):
                 SM.Stepper2Forward(self)
                 print("Stepper2 moves forward")
             print(total_amount, POS.Price)
+            total_amount = 0.0
             controller.show_frame("MainMenu")
             break
 if __name__=="__CoinAcceptor__":
