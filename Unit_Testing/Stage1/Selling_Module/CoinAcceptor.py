@@ -20,27 +20,27 @@ def ActivateCoinAcceptor(self):
         if total_amount >= 25:
             self.coinlabeltest.config(text = "You have deposited $0.25")
             self.Final_amount -= 25
-            self.FinalTotalLabel.config(text = '$%s' %self.Final_amount)
+            self.FinalTotalLabel.config(text = '$%s' %(self.Final_amount/100))
             self.update()
         if total_amount >= 50:
             self.coinlabeltest.config(text = "You have deposited $0.50")
             self.Final_amount -= 25
-            self.FinalTotalLabel.config(text = '$%s' %self.Final_amount)
+            self.FinalTotalLabel.config(text = '$%s' %(self.Final_amount/100)t)
             self.update()
         if total_amount >= 75:
             self.coinlabeltest.config(text = "You have deposited $0.75")
             self.Final_amount -= 25
-            self.FinalTotalLabel.config(text = '$%s' %self.Final_amount)
+            self.FinalTotalLabel.config(text = '$%s' %(self.Final_amount/100))
             self.update()
         if total_amount >= 100:
             self.coinlabeltest.config(text = "You have deposited $1.00")
             self.Final_amount -= 25
-            self.FinalTotalLabel.config(text = '$%s' %self.Final_amount)
+            self.FinalTotalLabel.config(text = '$%s' %(self.Final_amount/100))
             self.update()
         if total_amount >= 125:
             self.coinlabeltest.config(text = "You have deposited $1.25")
             self.Final_amount -= 25
-            self.FinalTotalLabel.config(text = '$%s' %self.Final_amount)
+            self.FinalTotalLabel.config(text = '$%s' %(self.Final_amount/100))
             self.update()
         if total_amount >= POS.FinalPrice:
             self.coinlabeltest.config(text = "Thank you for choosing RVM")
