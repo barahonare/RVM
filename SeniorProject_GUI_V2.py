@@ -1,12 +1,12 @@
 
 import math
-# import RPi.GPIO as GPIO #uncomment when running on pi
+#import RPi.GPIO as GPIO #uncomment when running on pi
 import time
 import tkinter as tk
 from Selling_Module import POS
-from Selling_Module import Stepper_Motor as STM
-# from Selling_Module import CoinAcceptor as Coin
-# from Selling_Module import Metal_Detecter as MD
+#from Selling_Module import Stepper_Motor as STM
+#from Selling_Module import CoinAcceptor as Coin
+#from Selling_Module import Metal_Detecter as MD
 #import PlasticDoorServo as PDS
 from tkinter import font as tkfont
 from tkinter import PhotoImage
@@ -143,18 +143,18 @@ class OpeningPlasticDoor(tk.Frame):
         #This puts the label on the frame
         self.OpeningDoorPromptlabel.pack(side="top", fill="x", pady=10)
         #This creates the buttons for the frame
-        #note: when servo code is developed we can undo
-        #the button and just insert the code so the main
-        #menu frame will appear when it is done closing
-        self.ReturnSelectionButton = tk.Button(self, text = "return to main", command = lambda: [controller.show_frame("RecycleMenu"), print("moving to main menu")])
-        self.PlasticDoorButton = tk.Button(self, text = "push to open the plastic door", command = lambda: PDS.PlasticDoorOpen(self))
+        self.ReturnSelectionButton = tk.Button(self, text = "", command = lambda: [controller.show_frame("RecycleMenu"), print("moving to main menu")])
+        self.PlasticDoorButton = tk.Button(self, text = "", command = lambda: PDS.PlasticDoorOpen(self))
         #This puts the buttons onto the frame
-        self.ReturnSelectionButton.pack()
         self.PlasticDoorButton.pack()
+        self.ReturnSelectionButton.pack()
         #adds images into the buttons
         self.BackupImageForButton = PhotoImage(file="Buttons_Pack\\BackupButton_image.gif")
         self.ReturnSelectionButton.config(image=self.BackupImageForButton, compound = "bottom")
         self.ReturnSelectionButton.image = self.BackupImageForButton
+        self.UnlockImageForButton = PhotoImage(file="Buttons_Pack\\UnlockPlasticDoorButton_image.gif")
+        self.PlasticDoorButton.config(image=self.UnlockImageForButton, compound = "bottom")
+        self.PlasticDoorButton.image = self.UnlockImageForButton
 
 
     #call plastic door opeing here
