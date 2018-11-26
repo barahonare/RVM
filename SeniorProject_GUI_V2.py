@@ -181,7 +181,7 @@ class PurchaseMenu(tk.Frame):
                         ,POS.ResetPrice(self), print("moving to main menu")])
         self.CheckoutSelectionButton = tk.Button(self, text = "", 
                     command = lambda: [controller.show_frame("CheckoutMenu")
-                        , checkOutFrame.FinalTotalLabel.config(text = ('$%s' %POS.FinalPrice))
+                        , checkOutFrame.FinalTotalLabel.config(text = ("you owe "'$%s' %(POS.FinalPrice/100)))
                         , print("moving to checkout menu")])
         self.MinusSodaFromTotalButton = tk.Button(self, text = "",
                     command = lambda: [POS.SubtractPriceOfSoda(self)
@@ -234,7 +234,7 @@ class CheckoutMenu(tk.Frame):
         #This Creates the labels for the frame
         self.selectionlabel = tk.Label(self, bg = 'black',fg = 'white', text = "Please insert exact change into the coin acceptor please", font = controller.title_font)
         self.coinlabeltest = tk.Label(self, bg = 'black',fg = 'white', text = "This will get updated", font = controller.title_font)
-        self.FinalTotalLabel = tk.Label(self, bg = 'black', fg = 'white', text = "You owe $%s" %POS.FinalPrice, font = controller.title_font)
+        self.FinalTotalLabel = tk.Label(self, bg = 'black', fg = 'white', text = "", font = controller.title_font)
         #This puts the label on the frame
         self.selectionlabel.pack(side="top", fill="x", pady=10)
         self.coinlabeltest.pack(side="top", fill="x", pady=10)

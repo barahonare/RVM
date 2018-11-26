@@ -1,10 +1,10 @@
 
 import math
-import RPi.GPIO as GPIO #uncomment when running on pi
+#import RPi.GPIO as GPIO #uncomment when running on pi
 import time
 import tkinter as tk
 from Selling_Module import POS
-from Selling_Module import CoinAcceptor as Coin
+#from Selling_Module import CoinAcceptor as Coin
 from tkinter import font as tkfont
 from tkinter import PhotoImage
 from tkinter import ttk
