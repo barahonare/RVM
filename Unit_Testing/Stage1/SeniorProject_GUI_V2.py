@@ -1,10 +1,10 @@
 
 import math
-# import RPi.GPIO as GPIO #uncomment when running on pi
+import RPi.GPIO as GPIO #uncomment when running on pi
 import time
 import tkinter as tk
 from Selling_Module import POS
-# from Selling_Module import CoinAcceptor as Coin
+from Selling_Module import CoinAcceptor as Coin
 from tkinter import font as tkfont
 from tkinter import PhotoImage
 from tkinter import ttk
@@ -100,7 +100,7 @@ class PurchaseMenu(tk.Frame):
                         ,POS.ResetPrice(self), print("moving to main menu")])
         self.CheckoutSelectionButton = tk.Button(self, text = "", 
                     command = lambda: [controller.show_frame("CheckoutMenu")
-                        , checkOutFrame.FinalTotalLabel.config(text = ('$%s' %POS.FinalPrice))
+                        , checkOutFrame.FinalTotalLabel.config(text = ('$%s' %(POS.FinalPrice/100)))
                         , print("moving to checkout menu")])
         self.MinusSodaFromTotalButton = tk.Button(self, text = "",
                     command = lambda: [POS.SubtractPriceOfSoda(self)
