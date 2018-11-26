@@ -21,22 +21,27 @@ def ActivateCoinAcceptor(self):
             self.coinlabeltest.config(text = "You have deposited $0.25")
             self.Final_amount -= 25
             self.FinalTotalLabel.config(text = '$%s' %self.Final_amount)
+            self.update()
         if total_amount >= 50:
             self.coinlabeltest.config(text = "You have deposited $0.50")
             self.Final_amount -= 25
             self.FinalTotalLabel.config(text = '$%s' %self.Final_amount)
+            self.update()
         if total_amount >= 75:
             self.coinlabeltest.config(text = "You have deposited $0.75")
             self.Final_amount -= 25
             self.FinalTotalLabel.config(text = '$%s' %self.Final_amount)
+            self.update()
         if total_amount >= 100:
             self.coinlabeltest.config(text = "You have deposited $1.00")
             self.Final_amount -= 25
             self.FinalTotalLabel.config(text = '$%s' %self.Final_amount)
+            self.update()
         if total_amount >= 125:
             self.coinlabeltest.config(text = "You have deposited $1.25")
             self.Final_amount -= 25
             self.FinalTotalLabel.config(text = '$%s' %self.Final_amount)
+            self.update()
         if total_amount >= POS.FinalPrice:
             self.coinlabeltest.config(text = "Thank you for choosing RVM")
             if POS.SodaSelected == 1:
@@ -44,6 +49,7 @@ def ActivateCoinAcceptor(self):
             if POS.WaterSelected == 1:
                 print("Stepper2 moves forward")
             print(total_amount, POS.Price)
+
             break
 if __name__=="__CoinAcceptor__":
     main()
