@@ -4,13 +4,15 @@ from time import sleep
 from Selling_Module import POS
 from Selling_Module import Stepper_Motor as SM
 
-ser = serial.Serial('/dev/ttyACM1', 9600)
+# ser = serial.Serial('/dev/ttyACM1', 9600)
 def main():
     pass
 
 def ActivateCoinAcceptor(self,controller):
     while True:
         #Converting the byte to string
+        ser = serial.Serial('/dev/ttyACM1', 9600)
+
         s = ser.readline()
         ss = np.fromstring(s, dtype=np.uint8)
         sss = "".join(map(chr,ss))
