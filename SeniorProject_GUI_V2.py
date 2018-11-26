@@ -233,7 +233,7 @@ class CheckoutMenu(tk.Frame):
         self.controller = controller
         #This Creates the labels for the frame
         self.selectionlabel = tk.Label(self, bg = 'black',fg = 'white', text = "Please insert exact change into the coin acceptor please", font = controller.title_font)
-        self.coinlabeltest = tk.Label(self, bg = 'black',fg = 'white', text = "This will get updated", font = controller.title_font)
+        self.coinlabeltest = tk.Label(self, bg = 'black',fg = 'white', text = "This will get updated as you insert money", font = controller.title_font)
         self.FinalTotalLabel = tk.Label(self, bg = 'black', fg = 'white', text = "", font = controller.title_font)
         #This puts the label on the frame
         self.selectionlabel.pack(side="top", fill="x", pady=10)
@@ -252,14 +252,7 @@ class CheckoutMenu(tk.Frame):
         self.PayingImageForButton = PhotoImage(file="Buttons_Pack\\StartPayingButton_image.gif")
         self.CoinActivatorSelectionButton.config(image=self.PayingImageForButton, compound = "top")
         self.CoinActivatorSelectionButton.image = self.PayingImageForButton
-    
-        
-    # def updatePriceLabel(self,amount):
-    #     self.FinalTotalLabel.config(text = 'New label')
-
-        
-#call method to detect coin acceptor then return to main menu when your are done
-#>>>>>>> RVM-2.0:SeniorProject_GUI_V2.py
+ 
 if __name__ == "__main__":
     app = RvmMainApp()
     app.title("recycling vending machine")
