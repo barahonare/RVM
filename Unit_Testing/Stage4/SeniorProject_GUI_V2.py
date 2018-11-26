@@ -1,10 +1,13 @@
 
 import math
-import RPi.GPIO as GPIO #uncomment when running on pi
+# import RPi.GPIO as GPIO #uncomment when running on pi
 import time
 import tkinter as tk
 from Selling_Module import POS
-from Selling_Module import CoinAcceptor as Coin
+from Selling_Module import Stepper_Motor as STM
+# from Selling_Module import CoinAcceptor as Coin
+# from Selling_Module import Metal_Detecter as MD
+import PlasticDoorServo as PDS
 from tkinter import font as tkfont
 from tkinter import PhotoImage
 from tkinter import ttk
@@ -30,7 +33,7 @@ class RvmMainApp(tk.Tk):
         self.container.grid_columnconfigure(0, weight=1)
         #This creates frames to store into the container
         self.frames = {}
-        self.pages = [MainMenu, CheckoutMenu, PurchaseMenu]
+        self.pages = [MainMenu, RecycleMenu, CheckoutMenu, PurchaseMenu, ScanningStage_OpenAlumDoor, OpeningPlasticDoor]
         #we are using a for loop to instantiate new windows as we develop more windows
         #but the window names must be put into the self.pages = [] in order for it to
         #find the windows you are traversing to
@@ -52,6 +55,7 @@ class RvmMainApp(tk.Tk):
                 return page
         return None
 
+
 class MainMenu(tk.Frame):
     #initalizes the class
     def __init__(self,parent,controller):
@@ -62,21 +66,98 @@ class MainMenu(tk.Frame):
         #This puts the label on the frame
         self.selectionlabel.pack(side="top", fill="x", pady=10)
         #This creates the buttons for the frame
-        # self.RecycleSelectionButton = tk.Button(self, text="",command = lambda: [controller.show_frame("RecycleMenu"), print("moving to recycle menu")])
+        self.RecycleSelectionButton = tk.Button(self, text="",command = lambda: [controller.show_frame("RecycleMenu"), print("moving to recycle menu")])
         self.PurchaseSelectionButton = tk.Button(self, text = "", command = lambda: [controller.show_frame("PurchaseMenu"), print("moving to purchase menu")])
         #This puts the buttons onto the frame
-        # self.RecycleSelectionButton.pack(side = "left")
+        self.RecycleSelectionButton.pack(side = "left")
         self.PurchaseSelectionButton.pack(side = "right")
         #Adjusts the size of the buttons
         #self.RecycleSelectionButton.config(height=400, width=250)
         #self.PurchaseSelectionButton.config(height=300, width=250)
         #This allows us to put images into the buttons
-        # self.RecycleImageForButton = PhotoImage(file="Buttons_Pack\\RecycleButton_image.gif")
-        # self.RecycleSelectionButton.config(image=self.RecycleImageForButton, compound = "bottom")
-        # self.RecycleSelectionButton.image = self.RecycleImageForButton
+        self.RecycleImageForButton = PhotoImage(file="Buttons_Pack\\RecycleButton_image.gif")
+        self.RecycleSelectionButton.config(image=self.RecycleImageForButton, compound = "bottom")
+        self.RecycleSelectionButton.image = self.RecycleImageForButton
         self.PurchaseImageForButton = PhotoImage(file="Buttons_Pack\\PurchaseButton_image.gif")
         self.PurchaseSelectionButton.config(image=self.PurchaseImageForButton, compound = "bottom")
         self.PurchaseSelectionButton.image = self.PurchaseImageForButton
+
+class RecycleMenu(tk.Frame):
+    #initalizes the class
+    def __init__(self,parent,controller):
+        tk.Frame.__init__(self,parent)
+        self.controller = controller
+        #This Creates the labels for the frame
+        self.selectionlabel = tk.Label(self, bg = 'black',fg = 'white', text = "Would you like to Recycle a Aluminum can or Plastic bottle?", font = controller.title_font)
+        #This puts the label on the frame
+        self.selectionlabel.pack(side="top", fill="x", pady=10)
+        #This creates the buttons for the frame
+        self.CanSelectionButton = tk.Button(self, text="",command = lambda: [controller.show_frame("ScanningStage_OpenAlumDoor"), print("moving to ScanningStage_OpenAlumDoor")])
+        self.BottleSelectionButton = tk.Button(self, text = "", command = lambda: [controller.show_frame("OpeningPlasticDoor"), print("opening plastic door")])
+        self.ReturnSelectionButton = tk.Button(self, text = "", command = lambda: [controller.show_frame("MainMenu"),POS.ResetPrice(self), print("moving to main menu")])
+        #This puts the buttons onto the frame
+        self.CanSelectionButton.pack()
+        self.BottleSelectionButton.pack()
+        self.ReturnSelectionButton.pack()
+        #This allows us to put images into the buttons
+        self.AlumImageForButton = PhotoImage(file="Buttons_Pack\\RecycleAluminum_image.gif")
+        self.CanSelectionButton.config(image=self.AlumImageForButton, compound = "bottom")
+        self.CanSelectionButton.image = self.AlumImageForButton
+        self.PlasticImageForButton = PhotoImage(file="Buttons_Pack\\RecyclePlastic_image.gif")
+        self.BottleSelectionButton.config(image=self.PlasticImageForButton, compound = "bottom")
+        self.BottleSelectionButton.image = self.PlasticImageForButton
+        self.BackupImageForButton = PhotoImage(file="Buttons_Pack\\BackupButton_image.gif")
+        self.ReturnSelectionButton.config(image=self.BackupImageForButton, compound = "bottom")
+        self.ReturnSelectionButton.image = self.BackupImageForButton
+
+class ScanningStage_OpenAlumDoor(tk.Frame):
+    #initalizes the class
+    def __init__(self,parent,controller):
+        tk.Frame.__init__(self,parent)
+        self.controller = controller
+        #This Creates the labels for the frame
+        self.Scanninglabel = tk.Label(self, bg = 'black',fg = 'white', text = "Press the scanning button and then hold your can up to the sensor for a safety scan", font = controller.title_font)
+        #This puts the label on the frame
+        self.Scanninglabel.pack(side="top", fill="x", pady=10)
+        #This creates the buttons for the frame
+        self.ScanningButton = tk.Button(self, text = "", command = lambda: [MD.ScanToOpen(self,controller)])
+        self.ReturnSelectionButton = tk.Button(self, text = "", command = lambda: [controller.show_frame("RecycleMenu"), print("moving to main menu")])
+        #This puts the buttons onto the frame
+        self.ScanningButton.pack()
+        self.ReturnSelectionButton.pack()
+        #add images into the buttons
+        self.BackupImageForButton = PhotoImage(file="Buttons_Pack\\BackupButton_image.gif")
+        self.ReturnSelectionButton.config(image=self.BackupImageForButton, compound = "bottom")
+        self.ReturnSelectionButton.image = self.BackupImageForButton
+        self.ScanningImageForButton = PhotoImage(file="Buttons_Pack\\StartScanningButton_image.gif")
+        self.ScanningButton.config(image=self.ScanningImageForButton, compound = "bottom")
+        self.ScanningButton.image = self.ScanningImageForButton
+
+class OpeningPlasticDoor(tk.Frame):
+    #initalizes the class
+    def __init__(self,parent,controller):
+        tk.Frame.__init__(self,parent)
+        self.controller = controller
+        #This Creates the labels for the frame
+        self.OpeningDoorPromptlabel = tk.Label(self, bg = 'black',fg = 'white', text = "Please wait as the safety plastic door is opening", font = controller.title_font)
+        #This puts the label on the frame
+        self.OpeningDoorPromptlabel.pack(side="top", fill="x", pady=10)
+        #This creates the buttons for the frame
+        #note: when servo code is developed we can undo
+        #the button and just insert the code so the main
+        #menu frame will appear when it is done closing
+        self.ReturnSelectionButton = tk.Button(self, text = "return to main", command = lambda: [controller.show_frame("RecycleMenu"), print("moving to main menu")])
+        self.PlasticDoorButton = tk.Button(self, text = "push to open the plastic door", command = lambda: PDS.PlasticDoorOpen(self))
+        #This puts the buttons onto the frame
+        self.ReturnSelectionButton.pack()
+        self.PlasticDoorButton.pack()
+        #adds images into the buttons
+        self.BackupImageForButton = PhotoImage(file="Buttons_Pack\\BackupButton_image.gif")
+        self.ReturnSelectionButton.config(image=self.BackupImageForButton, compound = "bottom")
+        self.ReturnSelectionButton.image = self.BackupImageForButton
+
+
+    #call plastic door opeing here
 
 class PurchaseMenu(tk.Frame):
     #initalizes the class
@@ -177,6 +258,8 @@ class CheckoutMenu(tk.Frame):
     #     self.FinalTotalLabel.config(text = 'New label')
 
         
+#call method to detect coin acceptor then return to main menu when your are done
+#>>>>>>> RVM-2.0:SeniorProject_GUI_V2.py
 if __name__ == "__main__":
     app = RvmMainApp()
     app.title("recycling vending machine")
