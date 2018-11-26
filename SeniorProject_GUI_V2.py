@@ -71,9 +71,6 @@ class MainMenu(tk.Frame):
         #This puts the buttons onto the frame
         self.RecycleSelectionButton.pack(side = "left")
         self.PurchaseSelectionButton.pack(side = "right")
-        #Adjusts the size of the buttons
-        #self.RecycleSelectionButton.config(height=400, width=250)
-        #self.PurchaseSelectionButton.config(height=300, width=250)
         #This allows us to put images into the buttons
         self.RecycleImageForButton = PhotoImage(file="Buttons_Pack\\RecycleButton_image.gif")
         self.RecycleSelectionButton.config(image=self.RecycleImageForButton, compound = "bottom")
@@ -116,7 +113,8 @@ class ScanningStage_OpenAlumDoor(tk.Frame):
         tk.Frame.__init__(self,parent)
         self.controller = controller
         #This Creates the labels for the frame
-        self.Scanninglabel = tk.Label(self, bg = 'black',fg = 'white', text = "Press the scanning button and then hold your can up to the sensor for a safety scan", font = controller.title_font)
+        self.Scanninglabel = tk.Label(self, bg = 'black',fg = 'white', text = "Press the scanning button and then hold your can up to the sensor for a safety scan"
+                                      , font = controller.title_font)
         #This puts the label on the frame
         self.Scanninglabel.pack(side="top", fill="x", pady=10)
         #This creates the buttons for the frame
