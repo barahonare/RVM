@@ -1,10 +1,10 @@
 
 import math
-#import RPi.GPIO as GPIO #uncomment when running on pi
+import RPi.GPIO as GPIO #uncomment when running on pi
 import time
 import tkinter as tk
 from Selling_Module import POS
-#from Selling_Module import CoinAcceptor as Coin
+from Selling_Module import CoinAcceptor as Coin
 from tkinter import font as tkfont
 from tkinter import PhotoImage
 from tkinter import ttk
@@ -159,7 +159,7 @@ class CheckoutMenu(tk.Frame):
         self.coinlabeltest.pack(side="top", fill="x", pady=10)
         self.FinalTotalLabel.pack(side="top", fill="x", pady=10)
         #This creates the buttons for the frame
-        self.CoinActivatorSelectionButton = tk.Button(self, text = "", command = lambda: [Coin.ActivateCoinAcceptor(self)])
+        self.CoinActivatorSelectionButton = tk.Button(self, text = "", command = lambda: [Coin.ActivateCoinAcceptor(self,controller)])
         self.ReturnSelectionButton = tk.Button(self, text = "", command = lambda: [controller.show_frame("PurchaseMenu"), print("moving to main menu")])
         #This puts the buttons onto the frame
         self.CoinActivatorSelectionButton.pack()
