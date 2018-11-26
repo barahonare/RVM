@@ -2,6 +2,7 @@ import serial
 import numpy as np
 from time import sleep
 from Selling_Module import POS
+from Selling_Module import Stepper_Motor as SM
 
 ser = serial.Serial('/dev/ttyACM1', 9600)
 def main():
@@ -46,8 +47,10 @@ def ActivateCoinAcceptor(self,controller):
             self.coinlabeltest.config(text = "Thank you for choosing RVM")
             self.update()
             if POS.SodaSelected == 1:
+                SM.Stepper1Forward(self)
                 print("Stepper1 moves forward")
             if POS.WaterSelected == 1:
+                SM.Stepper2Forward(self)
                 print("Stepper2 moves forward")
             print(total_amount, POS.Price)
             controller.show_frame("MainMenu")
