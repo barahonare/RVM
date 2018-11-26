@@ -71,7 +71,7 @@ class MainMenu(tk.Frame):
         #self.RecycleSelectionButton.config(height=400, width=250)
         #self.PurchaseSelectionButton.config(height=300, width=250)
         #This allows us to put images into the buttons
-        # self.RecycleImageForButton = PhotoImage(file="Buttons_Pack\\RecycleButton_image.gif")
+        # self.RecycleImageForButton = PhotoImage(file="Buttons_Pack//RecycleButton_image.gif")
         # self.RecycleSelectionButton.config(image=self.RecycleImageForButton, compound = "bottom")
         # self.RecycleSelectionButton.image = self.RecycleImageForButton
         self.PurchaseImageForButton = PhotoImage(file="Buttons_Pack//PurchaseButton_image.gif")
@@ -123,10 +123,10 @@ class PurchaseMenu(tk.Frame):
         self.ReturnSelectionButton.pack()
         self.RecycleOnPurchaseWindowButton.pack(side = "bottom")
         #This puts images inside the buttons
-        self.AddCanImageForButton = PhotoImage(file="Buttons_Pack\\AddSodaButton_image.gif")
-        self.AddBottleImageForButton = PhotoImage(file="Buttons_Pack\\AddWaterButton_image.gif")
-        self.RemoveCanImageForButton = PhotoImage(file="Buttons_Pack\\RemoveSodaButton_image.gif")
-        self.RemoveBottleImageForButton = PhotoImage(file="Buttons_Pack\\RemoveWaterButton_image.gif")
+        self.AddCanImageForButton = PhotoImage(file="Buttons_Pack//AddSodaButton_image.gif")
+        self.AddBottleImageForButton = PhotoImage(file="Buttons_Pack//AddWaterButton_image.gif")
+        self.RemoveCanImageForButton = PhotoImage(file="Buttons_Pack//RemoveSodaButton_image.gif")
+        self.RemoveBottleImageForButton = PhotoImage(file="Buttons_Pack//RemoveWaterButton_image.gif")
         self.AddSodaButton.config(image=self.AddCanImageForButton, compound = "bottom")
         self.AddSodaButton.image = self.AddCanImageForButton
         self.AddWaterButton.config(image=self.AddBottleImageForButton, compound = "bottom")
@@ -135,13 +135,13 @@ class PurchaseMenu(tk.Frame):
         self.MinusSodaFromTotalButton.image = self.RemoveCanImageForButton
         self.MinusWaterFromTotalButton.config(image=self.RemoveBottleImageForButton, compound = "bottom")
         self.MinusWaterFromTotalButton.image = self.RemoveBottleImageForButton
-        self.BackupImageForButton = PhotoImage(file="Buttons_Pack\\BackupButton_image.gif")
+        self.BackupImageForButton = PhotoImage(file="Buttons_Pack//BackupButton_image.gif")
         self.ReturnSelectionButton.config(image=self.BackupImageForButton, compound = "bottom")
         self.ReturnSelectionButton.image = self.BackupImageForButton
-        self.CheckoutImageForButton = PhotoImage(file="Buttons_Pack\\Checkout_image.gif")
+        self.CheckoutImageForButton = PhotoImage(file="Buttons_Pack//Checkout_image.gif")
         self.CheckoutSelectionButton.config(image=self.CheckoutImageForButton, compound = "bottom")
         self.CheckoutSelectionButton.image = self.CheckoutImageForButton
-        self.RecycleOnPurchaseImageForButton = PhotoImage(file="Buttons_Pack\\DiscountButton_image.gif")
+        self.RecycleOnPurchaseImageForButton = PhotoImage(file="Buttons_Pack//DiscountButton_image.gif")
         self.RecycleOnPurchaseWindowButton.config(image=self.RecycleOnPurchaseImageForButton, compound = "bottom")
         self.RecycleOnPurchaseWindowButton.image = self.RecycleOnPurchaseImageForButton
 
@@ -165,10 +165,10 @@ class CheckoutMenu(tk.Frame):
         self.CoinActivatorSelectionButton.pack()
         self.ReturnSelectionButton.pack()
         #puts the images inside the buttons
-        self.BackupImageForButton = PhotoImage(file="Buttons_Pack\\BackupButton_image.gif")
+        self.BackupImageForButton = PhotoImage(file="Buttons_Pack//BackupButton_image.gif")
         self.ReturnSelectionButton.config(image=self.BackupImageForButton, compound = "bottom")
         self.ReturnSelectionButton.image = self.BackupImageForButton
-        self.PayingImageForButton = PhotoImage(file="Buttons_Pack\\StartPayingButton_image.gif")
+        self.PayingImageForButton = PhotoImage(file="Buttons_Pack//StartPayingButton_image.gif")
         self.CoinActivatorSelectionButton.config(image=self.PayingImageForButton, compound = "top")
         self.CoinActivatorSelectionButton.image = self.PayingImageForButton
     
