@@ -44,19 +44,20 @@ def ScanToOpen(self,controller):
                 ser.close()
                 # self.update()
                 # sleep(2)
+                flag = False
                 POS.DiscountReturnMethod(self)
                 # controller.show_frame("MainMenu")
-                # flag = False
                 break
             elif POS.DiscountEnabler == 0:
+                flag = False
                 POS.DiscountReturnMethod(self)
                 break
 
-    # if flag:
-    #     self.Scanninglabel.config(text = "Metal was not detected")
-    #     # self.update()
-    #     # sleep(3)
-    #     controller.show_frame("MainMenu")
+    if flag:
+        self.Scanninglabel.config(text = "Metal was not detected")
+        # self.update()
+        # sleep(3)
+        controller.show_frame("MainMenu")
 
 if __name__=="__Metal_Detecter__":
     main()
