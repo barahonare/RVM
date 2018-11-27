@@ -27,7 +27,7 @@ def ScanToOpen(self,controller):
     ser = serial.Serial('/dev/ttyACM0', 9600)
     PurchasePage = controller.get_page('PurchaseMenu')
     timeout = time.time() +6
-    # flag = True
+    flag = True
     while (time.time() < timeout):
         servo_locked()
         if b'METAL DETECTED\r\n' in ser:
