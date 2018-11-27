@@ -27,7 +27,7 @@ def ScanToOpen(self,controller):
     ser = serial.Serial('/dev/ttyACM0', 9600)
     PurchasePage = controller.get_page('PurchaseMenu')
     timeout = time.time() +6
-    flag = True
+    # flag = True
     while (time.time() < timeout):
         servo_locked()
         if b'METAL DETECTED\r\n' in ser:
@@ -44,15 +44,19 @@ def ScanToOpen(self,controller):
                 ser.close()
                 # self.update()
                 # sleep(2)
-                # POS.DiscountReturnMethod(self)
-                controller.show_frame("MainMenu")
-                flag = False
-            break
-    if flag:
-        self.Scanninglabel.config(text = "Metal was not detected")
-        # self.update()
-        # sleep(3)
-        controller.show_frame("MainMenu")
+                POS.DiscountReturnMethod(self)
+                # controller.show_frame("MainMenu")
+                # flag = False
+                break
+            else POS.DiscountEnabler == 0:
+                POS.DiscountReturnMethod(self)
+                break
+
+    # if flag:
+    #     self.Scanninglabel.config(text = "Metal was not detected")
+    #     # self.update()
+    #     # sleep(3)
+    #     controller.show_frame("MainMenu")
 
 if __name__=="__Metal_Detecter__":
     main()
