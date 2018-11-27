@@ -48,7 +48,7 @@ def ScanToOpen(self,controller):
                 # controller.show_frame("MainMenu")
                 # flag = False
                 break
-            else POS.DiscountEnabler == 0:
+            elif POS.DiscountEnabler == 0:
                 POS.DiscountReturnMethod(self)
                 break
 
