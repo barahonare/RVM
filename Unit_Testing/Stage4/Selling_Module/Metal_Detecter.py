@@ -33,7 +33,7 @@ def ScanToOpen(self,controller):
             print('Metal Detected with Pi')
             servo_open()
             print("min(unlock)")
-            sleep(3)
+            sleep(10)
             servo_locked()
             print("max(lock)")
             sleep(1)
@@ -45,7 +45,7 @@ def ScanToOpen(self,controller):
             break
     if flag:
         self.Scanninglabel.config(text = "Metal was not detected")
-        POS.DiscountReturnMethod
+        POS.DiscountReturnMethod(self)
 
 if __name__=="__Metal_Detecter__":
     main()
