@@ -46,7 +46,7 @@ def ScanToOpen(self,controller):
                 # sleep(2)
                 # POS.DiscountReturnMethod(self)
                 controller.show_frame("MainMenu")
-            flag = False
+                flag = False
             break
     if flag:
         self.Scanninglabel.config(text = "Metal was not detected")
