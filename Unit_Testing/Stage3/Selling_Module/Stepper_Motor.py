@@ -1,5 +1,5 @@
 import time
-# import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 
 
 RPiPins1=[11,12,13,15]

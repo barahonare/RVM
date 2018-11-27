@@ -94,8 +94,12 @@ class PurchaseMenu(tk.Frame):
         self.Cartlabel.pack(side="top", fill="x", pady=10)
         self.TotalLabel.pack(side="top", fill="x", pady=10)
         #This creates the buttons for the frame
-        self.AddSodaButton = tk.Button(self, text="",command = lambda:[ POS.AddPriceOfSoda(self),POS.SodaSelectedMethod(self)])
-        self.AddWaterButton = tk.Button(self, text = "", command = lambda: [POS.AddPriceOfWater(self),POS.WaterSelectedMethod(self)])
+        self.AddSodaButton = tk.Button(self, text="",
+                    command = lambda:[ POS.AddPriceOfSoda(self)
+                        ,POS.SodaSelectedMethod(self)])
+        self.AddWaterButton = tk.Button(self, text = "",
+                    command = lambda: [POS.AddPriceOfWater(self)
+                        ,POS.WaterSelectedMethod(self)])
         self.ReturnSelectionButton = tk.Button(self, text = "",
                     command = lambda: [controller.show_frame("MainMenu")
                         ,POS.ResetPrice(self), print("moving to main menu")])
@@ -160,8 +164,11 @@ class CheckoutMenu(tk.Frame):
         self.coinlabeltest.pack(side="top", fill="x", pady=10)
         self.FinalTotalLabel.pack(side="top", fill="x", pady=10)
         #This creates the buttons for the frame
-        self.CoinActivatorSelectionButton = tk.Button(self, text = "", command = lambda: [Coin.ActivateCoinAcceptor(self,controller)])
-        self.ReturnSelectionButton = tk.Button(self, text = "", command = lambda: [controller.show_frame("PurchaseMenu"), print("moving to main menu")])
+        self.CoinActivatorSelectionButton = tk.Button(self, text = "",
+                    command = lambda: [Coin.ActivateCoinAcceptor(self,controller)])
+        self.ReturnSelectionButton = tk.Button(self, text = "",
+                    command = lambda: [controller.show_frame("PurchaseMenu")
+                    ,print("moving to main menu")])
         #This puts the buttons onto the frame
         self.CoinActivatorSelectionButton.pack()
         self.ReturnSelectionButton.pack()

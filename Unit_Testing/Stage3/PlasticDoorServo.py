@@ -18,11 +18,11 @@ def main():
     pass
 
 def PlasticDoorOpen(self):
-    # servo_max()
+    servo_max()
     servo_min()
     print("min(unlock)")
     sleep(3)
-    # servo_max()
+    servo_max()
     print("max(lock)")
     self.OpeningDoorPromptlabel.config(text = "Thank you for recycling!")
     self.update()
