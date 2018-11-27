@@ -1,6 +1,7 @@
 import serial
 import RPi.GPIO as GPIO
 from time import sleep
+import time
 from Selling_Module import POS
 
 #Serial port and baudrate from Arduino
@@ -24,7 +25,9 @@ def servo_min():
 def ScanToOpen(self,controller):
     #to change the label
     PurchasePage = controller.get_page('PurchaseMenu')
-    while True:
+    timeout = time.time() +6
+    flag = True
+    while (time.time() < timeout):
         servo_max()
         if b'METAL DETECTED\r\n' in ser:
             print('Metal Detected with Pi')
@@ -38,7 +41,12 @@ def ScanToOpen(self,controller):
                 POS.CanDiscountMethod(PurchasePage)
                 POS.DiscountReturnMethod(self)
             self.Scanninglabel.config(text = "Thank you for recycling!")
+            flag = False
             break
+    if flag:
+        self.Scanninglabel.config(text = "Metal was not detected")
+        POS.DiscountReturnMethod
+
 if __name__=="__Metal_Detecter__":
     main()
 
