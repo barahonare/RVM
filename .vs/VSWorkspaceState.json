@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\Selling_Module",
-    "\\Selling_Module\\__pycache__"
+    "\\Unit_Testing\\Stage1",
+    "\\Unit_Testing\\Stage1\\Selling_Module"
   ],
-  "SelectedNode": "\\SeniorProject_GUI_V2.py",
+  "SelectedNode": "\\Selling_Module\\Metal_Detecter.py",
   "PreviewInSolutionExplorer": false
 }

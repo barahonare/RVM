@@ -1,10 +1,10 @@
 
 import math
-import RPi.GPIO as GPIO #uncomment when running on pi
+#import RPi.GPIO as GPIO #uncomment when running on pi
 import time
 import tkinter as tk
 from Selling_Module import POS
-from Selling_Module import Stepper_Motor as STM
+#from Selling_Module import Stepper_Motor as STM
 # from Selling_Module import CoinAcceptor as Coin
 # from Selling_Module import Metal_Detecter as MD
 import PlasticDoorServo as PDS
@@ -67,10 +67,10 @@ class MainMenu(tk.Frame):
         self.selectionlabel.pack(side="top", fill="x", pady=10)
         #This creates the buttons for the frame
         self.RecycleSelectionButton = tk.Button(self, text="",command = lambda: [controller.show_frame("RecycleMenu"), print("moving to recycle menu")])
-        self.PurchaseSelectionButton = tk.Button(self, text = "", command = lambda: [controller.show_frame("PurchaseMenu"), print("moving to purchase menu")])
+        #self.PurchaseSelectionButton = tk.Button(self, text = "", command = lambda: [controller.show_frame("PurchaseMenu"), print("moving to purchase menu")])
         #This puts the buttons onto the frame
         self.RecycleSelectionButton.pack(side = "left")
-        self.PurchaseSelectionButton.pack(side = "right")
+        #self.PurchaseSelectionButton.pack(side = "right")
         #Adjusts the size of the buttons
         #self.RecycleSelectionButton.config(height=400, width=250)
         #self.PurchaseSelectionButton.config(height=300, width=250)
@@ -78,9 +78,9 @@ class MainMenu(tk.Frame):
         self.RecycleImageForButton = PhotoImage(file="Buttons_Pack\\RecycleButton_image.gif")
         self.RecycleSelectionButton.config(image=self.RecycleImageForButton, compound = "bottom")
         self.RecycleSelectionButton.image = self.RecycleImageForButton
-        self.PurchaseImageForButton = PhotoImage(file="Buttons_Pack\\PurchaseButton_image.gif")
-        self.PurchaseSelectionButton.config(image=self.PurchaseImageForButton, compound = "bottom")
-        self.PurchaseSelectionButton.image = self.PurchaseImageForButton
+        #self.PurchaseImageForButton = PhotoImage(file="Buttons_Pack\\PurchaseButton_image.gif")
+        #self.PurchaseSelectionButton.config(image=self.PurchaseImageForButton, compound = "bottom")
+        #self.PurchaseSelectionButton.image = self.PurchaseImageForButton
 
 class RecycleMenu(tk.Frame):
     #initalizes the class
@@ -92,17 +92,17 @@ class RecycleMenu(tk.Frame):
         #This puts the label on the frame
         self.selectionlabel.pack(side="top", fill="x", pady=10)
         #This creates the buttons for the frame
-        self.CanSelectionButton = tk.Button(self, text="",command = lambda: [controller.show_frame("ScanningStage_OpenAlumDoor"), print("moving to ScanningStage_OpenAlumDoor")])
+        #self.CanSelectionButton = tk.Button(self, text="",command = lambda: [controller.show_frame("ScanningStage_OpenAlumDoor"), print("moving to ScanningStage_OpenAlumDoor")])
         self.BottleSelectionButton = tk.Button(self, text = "", command = lambda: [controller.show_frame("OpeningPlasticDoor"), print("opening plastic door")])
         self.ReturnSelectionButton = tk.Button(self, text = "", command = lambda: [controller.show_frame("MainMenu"),POS.ResetPrice(self), print("moving to main menu")])
         #This puts the buttons onto the frame
-        self.CanSelectionButton.pack()
+        #self.CanSelectionButton.pack()
         self.BottleSelectionButton.pack()
         self.ReturnSelectionButton.pack()
         #This allows us to put images into the buttons
-        self.AlumImageForButton = PhotoImage(file="Buttons_Pack\\RecycleAluminum_image.gif")
-        self.CanSelectionButton.config(image=self.AlumImageForButton, compound = "bottom")
-        self.CanSelectionButton.image = self.AlumImageForButton
+        #self.AlumImageForButton = PhotoImage(file="Buttons_Pack\\RecycleAluminum_image.gif")
+        #self.CanSelectionButton.config(image=self.AlumImageForButton, compound = "bottom")
+        #self.CanSelectionButton.image = self.AlumImageForButton
         self.PlasticImageForButton = PhotoImage(file="Buttons_Pack\\RecyclePlastic_image.gif")
         self.BottleSelectionButton.config(image=self.PlasticImageForButton, compound = "bottom")
         self.BottleSelectionButton.image = self.PlasticImageForButton
@@ -155,6 +155,9 @@ class OpeningPlasticDoor(tk.Frame):
         self.BackupImageForButton = PhotoImage(file="Buttons_Pack\\BackupButton_image.gif")
         self.ReturnSelectionButton.config(image=self.BackupImageForButton, compound = "bottom")
         self.ReturnSelectionButton.image = self.BackupImageForButton
+        self.UnlockImageForButton = PhotoImage(file="Buttons_Pack\\UnlockPlasticDoorButton_image.gif")
+        self.PlasticDoorButton.config(image=self.UnlockImageForButton, compound = "bottom")
+        self.PlasticDoorButton.image = self.UnlockImageForButton
 
 
     #call plastic door opeing here
