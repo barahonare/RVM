@@ -111,7 +111,7 @@ def Stepper2Forward(self):
     Rot_Spd=.01
     Rotate=4096
     Rotate_Dir=-1
-    Revolutions=1
+    Revolutions=8
 
     Step_Seq=  [[0,1,0,1],
                 [0,1,0,0],
