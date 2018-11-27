@@ -78,9 +78,9 @@ class MainMenu(tk.Frame):
         self.RecycleImageForButton = PhotoImage(file="Buttons_Pack//RecycleButton_image.gif")
         self.RecycleSelectionButton.config(image=self.RecycleImageForButton, compound = "bottom")
         self.RecycleSelectionButton.image = self.RecycleImageForButton
-        self.PurchaseImageForButton = PhotoImage(file="Buttons_Pack\\PurchaseButton_image.gif")
-        self.PurchaseSelectionButton.config(image=self.PurchaseImageForButton, compound = "bottom")
-        self.PurchaseSelectionButton.image = self.PurchaseImageForButton
+        #self.PurchaseImageForButton = PhotoImage(file="Buttons_Pack\\PurchaseButton_image.gif")
+        #self.PurchaseSelectionButton.config(image=self.PurchaseImageForButton, compound = "bottom")
+        #self.PurchaseSelectionButton.image = self.PurchaseImageForButton
 
 class RecycleMenu(tk.Frame):
     #initalizes the class
@@ -100,9 +100,9 @@ class RecycleMenu(tk.Frame):
         self.BottleSelectionButton.pack()
         self.ReturnSelectionButton.pack()
         #This allows us to put images into the buttons
-        self.AlumImageForButton = PhotoImage(file="Buttons_Pack\\RecycleAluminum_image.gif")
-        self.CanSelectionButton.config(image=self.AlumImageForButton, compound = "bottom")
-        self.CanSelectionButton.image = self.AlumImageForButton
+        #self.AlumImageForButton = PhotoImage(file="Buttons_Pack\\RecycleAluminum_image.gif")
+        #self.CanSelectionButton.config(image=self.AlumImageForButton, compound = "bottom")
+        #self.CanSelectionButton.image = self.AlumImageForButton
         self.PlasticImageForButton = PhotoImage(file="Buttons_Pack\\RecyclePlastic_image.gif")
         self.BottleSelectionButton.config(image=self.PlasticImageForButton, compound = "bottom")
         self.BottleSelectionButton.image = self.PlasticImageForButton
