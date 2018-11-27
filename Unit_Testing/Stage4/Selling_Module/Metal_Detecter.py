@@ -39,12 +39,17 @@ def ScanToOpen(self,controller):
             sleep(1)
             if POS.DiscountEnabler == 1:
                 POS.CanDiscountMethod(PurchasePage)
+                self.Scanninglabel.config(text = "Thank you for recycling!")
+                self.update()
+                sleep(2)
                 POS.DiscountReturnMethod(self)
-            self.Scanninglabel.config(text = "Thank you for recycling!")
+            
             flag = False
             break
     if flag:
         self.Scanninglabel.config(text = "Metal was not detected")
+        self.update()
+        sleep(3)
         POS.DiscountReturnMethod(self)
 
 if __name__=="__Metal_Detecter__":
