@@ -5,7 +5,7 @@ import time
 from Selling_Module import POS
 
 #Serial port and baudrate from Arduino
-ser = serial.Serial('/dev/ttyACM0', 9600)
+
 
 #Servo GPIO
 ServoPin = 36
@@ -24,6 +24,7 @@ def servo_open():
 
 def ScanToOpen(self,controller):
     #to change the label
+    ser = serial.Serial('/dev/ttyACM0', 9600)
     PurchasePage = controller.get_page('PurchaseMenu')
     timeout = time.time() +6
     flag = True
@@ -40,6 +41,7 @@ def ScanToOpen(self,controller):
             if POS.DiscountEnabler == 1:
                 POS.CanDiscountMethod(PurchasePage)
                 self.Scanninglabel.config(text = "Thank you for recycling!")
+                ser.close()
                 # self.update()
                 # sleep(2)
                 POS.DiscountReturnMethod(self)
