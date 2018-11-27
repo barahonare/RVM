@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 from time import sleep
 from Selling_Module import POS
 
-Servo GPIO
+### Servo GPIO
 ServoPin = 33
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(ServoPin, GPIO.OUT)
@@ -18,11 +18,11 @@ def main():
     pass
 
 def PlasticDoorOpen(self):
-    print("servo_max()") # servo_max()
-    print("servo_min()")# servo_min()
+    servo_max()
+    servo_min()
     print("min(unlock)")
     sleep(3)
-    print("Servo_max()")# servo_max()
+    servo_max()
     print("max(lock)")
     self.OpeningDoorPromptlabel.config(text = "Thank you for recycling!")
     self.update()
