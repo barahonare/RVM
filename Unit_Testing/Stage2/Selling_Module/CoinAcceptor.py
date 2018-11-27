@@ -9,9 +9,9 @@ def main():
     pass
 
 def ActivateCoinAcceptor(self,controller):
+    ser = serial.Serial('/dev/ttyACM1', 9600)
     while True:
         #Converting the byte to string
-        ser = serial.Serial('/dev/ttyACM1', 9600)
 
         s = ser.readline()
         ss = np.fromstring(s, dtype=np.uint8)
@@ -56,6 +56,7 @@ def ActivateCoinAcceptor(self,controller):
                 print("Stepper2 moves forward")
             print(total_amount, POS.Price)
             total_amount = 0.0
+            ser.close()
             controller.show_frame("MainMenu")
             break
 if __name__=="__CoinAcceptor__":
