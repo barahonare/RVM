@@ -103,7 +103,7 @@ class RecycleMenu(tk.Frame):
         #self.AlumImageForButton = PhotoImage(file="Buttons_Pack\\RecycleAluminum_image.gif")
         #self.CanSelectionButton.config(image=self.AlumImageForButton, compound = "bottom")
         #self.CanSelectionButton.image = self.AlumImageForButton
-        self.PlasticImageForButton = PhotoImage(file="Buttons_Pack\\RecyclePlastic_image.gif")
+        self.PlasticImageForButton = PhotoImage(file="Buttons_Pack//RecyclePlastic_image.gif")
         self.BottleSelectionButton.config(image=self.PlasticImageForButton, compound = "bottom")
         self.BottleSelectionButton.image = self.PlasticImageForButton
         self.BackupImageForButton = PhotoImage(file="Buttons_Pack//BackupButton_image.gif")
@@ -155,7 +155,7 @@ class OpeningPlasticDoor(tk.Frame):
         self.BackupImageForButton = PhotoImage(file="Buttons_Pack//BackupButton_image.gif")
         self.ReturnSelectionButton.config(image=self.BackupImageForButton, compound = "bottom")
         self.ReturnSelectionButton.image = self.BackupImageForButton
-        self.UnlockImageForButton = PhotoImage(file="Buttons_Pack\\UnlockPlasticDoorButton_image.gif")
+        self.UnlockImageForButton = PhotoImage(file="Buttons_Pack//UnlockPlasticDoorButton_image.gif")
         self.PlasticDoorButton.config(image=self.UnlockImageForButton, compound = "bottom")
         self.PlasticDoorButton.image = self.UnlockImageForButton
 
