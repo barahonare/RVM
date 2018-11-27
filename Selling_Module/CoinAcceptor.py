@@ -4,11 +4,12 @@ from time import sleep
 from Selling_Module import POS
 from Selling_Module import Stepper_Motor as SM
 
-ser = serial.Serial('/dev/ttyACM1', 9600)
 def main():
     pass
 
-def ActivateCoinAcceptor(self):
+def ActivateCoinAcceptor(self, controller):
+    ser = serial.Serial('/dev/ttyACM1', 9600)
+    PurchaseMenuPage = controller.get_page("PurchaseMenu")
     while True:
         if POS.EndProcess == 1:
             break
@@ -53,6 +54,9 @@ def ActivateCoinAcceptor(self):
             if POS.WaterSelected == 1:
                 SM.Stepper2Forward(self)
             print(total_amount, POS.Price)
+            ser.close()
+            POS.ResetPrice(PurchaseMenuPage)
+            controller.show_frame("MainMenu")
             break
 if __name__=="__CoinAcceptor__":
     main()
