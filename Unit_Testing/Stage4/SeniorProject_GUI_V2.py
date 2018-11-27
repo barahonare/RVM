@@ -97,7 +97,7 @@ class RecycleMenu(tk.Frame):
         self.ReturnSelectionButton = tk.Button(self, text = "", command = lambda: [controller.show_frame("MainMenu"),POS.ResetPrice(self), print("moving to main menu")])
         #This puts the buttons onto the frame
         self.CanSelectionButton.pack()
-        self.BottleSelectionButton.pack()
+        #self.BottleSelectionButton.pack()
         self.ReturnSelectionButton.pack()
         #This allows us to put images into the buttons
         self.AlumImageForButton = PhotoImage(file="Buttons_Pack//RecycleAluminum_image.gif")
