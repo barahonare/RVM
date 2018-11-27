@@ -30,6 +30,7 @@ def ScanToOpen(self,controller):
     flag = True
     while (time.time() < timeout):
         servo_locked()
+        print(time.time(), timeout)
         if b'METAL DETECTED\r\n' in ser:
             print('Metal Detected with Pi')
             servo_open()
