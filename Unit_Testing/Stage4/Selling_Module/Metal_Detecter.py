@@ -17,9 +17,9 @@ servo1.start(12.5)
 def main():
     pass
 
-def servo_max():
+def servo_locked():
     servo1.ChangeDutyCycle(12.5) # turn towards 180 degree
-def servo_min():
+def servo_open():
     servo1.ChangeDutyCycle(2.5)
 
 def ScanToOpen(self,controller):
@@ -28,13 +28,13 @@ def ScanToOpen(self,controller):
     timeout = time.time() +6
     flag = True
     while (time.time() < timeout):
-        servo_max()
+        servo_locked()
         if b'METAL DETECTED\r\n' in ser:
             print('Metal Detected with Pi')
-            servo_min()
+            servo_open()
             print("min(unlock)")
             sleep(3)
-            servo_max()
+            servo_locked()
             print("max(lock)")
             sleep(1)
             if POS.DiscountEnabler == 1:
