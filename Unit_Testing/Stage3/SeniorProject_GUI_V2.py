@@ -158,7 +158,7 @@ class OpeningPlasticDoor(tk.Frame):
         self.UnlockImageForButton = PhotoImage(file="Buttons_Pack//UnlockPlasticDoorButton_image.gif")
         self.PlasticDoorButton.config(image=self.UnlockImageForButton, compound = "bottom")
         self.PlasticDoorButton.image = self.UnlockImageForButton
-
+        #
 
     #call plastic door opeing here
 
