@@ -166,7 +166,7 @@ class CheckoutMenu(tk.Frame):
         self.FinalTotalLabel.pack(side="top", fill="x", pady=10)
         #This creates the buttons for the frame
         self.CoinActivatorSelectionButton = tk.Button(self, text = "",
-                    command = lambda: [CTS.ActivateCoinAcceptor(self)])#Coin.ActivateCoinAcceptor(self,controller)])
+                    command = lambda: [CTS.ActivateCoinAcceptor()])#Coin.ActivateCoinAcceptor(self,controller)])
         self.ReturnSelectionButton = tk.Button(self, text = "",
                     command = lambda: [controller.show_frame("PurchaseMenu")
                     ,print("moving to main menu")])
