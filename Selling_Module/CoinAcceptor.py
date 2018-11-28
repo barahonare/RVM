@@ -11,8 +11,6 @@ def ActivateCoinAcceptor(self, controller):
     ser = serial.Serial('/dev/ttyACM1', 9600)
     PurchaseMenuPage = controller.get_page("PurchaseMenu")
     while True:
-        if POS.EndProcess == 1:
-            break
         #Converting the byte to string
         s = ser.readline()
         ss = np.fromstring(s, dtype=np.uint8)
