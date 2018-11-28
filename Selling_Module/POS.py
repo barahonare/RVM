@@ -147,6 +147,7 @@ def ResetPrice(self):
     SodaLimit = 0
     WaterLimit = 0
     Price = 000
+    self.coinlabeltest.config(text = ("Your final total is currently" '$%.2f' %(FinalPrice/100)))
     self.Cartlabel.config(text = ('$%.2f' %(Price/100)))
     self.TotalLabel.config(text = ('$%.2f' %(FinalPrice/100)))
     print("Resetting price")
