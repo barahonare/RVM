@@ -229,7 +229,7 @@ class CheckoutMenu(tk.Frame):
         self.controller = controller
         #This Creates the labels for the frame
         self.selectionlabel = tk.Label(self, bg = 'black',fg = 'white', text = "Please insert exact change into the coin acceptor please", font = controller.title_font)
-        self.coinlabeltest = tk.Label(self, bg = 'black',fg = 'white', text = "", font = controller.title_font)
+        self.coinlabeltest = tk.Label(self, bg = 'black',fg = 'white', text = "Press the the pay button to start paying", font = controller.title_font)
         self.FinalTotalLabel = tk.Label(self, bg = 'black', fg = 'white', text = "You owe $%.2f" %(POS.FinalPrice/100), font = controller.title_font)
         #This puts the label on the frame
         self.selectionlabel.pack(side="top", fill="x", pady=10)
