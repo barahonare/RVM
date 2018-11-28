@@ -17,7 +17,8 @@ def servo_min():
 def main():
     pass
 
-def PlasticDoorOpen(self):
+def PlasticDoorOpen(self,controller):
+    PurchasePage = controller.get_page("PurchaseMenu")
     print("servo_max()") # servo_max()
     print("servo_min()")# servo_min()
     print("min(unlock)")
@@ -28,7 +29,7 @@ def PlasticDoorOpen(self):
     self.update()
     sleep(3)
     if POS.DiscountEnabler == 1:
-        POS.WaterDiscountMethod(self)
+        POS.WaterDiscountMethod(PurchasePage)
         POS.DiscountReturnMethod(self)
     elif POS.DiscountEnabler == 0:
         POS.DiscountReturnMethod(self)
