@@ -45,6 +45,7 @@ def ActivateCoinAcceptor(self,controller):
             self.update()
         if total_amount >= POS.FinalPrice:
             self.coinlabeltest.config(text = "Thank you for choosing RVM")
+            self.update()
             if POS.SodaSelected == 1:
                 SM.Stepper1Forward(self)
             if POS.WaterSelected == 1:
