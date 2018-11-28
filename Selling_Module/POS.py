@@ -142,13 +142,19 @@ def ResetPrice(self,controller):
     global FinalPrice
     global Discount
     global DiscountEnabler
+    global SodaSelected
+    global WaterSelected
     DiscountEnabler = 0
     FinalPrice = 000
     Discount = 000
     SodaLimit = 0
+    SodaSelected = 0
     WaterLimit = 0
+    WaterSelected = 0
+
     Price = 000
-    CheckOutPage.coinlabeltest.config(text = ("Your final total is currently" '$%.2f' %(FinalPrice/100)))
+#     CheckOutPage.coinlabeltest.config(text = ("Your final total is currently" '$%.2f' %(FinalPrice/100)))
+    CheckOutPage.coinlabeltest.config(text = "")
     self.Cartlabel.config(text = ('$%.2f' %(Price/100)))
     self.TotalLabel.config(text = ('$%.2f' %(FinalPrice/100)))
     print("Resetting price")

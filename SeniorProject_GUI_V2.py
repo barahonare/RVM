@@ -92,7 +92,7 @@ class RecycleMenu(tk.Frame):
         #This creates the buttons for the frame
         self.CanSelectionButton = tk.Button(self, text="",command = lambda: [controller.show_frame("ScanningStage_OpenAlumDoor"), print("moving to ScanningStage_OpenAlumDoor")])
         self.BottleSelectionButton = tk.Button(self, text = "", command = lambda: [controller.show_frame("OpeningPlasticDoor"), print("opening plastic door")])
-        self.ReturnSelectionButton = tk.Button(self, text = "", command = lambda: [controller.show_frame("MainMenu"),POS.ResetPrice(self), print("moving to main menu")])
+        self.ReturnSelectionButton = tk.Button(self, text = "", command = lambda: [controller.show_frame("MainMenu"),POS.ResetPrice(self,controller), print("moving to main menu")])
         #This puts the buttons onto the frame
         self.CanSelectionButton.pack()
         self.BottleSelectionButton.pack()
@@ -174,7 +174,7 @@ class PurchaseMenu(tk.Frame):
         self.AddWaterButton = tk.Button(self, text = "", command = lambda: [POS.AddPriceOfWater(self),POS.WaterSelectedMethod(self)])
         self.ReturnSelectionButton = tk.Button(self, text = "",
                     command = lambda: [controller.show_frame("MainMenu")
-                        ,POS.ResetPrice(self), print("moving to main menu")])
+                        ,POS.ResetPrice(self,controller), print("moving to main menu")])
         self.CheckoutSelectionButton = tk.Button(self, text = "", 
                     command = lambda: [controller.show_frame("CheckoutMenu")
                         , checkOutFrame.FinalTotalLabel.config(text = ('$%.2f' %(POS.FinalPrice/100)))
@@ -229,7 +229,7 @@ class CheckoutMenu(tk.Frame):
         self.controller = controller
         #This Creates the labels for the frame
         self.selectionlabel = tk.Label(self, bg = 'black',fg = 'white', text = "Please insert exact change into the coin acceptor please", font = controller.title_font)
-        self.coinlabeltest = tk.Label(self, bg = 'black',fg = 'white', text = "This will get updated", font = controller.title_font)
+        self.coinlabeltest = tk.Label(self, bg = 'black',fg = 'white', text = "", font = controller.title_font)
         self.FinalTotalLabel = tk.Label(self, bg = 'black', fg = 'white', text = "You owe $%.2f" %(POS.FinalPrice/100), font = controller.title_font)
         #This puts the label on the frame
         self.selectionlabel.pack(side="top", fill="x", pady=10)
