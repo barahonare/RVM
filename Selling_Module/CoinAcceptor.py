@@ -10,6 +10,7 @@ def main():
 def ActivateCoinAcceptor(self,controller):
     ser = serial.Serial('/dev/ttyACM1', 9600)
     PurchasePage = controller.get_page('PurchaseMenu')
+    CheckoutPage = controller.get_page('CheckoutMenu')
     while True:
         #Converting the byte to string
         s = ser.readline()
@@ -52,7 +53,7 @@ def ActivateCoinAcceptor(self,controller):
             if POS.WaterSelected == 1:
                 SM.Stepper2Forward(self)
             print(total_amount, POS.Price)
-            POS.ResetPrice(PurchasePage)
+            POS.ResetPrice(PurchasePage,CheckoutPage)
             ser.close()
             controller.show_frame("MainMenu")
             break
