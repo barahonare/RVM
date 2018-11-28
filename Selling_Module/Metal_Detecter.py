@@ -30,7 +30,7 @@ def ScanToOpen(self,controller):
             print('Metal Detected with Pi')
             servo_min()
             print("min(unlock)")
-            sleep(3)
+            sleep(10)
             servo_max()
             print("max(lock)")
             sleep(1)
