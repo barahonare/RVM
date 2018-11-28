@@ -179,7 +179,7 @@ class PurchaseMenu(tk.Frame):
                         ,POS.ResetPrice(self), print("moving to main menu")])
         self.CheckoutSelectionButton = tk.Button(self, text = "", 
                     command = lambda: [controller.show_frame("CheckoutMenu")
-                        , checkOutFrame.FinalTotalLabel.config(text = ("You owe "'$%s' %(POS.FinalPrice/100))), checkOutFrame.coinlabeltest.config(text = ("You have deposited $0.00"))
+                        , checkOutFrame.FinalTotalLabel.config(text = ("You owe "'$%s' %(round(POS.FinalPrice/100,2)))), checkOutFrame.coinlabeltest.config(text = ("You have deposited $0.00"))
                         , print("moving to checkout menu")])
         self.MinusSodaFromTotalButton = tk.Button(self, text = "",
                     command = lambda: [POS.SubtractPriceOfSoda(self)
