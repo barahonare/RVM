@@ -17,18 +17,21 @@ def servo_min():
 def main():
     pass
 
-def PlasticDoorOpen(self):
-    while True:
-        servo_max()
-        servo_min()
-        print("min(unlock)")
-        sleep(3)
-        servo_max()
-        print("max(lock)")
-        sleep(1)
-        if POS.DiscountEnabler == 1:
-            POS.CanDiscountMethod(self)
-            POS.DiscountReturnMethod(self)
-        self.Scanninglabel.config(text = "Thank you for recycling!")
+def PlasticDoorOpen(self,controller):
+    PurchasePage = controller.get_page("PurchaseMenu")
+    servo_max()
+    servo_min()
+    print("min(unlock)")
+    sleep(10)
+    servo_max()
+    print("max(lock)")
+    self.OpeningDoorPromptlabel.config(text = "Thank you for recycling!")
+    self.update()
+    sleep(3)
+    if POS.DiscountEnabler == 1:
+        POS.WaterDiscountMethod(PurchasePage)
+        POS.DiscountReturnMethod(self)
+    elif POS.DiscountEnabler == 0:
+        POS.DiscountReturnMethod(self)
 if __name__=="__PlasticDoorServo__":
     main()
