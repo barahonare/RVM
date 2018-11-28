@@ -19,11 +19,11 @@ def main():
 
 def PlasticDoorOpen(self,controller):
     PurchasePage = controller.get_page("PurchaseMenu")
-    print("servo_max()") # servo_max()
-    print("servo_min()")# servo_min()
+    servo_max()
+    servo_min()
     print("min(unlock)")
     sleep(3)
-    print("Servo_max()")# servo_max()
+    servo_max()
     print("max(lock)")
     self.OpeningDoorPromptlabel.config(text = "Thank you for recycling!")
     self.update()
