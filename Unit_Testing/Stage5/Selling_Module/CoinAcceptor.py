@@ -20,12 +20,16 @@ def ActivateCoinAcceptor(self):
         print(total_amount)
         if total_amount >= 25:
             self.coinlabeltest.config(text = "You have deposited $0.25")
+            print("inserted 25 cents so far aka testing before ", Final_amount)
             self.Final_amount -= 25
+            print("inserted 25 cents so far aka testing after decrement ", Final_amount)
             self.FinalTotalLabel.config(text = '$%.2f' %(self.Final_amount/100))
             self.update()
         if total_amount >= 50:
             self.coinlabeltest.config(text = "You have deposited $0.50")
+            print("inserted 50 cents so far aka testing before ", Final_amount)
             self.Final_amount -= 25
+            print("inserted 50 cents so far aka testing after decrement ", Final_amount)
             self.FinalTotalLabel.config(text = '$%.2f' %(self.Final_amount/100))
             self.update()
         if total_amount >= 75:
