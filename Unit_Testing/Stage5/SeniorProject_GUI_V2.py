@@ -1,4 +1,3 @@
-
 import math
 import RPi.GPIO as GPIO #uncomment when running on pi
 import time
@@ -155,7 +154,7 @@ class PurchaseMenu(tk.Frame):
         tk.Frame.__init__(self,parent)
         self.controller = controller
         checkOutFrame = controller.get_page('CheckoutMenu')
-        This Creates the labels for the frame
+        #This Creates the labels for the frame
         self.selectionlabel = tk.Label(self, bg = 'black',fg = 'white', text = "Would you like to buy a can of soda or bottle of water?", font = controller.title_font)
         self.TotalLabel = tk.Label(self, bg = 'black',fg = 'white', text = "Your total will display here as you add items", font = controller.title_font)
         self.Cartlabel = tk.Label(self, bg = 'black',fg = 'white', text = "Your Final value is " '$%.2f ' "Your discount was "'$%.2f'%((POS.FinalPrice/100),(POS.Discount/100)), font = controller.title_font)
