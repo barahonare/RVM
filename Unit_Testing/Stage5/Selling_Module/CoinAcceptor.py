@@ -4,11 +4,11 @@ from time import sleep
 from Selling_Module import POS
 from Selling_Module import Stepper_Motor as SM
 
-ser = serial.Serial('/dev/ttyACM1', 9600)
 def main():
     pass
 
 def ActivateCoinAcceptor(self):
+    ser = serial.Serial('/dev/ttyACM1', 9600)
     while True:
         #Converting the byte to string
         s = ser.readline()
@@ -21,23 +21,28 @@ def ActivateCoinAcceptor(self):
         if total_amount >= 25:
             self.coinlabeltest.config(text = "You have deposited $0.25")
             self.Final_amount -= 25
-            self.FinalTotalLabel.config(text = '$%.2f' %self.Final_amount)
+            self.FinalTotalLabel.config(text = '$%.2f' %(self.Final_amount/100))
+            self.update()
         if total_amount >= 50:
             self.coinlabeltest.config(text = "You have deposited $0.50")
             self.Final_amount -= 25
-            self.FinalTotalLabel.config(text = '$%.2f' %self.Final_amount)
+            self.FinalTotalLabel.config(text = '$%.2f' %(self.Final_amount/100))
+            self.update()
         if total_amount >= 75:
             self.coinlabeltest.config(text = "You have deposited $0.75")
             self.Final_amount -= 25
-            self.FinalTotalLabel.config(text = '$%.2f' %self.Final_amount)
+            self.FinalTotalLabel.config(text = '$%.2f' %(self.Final_amount/100))
+            self.update()
         if total_amount >= 100:
             self.coinlabeltest.config(text = "You have deposited $1.00")
             self.Final_amount -= 25
-            self.FinalTotalLabel.config(text = '$%.2f' %self.Final_amount)
+            self.FinalTotalLabel.config(text = '$%.2f' %(self.Final_amount/100))
+            self.update()
         if total_amount >= 125:
             self.coinlabeltest.config(text = "You have deposited $1.25")
             self.Final_amount -= 25
-            self.FinalTotalLabel.config(text = '$%.2f' %self.Final_amount)
+            self.FinalTotalLabel.config(text = '$%.2f' %(self.Final_amount/100))
+            self.update()
         if total_amount >= POS.FinalPrice:
             self.coinlabeltest.config(text = "Thank you for choosing RVM")
             if POS.SodaSelected == 1:
@@ -45,6 +50,8 @@ def ActivateCoinAcceptor(self):
             if POS.WaterSelected == 1:
                 SM.Stepper2Forward(self)
             print(total_amount, POS.Price)
+            ser.close()
+            controller.show_frame("MainMenu")
             break
 if __name__=="__CoinAcceptor__":
     main()
