@@ -140,6 +140,8 @@ def ResetPrice(self):
     global WaterLimit
     global FinalPrice
     global Discount
+    global DiscountEnabler
+    DiscountEnabler = 0
     FinalPrice = 000
     Discount = 000
     SodaLimit = 0
