@@ -6,6 +6,7 @@ import tkinter as tk
 from Selling_Module import POS
 from Selling_Module import Stepper_Motor as STM
 from Selling_Module import CoinAcceptor as Coin
+import CointTestServo as CTS
 from tkinter import font as tkfont
 from tkinter import PhotoImage
 from tkinter import ttk
@@ -165,7 +166,7 @@ class CheckoutMenu(tk.Frame):
         self.FinalTotalLabel.pack(side="top", fill="x", pady=10)
         #This creates the buttons for the frame
         self.CoinActivatorSelectionButton = tk.Button(self, text = "",
-                    command = lambda: [Coin.ActivateCoinAcceptor(self,controller)])
+                    command = lambda: [CTS.ActivateCoinAcceptor(self)])#Coin.ActivateCoinAcceptor(self,controller)])
         self.ReturnSelectionButton = tk.Button(self, text = "",
                     command = lambda: [controller.show_frame("PurchaseMenu")
                     ,print("moving to main menu")])
