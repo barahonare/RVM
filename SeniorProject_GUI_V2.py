@@ -1,4 +1,3 @@
-
 import math
 import RPi.GPIO as GPIO #uncomment when running on pi
 import time
@@ -113,8 +112,7 @@ class ScanningStage_OpenAlumDoor(tk.Frame):
         tk.Frame.__init__(self,parent)
         self.controller = controller
         #This Creates the labels for the frame
-        self.Scanninglabel = tk.Label(self, bg = 'black',fg = 'white', text = "Press the scanning button and then hold your can up to the sensor for a safety scan"
-                                      , font = controller.title_font)
+        self.Scanninglabel = tk.Label(self, bg = 'black',fg = 'white', text = "Press the scanning button and then hold your can up to the sensor for a safety scan", font = controller.title_font)
         #This puts the label on the frame
         self.Scanninglabel.pack(side="top", fill="x", pady=10)
         #This creates the buttons for the frame
@@ -142,7 +140,7 @@ class OpeningPlasticDoor(tk.Frame):
         self.OpeningDoorPromptlabel.pack(side="top", fill="x", pady=10)
         #This creates the buttons for the frame
         self.ReturnSelectionButton = tk.Button(self, text = "", command = lambda: [controller.show_frame("RecycleMenu"), print("moving to main menu")])
-        self.PlasticDoorButton = tk.Button(self, text = "", command = lambda: PDS.PlasticDoorOpen(self))
+        self.PlasticDoorButton = tk.Button(self, text = "", command = lambda: PDS.PlasticDoorOpen(self,controller))
         #This puts the buttons onto the frame
         self.PlasticDoorButton.pack()
         self.ReturnSelectionButton.pack()
@@ -153,10 +151,6 @@ class OpeningPlasticDoor(tk.Frame):
         self.UnlockImageForButton = PhotoImage(file="Buttons_Pack//UnlockPlasticDoorButton_image.gif")
         self.PlasticDoorButton.config(image=self.UnlockImageForButton, compound = "bottom")
         self.PlasticDoorButton.image = self.UnlockImageForButton
-
-
-    #call plastic door opeing here
-
 class PurchaseMenu(tk.Frame):
     #initalizes the class
     def __init__(self,parent,controller):
@@ -166,7 +160,7 @@ class PurchaseMenu(tk.Frame):
         #This Creates the labels for the frame
         self.selectionlabel = tk.Label(self, bg = 'black',fg = 'white', text = "Would you like to buy a can of soda or bottle of water?", font = controller.title_font)
         self.TotalLabel = tk.Label(self, bg = 'black',fg = 'white', text = "Your total will display here as you add items", font = controller.title_font)
-        self.Cartlabel = tk.Label(self, bg = 'black',fg = 'white', text = "Your Final value is " '$%s ' "Your discount was "'$%s'%((POS.FinalPrice/100),(POS.Discount/100)), font = controller.title_font)
+        self.Cartlabel = tk.Label(self, bg = 'black',fg = 'white', text = "Your Final value is " '$%.2f ' "Your discount was "'$%.2f'%((POS.FinalPrice/100),(POS.Discount/100)), font = controller.title_font)
         #This puts the label on the frame
         self.selectionlabel.pack(side="top", fill="x", pady=10)  
         self.Cartlabel.pack(side="top", fill="x", pady=10)
@@ -179,7 +173,7 @@ class PurchaseMenu(tk.Frame):
                         ,POS.ResetPrice(self), print("moving to main menu")])
         self.CheckoutSelectionButton = tk.Button(self, text = "", 
                     command = lambda: [controller.show_frame("CheckoutMenu")
-                        , checkOutFrame.FinalTotalLabel.config(text = ("You owe "'$%.2f' %(POS.FinalPrice/100))), checkOutFrame.coinlabeltest.config(text = ("You have deposited $0.00"))
+                        , checkOutFrame.FinalTotalLabel.config(text = ('$%.2f' %(POS.FinalPrice/100)))
                         , print("moving to checkout menu")])
         self.MinusSodaFromTotalButton = tk.Button(self, text = "",
                     command = lambda: [POS.SubtractPriceOfSoda(self)
@@ -231,14 +225,14 @@ class CheckoutMenu(tk.Frame):
         self.controller = controller
         #This Creates the labels for the frame
         self.selectionlabel = tk.Label(self, bg = 'black',fg = 'white', text = "Please insert exact change into the coin acceptor please", font = controller.title_font)
-        self.coinlabeltest = tk.Label(self, bg = 'black',fg = 'white', text = "You have deposited $0.00", font = controller.title_font)
-        self.FinalTotalLabel = tk.Label(self, bg = 'black', fg = 'white', text = "", font = controller.title_font)
+        self.coinlabeltest = tk.Label(self, bg = 'black',fg = 'white', text = "This will get updated", font = controller.title_font)
+        self.FinalTotalLabel = tk.Label(self, bg = 'black', fg = 'white', text = "You owe $%.2f" %(POS.FinalPrice/100), font = controller.title_font)
         #This puts the label on the frame
         self.selectionlabel.pack(side="top", fill="x", pady=10)
         self.coinlabeltest.pack(side="top", fill="x", pady=10)
         self.FinalTotalLabel.pack(side="top", fill="x", pady=10)
         #This creates the buttons for the frame
-        self.CoinActivatorSelectionButton = tk.Button(self, text = "", command = lambda: [Coin.ActivateCoinAcceptor(self,controller)])
+        self.CoinActivatorSelectionButton = tk.Button(self, text = "", command = lambda: [Coin.ActivateCoinAcceptor(self, controller)])
         self.ReturnSelectionButton = tk.Button(self, text = "", command = lambda: [controller.show_frame("PurchaseMenu"), print("moving to main menu")])
         #This puts the buttons onto the frame
         self.CoinActivatorSelectionButton.pack()
@@ -250,7 +244,7 @@ class CheckoutMenu(tk.Frame):
         self.PayingImageForButton = PhotoImage(file="Buttons_Pack//StartPayingButton_image.gif")
         self.CoinActivatorSelectionButton.config(image=self.PayingImageForButton, compound = "top")
         self.CoinActivatorSelectionButton.image = self.PayingImageForButton
- 
+		
 if __name__ == "__main__":
     app = RvmMainApp()
     app.title("recycling vending machine")
