@@ -67,12 +67,12 @@ class MainMenu(tk.Frame):
         #This creates the buttons for the frame
         self.RecycleSelectionButton = tk.Button(self, text="",command = lambda: [controller.show_frame("RecycleMenu"), print("moving to recycle menu")])
         self.PurchaseSelectionButton = tk.Button(self, text = "", command = lambda: [controller.show_frame("PurchaseMenu"), print("moving to purchase menu")])
-        self.KillButton = tk.Button(self, text="Kill",command = lambda: [ -fullscreen, print("killing System")])
+		self.KillButton = tk.Button(self, text = "minimize", command = lambda: [-fullscreen])
         #This puts the buttons onto the frame
         self.RecycleSelectionButton.pack(side = "left")
         self.PurchaseSelectionButton.pack(side = "right")
-	 self.KillButton.pack(side = "bottom")
-	#This allows us to put images into the buttons
+        self.KillButton.pack(side = "bottom")
+        #This allows us to put images into the buttons
         self.RecycleImageForButton = PhotoImage(file="Buttons_Pack//RecycleButton_image.gif")
         self.RecycleSelectionButton.config(image=self.RecycleImageForButton, compound = "bottom")
         self.RecycleSelectionButton.image = self.RecycleImageForButton
@@ -114,7 +114,8 @@ class ScanningStage_OpenAlumDoor(tk.Frame):
         tk.Frame.__init__(self,parent)
         self.controller = controller
         #This Creates the labels for the frame
-        self.Scanninglabel = tk.Label(self, bg = 'black',fg = 'white', text = "Press the scanning button and then hold your can up to the sensor for a safety scan", font = controller.title_font)
+        self.Scanninglabel = tk.Label(self, bg = 'black',fg = 'white', 
+		text = "Press the scanning button and then hold your can up to the sensor for a safety scan", font = controller.title_font)
         #This puts the label on the frame
         self.Scanninglabel.pack(side="top", fill="x", pady=10)
         #This creates the buttons for the frame
@@ -137,7 +138,8 @@ class OpeningPlasticDoor(tk.Frame):
         tk.Frame.__init__(self,parent)
         self.controller = controller
         #This Creates the labels for the frame
-        self.OpeningDoorPromptlabel = tk.Label(self, bg = 'black',fg = 'white', text = "Please wait as the safety plastic door is opening", font = controller.title_font)
+        self.OpeningDoorPromptlabel = tk.Label(self, bg = 'black',fg = 'white', 
+		text = "Please wait as the safety plastic door is opening", font = controller.title_font)
         #This puts the label on the frame
         self.OpeningDoorPromptlabel.pack(side="top", fill="x", pady=10)
         #This creates the buttons for the frame
