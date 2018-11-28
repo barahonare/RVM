@@ -19,6 +19,7 @@ def main():
 
 def PlasticDoorOpen(self,controller):
     self.OpeningDoorPromptlabel.config(text = "Please wait as the safety plastic door is opening")
+    self.update()
     PurchasePage = controller.get_page("PurchaseMenu")
     servo_max()
     servo_min()
