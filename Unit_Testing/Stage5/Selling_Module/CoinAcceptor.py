@@ -7,7 +7,7 @@ from Selling_Module import Stepper_Motor as SM
 def main():
     pass
 
-def ActivateCoinAcceptor(self):
+def ActivateCoinAcceptor(self,controller):
     ser = serial.Serial('/dev/ttyACM1', 9600)
     while True:
         #Converting the byte to string
