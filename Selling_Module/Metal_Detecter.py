@@ -39,7 +39,6 @@ def ScanToOpen(self,controller):
             servo_locked()
             print("max(lock)")
             sleep(1)
-            GPIO.cleanup()
             if POS.DiscountEnabler == 1:
                 POS.CanDiscountMethod(PurchasePage)
                 self.Scanninglabel.config(text = "Thank you for recycling!")
