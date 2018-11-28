@@ -134,7 +134,8 @@ def SubtractPriceOfWater(self):
         print("Subtracting water")
         print("Decreasing waterLimit")
 # Method reset price to 0.00
-def ResetPrice(self):
+def ResetPrice(self,controller):
+    CheckOutPage = controller.get_page("CheckoutMenu")
     global Price
     global SodaLimit
     global WaterLimit
@@ -147,7 +148,7 @@ def ResetPrice(self):
     SodaLimit = 0
     WaterLimit = 0
     Price = 000
-    self.coinlabeltest.config(text = ("Your final total is currently" '$%.2f' %(FinalPrice/100)))
+    CheckOutPage.coinlabeltest.config(text = ("Your final total is currently" '$%.2f' %(FinalPrice/100)))
     self.Cartlabel.config(text = ('$%.2f' %(Price/100)))
     self.TotalLabel.config(text = ('$%.2f' %(FinalPrice/100)))
     print("Resetting price")
