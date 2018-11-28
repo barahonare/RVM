@@ -139,15 +139,18 @@ class OpeningPlasticDoor(tk.Frame):
         #This puts the label on the frame
         self.OpeningDoorPromptlabel.pack(side="top", fill="x", pady=10)
         #This creates the buttons for the frame
-        self.ReturnSelectionButton = tk.Button(self, text = "return to main", command = lambda: [controller.show_frame("RecycleMenu"), print("moving to main menu")])
-        self.PlasticDoorButton = tk.Button(self, text = "push to open the plastic door", command = lambda: PDS.PlasticDoorOpen(self))
+        self.ReturnSelectionButton = tk.Button(self, text = "", command = lambda: [controller.show_frame("RecycleMenu"), print("moving to main menu")])
+        self.PlasticDoorButton = tk.Button(self, text = "", command = lambda: PDS.PlasticDoorOpen(self))
         #This puts the buttons onto the frame
-        self.ReturnSelectionButton.pack()
         self.PlasticDoorButton.pack()
+        self.ReturnSelectionButton.pack()
         #adds images into the buttons
         self.BackupImageForButton = PhotoImage(file="Buttons_Pack//BackupButton_image.gif")
         self.ReturnSelectionButton.config(image=self.BackupImageForButton, compound = "bottom")
         self.ReturnSelectionButton.image = self.BackupImageForButton
+        self.UnlockImageForButton = PhotoImage(file="Buttons_Pack//UnlockPlasticDoorButton_image.gif")
+        self.PlasticDoorButton.config(image=self.UnlockImageForButton, compound = "bottom")
+        self.PlasticDoorButton.image = self.UnlockImageForButton
 class PurchaseMenu(tk.Frame):
     #initalizes the class
     def __init__(self,parent,controller):
