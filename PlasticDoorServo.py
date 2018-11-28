@@ -12,7 +12,7 @@ servo1.start(12.5)
 def servo_max():
     servo1.ChangeDutyCycle(12.5) # turn towards 180 degree
 def servo_min():
-    servo1.ChangeDutyCycle(2.5)
+    servo1.ChangeDutyCycle(7.5)
 
 def main():
     pass
