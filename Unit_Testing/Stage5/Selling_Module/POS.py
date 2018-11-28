@@ -38,7 +38,7 @@ def CanDiscountMethod(self):
     if DiscountEnabler == 1:
         Discount = 25
         FinalPrice -= Discount
-        self.TotalLabel.config(text = ("Your Final value is " '$%s      ' "Your discount was "'$%s'%((FinalPrice/100),(Discount/100))))
+        self.TotalLabel.config(text = ("Your Final value is " '$%.2f      ' "Your discount was "'$%.3f'%((FinalPrice/100),(Discount/100))))
         print("Discount is now set to $0.25")
 #this method is to calculate the discount
 def WaterDiscountMethod(self):
@@ -48,7 +48,7 @@ def WaterDiscountMethod(self):
     if DiscountEnabler == 1:
         Discount = 50
         FinalPrice -= Discount
-        self.TotalLabel.config(text = ("Your Final value is " '$%s      ' "Your discount was "'$%s'%((FinalPrice/100),(Discount/100))))
+        self.TotalLabel.config(text = ("Your Final value is " '$%.2f      ' "Your discount was "'$%.2f'%((FinalPrice/100),(Discount/100))))
         print("Discount is now set to $0.50")
 
 #this method is used to set the goal of the amount due for the coin acceptor
@@ -81,8 +81,8 @@ def AddPriceOfSoda(self):
         SodaLimit += 1
         FinalPrice = (FinalPrice + Price)
         #updates the label containing the total if the limit has not been met
-        self.Cartlabel.config(text = ("Your Cart Value is " '$%s' %(Price/100)))
-        self.TotalLabel.config(text = ("Your Final value is " '$%s      ' "Your discount was "'$%s'%((FinalPrice/100),(Discount))))
+        self.Cartlabel.config(text = ("Your Cart Value is " '$%.2f' %(Price/100)))
+        self.TotalLabel.config(text = ("Your Final value is " '$%.2f      ' "Your discount was "'$%.2f'%((FinalPrice/100),(Discount))))
         print("adding soda")
         print("Increasing sodaLimit")
 #method to add the price of a water to the total
@@ -97,8 +97,8 @@ def AddPriceOfWater(self):
         WaterLimit += 1
         FinalPrice = (FinalPrice + Price)
         #updates the label containing the total if the limit has not been met
-        self.Cartlabel.config(text = ("Your Cart Value is " '$%s' %(Price/100)))
-        self.TotalLabel.config(text = ("Your Final value is " '$%s      ' "Your discount was "'$%s'%((FinalPrice/100),(Discount/100))))
+        self.Cartlabel.config(text = ("Your Cart Value is " '$%.2f' %(Price/100)))
+        self.TotalLabel.config(text = ("Your Final value is " '$%.2f      ' "Your discount was "'$%.2f'%((FinalPrice/100),(Discount/100))))
         print("adding water")
         print("Increasing waterLimit")
 #method to add the price of a soda to the total
@@ -113,8 +113,8 @@ def SubtractPriceOfSoda(self):
         Price -= 75
         SodaLimit -= 1
         #updates the label containing the total if the limit has not been met
-        self.Cartlabel.config(text = ("Your Cart Value is " '$%s' %(Price/100)))
-        self.TotalLabel.config(text = ("Your Final value is " '$%s      ' "Your discount was "'$%s'%((FinalPrice/100),(Discount/100))))
+        self.Cartlabel.config(text = ("Your Cart Value is " '$%.2f' %(Price/100)))
+        self.TotalLabel.config(text = ("Your Final value is " '$%.2f      ' "Your discount was "'$%.2f'%((FinalPrice/100),(Discount/100))))
         print("Subtracting soda")
         print("Decreasing sodaLimit")
 #method to add the price of a water to the total
@@ -129,8 +129,8 @@ def SubtractPriceOfWater(self):
         Price -= 125
         WaterLimit -= 1
         #updates the label containing the total if the limit has not been met
-        self.Cartlabel.config(text = ("Your Cart Value is " '$%s' %(Price/100)))
-        self.TotalLabel.config(text = ("Your Final value is " '$%s      ' "Your discount was "'$%s'%(FinalPrice,Discount)))
+        self.Cartlabel.config(text = ("Your Cart Value is " '$%.2f' %(Price/100)))
+        self.TotalLabel.config(text = ("Your Final value is " '$%.2f      ' "Your discount was "'$%.2f'%(FinalPrice,Discount)))
         print("Subtracting water")
         print("Decreasing waterLimit")
 # Method reset price to 0.00
@@ -145,8 +145,8 @@ def ResetPrice(self):
     SodaLimit = 0
     WaterLimit = 0
     Price = 000
-    self.Cartlabel.config(text = ('$%s' %Price))
-    self.TotalLabel.config(text = ('$%s' %FinalPrice))
+    self.Cartlabel.config(text = ('$%.2f' %Price))
+    self.TotalLabel.config(text = ('$%.2f' %FinalPrice))
     print("Resetting price")
 
 
