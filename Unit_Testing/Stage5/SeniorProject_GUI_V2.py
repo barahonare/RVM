@@ -140,7 +140,7 @@ class OpeningPlasticDoor(tk.Frame):
         self.OpeningDoorPromptlabel.pack(side="top", fill="x", pady=10)
         #This creates the buttons for the frame
         self.ReturnSelectionButton = tk.Button(self, text = "", command = lambda: [controller.show_frame("RecycleMenu"), print("moving to main menu")])
-        self.PlasticDoorButton = tk.Button(self, text = "", command = lambda: PDS.PlasticDoorOpen(self))
+        self.PlasticDoorButton = tk.Button(self, text = "", command = lambda: PDS.PlasticDoorOpen(self,controller))
         #This puts the buttons onto the frame
         self.PlasticDoorButton.pack()
         self.ReturnSelectionButton.pack()
