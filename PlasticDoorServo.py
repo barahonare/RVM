@@ -35,6 +35,5 @@ def PlasticDoorOpen(self,controller):
         POS.DiscountReturnMethod(self)
     elif POS.DiscountEnabler == 0:
         POS.DiscountReturnMethod(self)
- GPIO.cleanup()
 if __name__=="__PlasticDoorServo__":
     main()
