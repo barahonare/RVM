@@ -157,7 +157,6 @@ def ResetPrice(self,controller):
     CheckOutPage.coinlabeltest.config(text = ("Your final total is currently" '$%.2f' %(FinalPrice/100)))
     self.Cartlabel.config(text = "Your total will display here as you add items")
     self.TotalLabel.config(text = ( "Your Final value is " '$%.2f ' "Your discount was "'$%.2f'%((FinalPrice/100),(Discount/100))))
-    self.
     print("Resetting price")
 
 
