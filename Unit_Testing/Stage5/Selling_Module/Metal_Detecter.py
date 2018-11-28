@@ -30,7 +30,7 @@ def ScanToOpen(self,controller):
     flag = True
     while (time.time() < timeout):
         servo_locked()
-        print(time.time(), timeout)
+        # print(time.time(), timeout)
         if b'METAL DETECTED\r\n' in ser:
             print('Metal Detected with Pi')
             servo_open()
@@ -55,9 +55,9 @@ def ScanToOpen(self,controller):
                 ser.close()
                 POS.DiscountReturnMethod(self)
                 break
-    if flag:
-        print("time out while loop")
-        controller.show_frame("MainMenu")
+    # if flag:
+    #     print("time out while loop")
+    #     controller.show_frame("MainMenu")
     # if flag:
     #     self.Scanninglabel.config(text = "Metal was not detected")
     #     # self.update()
