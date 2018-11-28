@@ -16,7 +16,7 @@ def ActivateCoinAcceptor(self,controller):
         sss = "".join(map(chr,ss))
         #Convert the string to integers
         total_amount = int(sss)
-        self.Final_amount = POS.Price
+        self.Final_amount = POS.FinalPrice
         print(total_amount)
         if total_amount >= 25:
             self.coinlabeltest.config(text = "You have deposited $0.25")
