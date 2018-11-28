@@ -1,0 +1,44 @@
+PIN         Description         Connected to
+----        -----------         ------------
+1              3V3
+2              5V               5V Touchscreen
+3              GPIO2            
+4              5V               5V Breadboard
+5              GPIO3            SCL Touchscreen
+6              Ground           Ground Touchscreen
+7              GPIO4            
+8              GPIO14
+9              Ground           Ground Breadboard
+10             GPIO15
+11             GPIO17           Stepper Motor 1
+12             GPIO18           Stepper Motor 1
+13             GPIO27           Stepper Motor 1
+14             GND
+15             GPIO22           Stepper Motor 1
+16             GPIO23
+17             3V3
+18             GPIO24           range finder Trig
+19             GPIO10           range finder Echo
+20             GND              
+21             GPIO9
+22             GPIO25
+23             GPIO11
+24             GPIO08
+25             GND
+26             GPIO07
+27             GPIO00
+28             GPIO01
+29             GPIO05
+30             GND
+31             GPIO06
+32             GPIO12
+33             GPIO13		   Servo Motor 2
+34             GND        
+35             GPIO19          Stepper Motor 2
+36             GPIO16          Servo Motor 1
+37             GPIO26          Stepper Motor 2
+38             GPIO20          Stepper Motor 2
+39             GND             
+40             GPIO21          Stepper Motor 2
+
+
