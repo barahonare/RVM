@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 from time import sleep
 from Selling_Module import POS
 
-Servo GPIO
+#Servo GPIO
 ServoPin = 33
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(ServoPin, GPIO.OUT)
