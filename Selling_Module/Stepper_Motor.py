@@ -51,7 +51,7 @@ def Stepper1Forward(self):
         elif(Step_Seq_Num<0):
             Step_Seq_Num=7
         time.sleep(Rot_Spd)
-    GPIO.cleanup()
+    #GPIO.cleanup()
     print('Done')
 
 def Stepper1Backwards(self):
@@ -97,7 +97,7 @@ def Stepper1Backwards(self):
         elif(Step_Seq_Num<0):
             Step_Seq_Num=7
         time.sleep(Rot_Spd)
-    GPIO.cleanup()
+    #GPIO.cleanup()
     print('Done')
 
 def Stepper2Forward(self):
@@ -143,7 +143,7 @@ def Stepper2Forward(self):
         elif(Step_Seq_Num<0):
             Step_Seq_Num=7
         time.sleep(Rot_Spd)
-    GPIO.cleanup()
+    #GPIO.cleanup()
     print('Done')
 
 def Stepper2Backwards(self):
@@ -189,7 +189,7 @@ def Stepper2Backwards(self):
         elif(Step_Seq_Num<0):
             Step_Seq_Num=7
         time.sleep(Rot_Spd)
-    GPIO.cleanup()
+    #GPIO.cleanup()
     print('Done')
 
 if __name__=="__Stepper_Motor__":
