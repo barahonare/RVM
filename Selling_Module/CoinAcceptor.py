@@ -10,7 +10,6 @@ def main():
 def ActivateCoinAcceptor(self,controller):
     ser = serial.Serial('/dev/ttyACM1', 9600)
     PurchasePage = controller.get_page('PurchaseMenu')
-    CheckoutPage = controller.get_page('CheckoutMenu')
     while True:
         #Converting the byte to string
         s = ser.readline()
