@@ -15,15 +15,15 @@ def main():
     pass
 
 def servorun():
-    while True:
+    #while True:
     ##    servo1.ChangeDutyCycle(2.7)
     ##    sleep(2)
-        servo1.ChangeDutyCycle(6.0)
-        print("locked")
-        sleep(2)
-        servo1.ChangeDutyCycle(10.0)
-        print("open")
-        sleep(2)
+    servo1.ChangeDutyCycle(6.0)
+    print("locked")
+    sleep(2)
+    servo1.ChangeDutyCycle(10.0)
+    print("open")
+    sleep(2)
 
 def ActivateCoinAcceptor():
     ser = serial.Serial('/dev/ttyACM1', 9600)
