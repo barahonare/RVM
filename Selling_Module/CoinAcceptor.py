@@ -50,6 +50,7 @@ def ActivateCoinAcceptor(self,controller):
             if POS.WaterSelected == 1:
                 SM.Stepper2Forward(self)
             print(total_amount, POS.Price)
+            POS.ResetPrice(self)
             ser.close()
             controller.show_frame("MainMenu")
             break
