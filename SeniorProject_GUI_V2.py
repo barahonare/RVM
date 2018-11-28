@@ -67,9 +67,11 @@ class MainMenu(tk.Frame):
         #This creates the buttons for the frame
         self.RecycleSelectionButton = tk.Button(self, text="",command = lambda: [controller.show_frame("RecycleMenu"), print("moving to recycle menu")])
         self.PurchaseSelectionButton = tk.Button(self, text = "", command = lambda: [controller.show_frame("PurchaseMenu"), print("moving to purchase menu")])
+        self.KillButton = tk.Button(self, text="Kill",command = lambda: [ -fullscreen, print("killing System")])
         #This puts the buttons onto the frame
         self.RecycleSelectionButton.pack(side = "left")
         self.PurchaseSelectionButton.pack(side = "right")
+	self.KillButton.pack(side = "bottom")
         #This allows us to put images into the buttons
         self.RecycleImageForButton = PhotoImage(file="Buttons_Pack//RecycleButton_image.gif")
         self.RecycleSelectionButton.config(image=self.RecycleImageForButton, compound = "bottom")
