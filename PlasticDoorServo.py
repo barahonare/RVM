@@ -30,6 +30,8 @@ def PlasticDoorOpen(self,controller):
     self.OpeningDoorPromptlabel.config(text = "Thank you for recycling!")
     self.update()
     sleep(3)
+    self.OpeningDoorPromptlabel.config(text = "Please wait as the safety plastic door is opening")
+    self.update()
     if POS.DiscountEnabler == 1:
         POS.WaterDiscountMethod(PurchasePage)
         POS.DiscountReturnMethod(self)

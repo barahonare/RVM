@@ -115,7 +115,7 @@ class ScanningStage_OpenAlumDoor(tk.Frame):
         self.controller = controller
         #This Creates the labels for the frame
         self.Scanninglabel = tk.Label(self, bg = 'black',fg = 'white', 
-		text = "Press the scanning button and then hold your can up to the sensor for a safety scan", font = controller.title_font)
+		text = "Press the scanning button to check can", font = controller.title_font)
         #This puts the label on the frame
         self.Scanninglabel.pack(side="top", fill="x", pady=10)
         #This creates the buttons for the frame

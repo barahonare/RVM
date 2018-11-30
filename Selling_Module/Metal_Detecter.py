@@ -24,6 +24,8 @@ def servo_open():
 
 def ScanToOpen(self,controller):
     #to change the label
+    self.Scanninglabel.config(text="Place can on the alumimum sensor")
+    self.update()
     ser = serial.Serial('/dev/ttyACM0', 9600)
     PurchasePage = controller.get_page('PurchaseMenu')
     timeout = time.time() +6
@@ -47,6 +49,7 @@ def ScanToOpen(self,controller):
                 # sleep(2)
                 flag = False
                 ser.close()
+                self.Scanninglabel.config(text = "Press the scanning button to check can")
                 POS.DiscountReturnMethod(self)
                 # controller.show_frame("MainMenu")
                 break
