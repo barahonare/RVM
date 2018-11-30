@@ -36,6 +36,6 @@ def PlasticDoorOpen(self,controller):
         POS.WaterDiscountMethod(PurchasePage)
         POS.DiscountReturnMethod(self)
     elif POS.DiscountEnabler == 0:
-        POS.DiscountReturnMethod(self)
+        POS.DiscountReturnMethod(PurchasePage)
 if __name__=="__PlasticDoorServo__":
     main()
